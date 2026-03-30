@@ -1,0 +1,516 @@
+<!doctype html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;900&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1A4F9C",
+              accent: "#D42B2B",
+              "dark-navy": "#0B1A2E",
+              "navy-dark": "#0B1A2E",
+              "deep-blue": "#112240",
+              "light-blue-gray": "#F8FAFC",
+              "background-light": "#FFFFFF",
+              "background-dark": "#0B1A2E",
+            },
+            fontFamily: {
+              display: ["Public Sans", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <title>Contacto - DPC Insumos</title>
+    <style type="text/tailwindcss">
+      @layer components {
+        .dot-grid {
+          background-image: radial-gradient(
+            rgba(26, 79, 156, 0.04) 1px,
+            transparent 1px
+          );
+          background-size: 24px 24px;
+        }
+        .nav-scrolled {
+          background-color: rgba(255, 255, 255, 0.97) !important;
+          border-bottom: 1px solid rgba(26, 79, 156, 0.08);
+          @apply shadow-sm;
+        }
+        .nav-scrolled a,
+        .nav-scrolled span,
+        .nav-scrolled button {
+          color: #0b1a2e !important;
+        }
+        .nav-scrolled .nav-cta {
+          color: #ffffff !important;
+        }
+        /* Dropdown nav */
+        .nav-dropdown {
+          min-width: 200px;
+          top: calc(100% + 12px);
+        }
+        .nav-megamenu {
+          min-width: 520px;
+          top: calc(100% + 12px);
+          left: 50%;
+          transform: translateX(-50%);
+        }
+        @keyframes customFloat {
+          0%, 100% { transform: translateY(0) rotate(0); }
+          50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        .animate-float-slow {
+          animation: customFloat 8s ease-in-out infinite;
+        }
+        .glass-v2 {
+          background: rgba(255, 255, 255, 0.4);
+          backdrop-filter: blur(20px);
+          @apply border border-white/40 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)];
+        }
+        /* Mesh Gradient Background */
+        .mesh-bg {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: -1;
+          background-color: #ffffff;
+          background-image: 
+            radial-gradient(at 0% 0%, rgba(26, 79, 156, 0.05) 0px, transparent 50%),
+            radial-gradient(at 100% 0%, rgba(212, 43, 43, 0.02) 0px, transparent 50%),
+            radial-gradient(at 100% 100%, rgba(26, 79, 156, 0.05) 0px, transparent 50%),
+            radial-gradient(at 0% 100%, rgba(212, 43, 43, 0.02) 0px, transparent 50%);
+        }
+        /* Continuous Connection Line */
+        .connection-line {
+          position: fixed;
+          left: 40px;
+          top: 0;
+          bottom: 0;
+          width: 1px;
+          background: linear-gradient(to bottom, transparent, rgba(26, 79, 156, 0.1) 10%, rgba(26, 79, 156, 0.1) 90%, transparent);
+          z-index: 5;
+          pointer-events: none;
+        }
+        .connection-line::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -2px;
+          width: 5px;
+          height: 5px;
+          background: #1A4F9C;
+          border-radius: 50%;
+          animation: slideDown 20s linear infinite;
+          opacity: 0.3;
+        }
+        @keyframes slideDown {
+          0% { top: 0; }
+          100% { top: 100%; }
+        }
+        /* Giant Watermark */
+        .bg-watermark {
+          position: absolute;
+          font-size: 25vw;
+          font-weight: 900;
+          color: rgba(26, 79, 156, 0.02);
+          pointer-events: none;
+          user-select: none;
+          z-index: 0;
+          white-space: nowrap;
+        }
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background-light font-display text-slate-900 overflow-x-hidden"
+  >
+    <div class="mesh-bg"></div>
+    <div class="connection-line"></div>
+    <nav
+      class="fixed top-0 w-full z-50 transition-all duration-500 px-6 py-3 flex items-center justify-between"
+      id="main-nav"
+    >
+      <div class="flex items-center gap-3">
+        <img src="assets/img/logo.png" alt="DPC Logo" class="h-14 w-auto" />
+      </div>
+      <div class="hidden md:flex items-center gap-8">
+        <a class="text-sm font-semibold tracking-wide text-white hover:text-white/70 transition-colors" href="index.html">INICIO</a>
+        <div class="relative group flex items-center">
+          <a href="nosotros.html" class="text-sm font-semibold tracking-wide text-white hover:text-white/70 transition-colors uppercase">NOSOTROS</a>
+          <button class="flex items-center text-white hover:text-white/70 transition-colors ml-1">
+            <span class="material-symbols-outlined text-base" style="font-size:16px">expand_more</span>
+          </button>
+          <div class="nav-dropdown absolute invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 bg-white rounded-2xl shadow-2xl shadow-slate-200/80 border border-slate-100 py-2 z-50">
+            <a href="nosotros.html#historia" class="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:text-primary hover:bg-slate-50 transition-colors">
+              <span class="material-symbols-outlined text-primary" style="font-size:18px">history_edu</span>Historia
+            </a>
+            <a href="nosotros.html#certificacion" class="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:text-primary hover:bg-slate-50 transition-colors">
+              <span class="material-symbols-outlined text-primary" style="font-size:18px">verified_user</span>Certificación
+            </a>
+            <a href="nosotros.html#equipo" class="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:text-primary hover:bg-slate-50 transition-colors">
+              <span class="material-symbols-outlined text-primary" style="font-size:18px">group</span>Equipo de Trabajo
+            </a>
+            <a href="nosotros.html#cultura" class="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:text-primary hover:bg-slate-50 transition-colors">
+              <span class="material-symbols-outlined text-primary" style="font-size:18px">diversity_3</span>Cultura
+            </a>
+          </div>
+        </div>
+        <div class="relative group flex items-center">
+          <a href="productos.html" class="text-sm font-semibold tracking-wide text-white hover:text-white/70 transition-colors uppercase">PRODUCTOS</a>
+          <button class="flex items-center text-white hover:text-white/70 transition-colors ml-1">
+            <span class="material-symbols-outlined text-base" style="font-size:16px">expand_more</span>
+          </button>
+          <div class="nav-megamenu absolute invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 bg-white rounded-2xl shadow-2xl shadow-slate-200/80 border border-slate-100 p-6 z-50">
+            <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-4 pb-3 border-b border-slate-100">Catálogo de Productos</p>
+            <div class="grid grid-cols-2 gap-x-8 gap-y-1">
+              <a href="productos.html?cat=proteccion" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Protección Personal</a>
+              <a href="productos.html?cat=camisolines" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Camisolines</a>
+              <a href="productos.html?cat=quirurgico" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Quirúrgico</a>
+              <a href="productos.html?cat=kits" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Kits y Tratamientos</a>
+              <a href="productos.html?cat=cama" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Cama y Campo</a>
+              <a href="productos.html?cat=otros" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Otros Accesorios</a>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100">
+              <a href="productos.html" class="inline-flex items-center gap-2 text-xs font-bold text-primary hover:underline">
+                Ver catálogo completo <span class="material-symbols-outlined" style="font-size:14px">arrow_forward</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <a class="text-sm font-semibold tracking-wide text-white hover:text-white/70 transition-colors" href="noticias.html">NOTICIAS</a>
+        <a class="text-sm font-semibold tracking-wide text-white hover:text-white/70 transition-colors" href="contacto.html">CONTACTO</a>
+        <a href="assets/pdf/catalogo.pdf" target="_blank"
+          class="nav-cta bg-primary hover:bg-[#153f7a] text-white px-6 py-2.5 rounded-full font-semibold text-sm transition-all shadow-md shadow-primary/20">
+          CATÁLOGO
+        </a>
+      </div>
+      <button class="md:hidden text-white" id="mobile-menu-btn">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+    </nav>
+    <main>
+      <!-- Hero Section Premium -->
+      <section class="relative min-h-[450px] flex items-center justify-center overflow-hidden bg-navy-dark pt-20">
+        <!-- Mesh Background Layer -->
+        <div class="absolute inset-0 z-0 opacity-30 animate-pulse-slow">
+          <div class="mesh-bg !fixed !z-0"></div>
+        </div>
+        
+        <!-- Big Watermark -->
+        <div class="bg-watermark top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-6 opacity-5 select-none pointer-events-none">CONTACT / DPC</div>
+        
+        <div class="relative z-10 w-full max-w-7xl mx-auto px-6 text-center md:text-left">
+          <div class="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-black uppercase tracking-[0.2em] animate-fade-in">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+            </span>
+            Atención Global y Personalizada
+          </div>
+          <h1 class="text-5xl md:text-7xl font-black text-white mb-6 leading-none tracking-tight animate-fade-in-up">
+            Estamos para <br><span class="text-primary italic">Asesorarlo</span>
+          </h1>
+          <p class="mt-4 max-w-xl text-lg md:text-xl text-slate-300 font-light leading-relaxed animate-fade-in-up" style="animation-delay: 200ms">
+            Contáctenos para recibir asesoramiento profesional sobre nuestros insumos industriales y clínicos. Nuestro equipo técnico responderá su consulta en menos de 24 hs.
+          </p>
+        </div>
+      </section>
+      <!-- Contact Split Layout -->
+      <section class="relative py-16 md:py-24" id="form">
+        <div class="absolute inset-0 dot-grid opacity-10"></div>
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            
+            <!-- Left: Contact Form Glass Card -->
+            <div class="lg:col-span-12 xl:col-span-7">
+              <div class="glass-v2 p-8 md:p-12 rounded-[2.5rem] border border-white/60 shadow-2xl relative overflow-hidden group">
+                <div class="absolute -top-24 -right-24 w-64 h-64 bg-primary/5 rounded-full blur-3xl transition-all group-hover:bg-primary/10"></div>
+                
+                <div class="relative z-10">
+                  <h2 class="text-3xl font-black text-dark-navy mb-2">Envianos un <span class="text-primary italic">Mensaje</span></h2>
+                  <p class="text-slate-500 text-sm font-light mb-10">Complete el siguiente formulario y un asesor comercial lo contactará a la brevedad.</p>
+                  
+                  <form class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      <div class="space-y-3">
+                        <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Nombre Completo</label>
+                        <input type="text" class="w-full bg-white/50 backdrop-blur-sm border border-slate-200 rounded-2xl px-6 py-4 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all outline-none text-sm placeholder:text-slate-400" placeholder="Ej: Juan Pérez">
+                      </div>
+                      <div class="space-y-3">
+                        <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Institución / Empresa</label>
+                        <input type="text" class="w-full bg-white/50 backdrop-blur-sm border border-slate-200 rounded-2xl px-6 py-4 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all outline-none text-sm placeholder:text-slate-400" placeholder="Nombre de la Institución">
+                      </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      <div class="space-y-3">
+                        <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Email de Contacto</label>
+                        <input type="email" class="w-full bg-white/50 backdrop-blur-sm border border-slate-200 rounded-2xl px-6 py-4 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all outline-none text-sm placeholder:text-slate-400" placeholder="usuario@institucion.com">
+                      </div>
+                      <div class="space-y-3">
+                        <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Teléfono Directo</label>
+                        <input type="tel" class="w-full bg-white/50 backdrop-blur-sm border border-slate-200 rounded-2xl px-6 py-4 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all outline-none text-sm placeholder:text-slate-400" placeholder="+54 381 000 0000">
+                      </div>
+                    </div>
+
+                    <div class="space-y-3">
+                      <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Producto de Interés</label>
+                      <div class="relative">
+                        <select class="w-full bg-white/50 backdrop-blur-sm border border-slate-200 rounded-2xl px-6 py-4 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all outline-none text-sm appearance-none cursor-pointer">
+                          <option value="" disabled selected>Seleccione una categoría</option>
+                          <option>Protección Personal (Barbijos, Cofias, Botas)</option>
+                          <option>Camisolines Hospitalarios</option>
+                          <option>Equipos de Cirugía Estériles</option>
+                          <option>Ropa de Cama y Campos</option>
+                          <option>Kits Médicos Específicos</option>
+                          <option>Otros Productos y Accesorios</option>
+                        </select>
+                        <span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">expand_more</span>
+                      </div>
+                    </div>
+
+                    <div class="space-y-3">
+                      <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Mensaje o Consulta</label>
+                      <textarea rows="4" class="w-full bg-white/50 backdrop-blur-sm border border-slate-200 rounded-2xl px-6 py-4 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all outline-none text-sm resize-none placeholder:text-slate-400" placeholder="Detalle su requerimiento o inquietud..."></textarea>
+                    </div>
+
+                    <button class="w-full bg-primary hover:bg-[#153f7a] text-white font-black py-5 rounded-2xl transition-all shadow-xl shadow-primary/20 flex items-center justify-center gap-4 text-xs tracking-[0.2em] group" type="submit">
+                      ENVIAR CONSULTA PROFESIONAL
+                      <span class="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">send</span>
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Info & Map -->
+            <div class="lg:col-span-12 xl:col-span-5 flex flex-col gap-8">
+              <!-- Live Google Map Card -->
+              <div class="bg-white rounded-[2.5rem] overflow-hidden border border-slate-200 shadow-2xl h-[400px] relative group">
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3560.102377395029!2d-65.23450912461942!3d-26.836544076694678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94225d304a0e9803%3A0x6a0a996f0148560e!2sColombia%202589%2C%20T4000%20San%20Miguel%20de%20Tucum%C3%A1n%2C%20Tucum%C3%A1n%2C%20Argentina!5e0!3m2!1sen!2sus!4v1743340000000!5m2!1sen!2sus" 
+                  width="100%" 
+                  height="100%" 
+                  style="border:0;" 
+                  allowfullscreen="" 
+                  loading="lazy" 
+                  referrerpolicy="no-referrer-when-downgrade"
+                  class="grayscale hover:grayscale-0 transition-all duration-700"
+                ></iframe>
+                
+                <div class="absolute bottom-6 left-6 right-6 glass-v2 p-5 rounded-2xl border-white/60 shadow-xl translate-y-12 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                  <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white shrink-0 shadow-lg">
+                      <span class="material-symbols-outlined text-lg">location_on</span>
+                    </div>
+                    <div>
+                      <p class="text-[10px] font-black uppercase text-primary tracking-widest mb-0.5">Ubicación Central</p>
+                      <p class="text-sm font-bold text-dark-navy">Colombia 2589, San Miguel de Tucumán</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Contact Direct Cards -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <!-- Phone Card -->
+                <div class="glass-v2 p-8 rounded-3xl border-white/60 hover:shadow-xl transition-all group">
+                  <div class="w-12 h-12 bg-primary/5 rounded-2xl flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-all">
+                    <span class="material-symbols-outlined">call</span>
+                  </div>
+                  <h3 class="text-lg font-black text-dark-navy mb-2">Llamanos</h3>
+                  <p class="text-slate-500 text-xs font-light leading-relaxed mb-4">Atención telefónica directa con nuestros expertos.</p>
+                  <a href="tel:+543814456789" class="text-sm font-bold text-primary hover:underline">+54 381 445-6789</a>
+                </div>
+                
+                <!-- Schedule Card -->
+                <div class="glass-v2 p-8 rounded-3xl border-white/60 hover:shadow-xl transition-all group border-l-primary/10">
+                  <div class="w-12 h-12 bg-primary/5 rounded-2xl flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-all">
+                    <span class="material-symbols-outlined">schedule</span>
+                  </div>
+                  <h3 class="text-lg font-black text-dark-navy mb-2">Horarios</h3>
+                  <p class="text-slate-500 text-xs font-light mb-1">Lun a Vie: 08:30 a 18:30</p>
+                  <p class="text-slate-500 text-xs font-light">Sábados: 09:00 a 13:00</p>
+                </div>
+              </div>
+              
+              <!-- Support Card Full Width -->
+              <div class="bg-dark-navy p-8 rounded-[2.5rem] text-white flex items-center justify-between group cursor-pointer hover:bg-[#0f1f33] transition-all">
+                <div class="flex items-center gap-6">
+                  <div class="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center text-primary-light">
+                    <span class="material-symbols-outlined text-3xl">mail</span>
+                  </div>
+                  <div>
+                    <h4 class="text-lg font-black">Email Corporativo</h4>
+                    <p class="text-slate-400 text-sm font-light">ventas@dpc.com.ar</p>
+                  </div>
+                </div>
+                <span class="material-symbols-outlined text-slate-600 group-hover:text-white group-hover:translate-x-2 transition-all">arrow_forward</span>
+              </div>
+            </div>
+
+          </div>
+            <!-- FAQ Section Premium -->
+      <section class="py-24 bg-slate-50/50">
+        <div class="max-w-5xl mx-auto px-6">
+          <div class="text-center mb-16">
+            <h2 class="text-4xl font-black text-dark-navy mb-4">Preguntas <span class="text-primary italic">Frecuentes</span></h2>
+            <p class="text-slate-500 max-w-2xl mx-auto font-light">Despejamos sus dudas sobre procesos de adquisición, logística y normativas sanitarias.</p>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- FAQ Item 1 -->
+            <div class="glass-v2 p-8 rounded-[2rem] border-white/60 hover:shadow-xl transition-all">
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                  <span class="material-symbols-outlined text-xl">local_shipping</span>
+                </div>
+                <div>
+                  <h4 class="font-black text-dark-navy mb-3">¿Cuál es el tiempo de entrega?</h4>
+                  <p class="text-slate-500 text-sm leading-relaxed font-light">
+                    Realizamos despachos diarios. En Tucumán entregamos en 24hs. Para el resto del país coordinamos con los transportes líderes, promediando de 3 a 5 días hábiles.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- FAQ Item 2 -->
+            <div class="glass-v2 p-8 rounded-[2rem] border-white/60 hover:shadow-xl transition-all">
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                  <span class="material-symbols-outlined text-xl">verified</span>
+                </div>
+                <div>
+                  <h4 class="font-black text-dark-navy mb-3">¿Cuentan con habilitación ANMAT?</h4>
+                  <p class="text-slate-500 text-sm leading-relaxed font-light">
+                    Sí, absolutamente. Todas nuestras líneas de productos clínicos e industriales cumplen con las normativas vigentes y poseen sus certificados de aprobación técnica.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- FAQ Item 3 -->
+            <div class="glass-v2 p-8 rounded-[2rem] border-white/60 hover:shadow-xl transition-all">
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                  <span class="material-symbols-outlined text-xl">payments</span>
+                </div>
+                <div>
+                  <h4 class="font-black text-dark-navy mb-3">¿Qué medios de pago aceptan?</h4>
+                  <p class="text-slate-500 text-sm leading-relaxed font-light">
+                    Aceptamos transferencias bancarias, cheques de pago diferido (previa calificación crediticia) y pagos mediante plataformas digitales para mayor agilidad.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- FAQ Item 4 -->
+            <div class="glass-v2 p-8 rounded-[2rem] border-white/60 hover:shadow-xl transition-all">
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                  <span class="material-symbols-outlined text-xl">package_2</span>
+                </div>
+                <div>
+                  <h4 class="font-black text-dark-navy mb-3">¿Realizan pedidos a medida?</h4>
+                  <p class="text-slate-500 text-sm leading-relaxed font-light">
+                    Contamos con capacidad productiva para desarrollar soluciones textiles personalizadas según los requerimientos específicos de su institución técnica o médica.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </main>
+    <footer class="bg-dark-navy text-white pt-16 pb-12 relative overflow-hidden">
+      <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-accent to-primary opacity-50"></div>
+      <div class="container mx-auto px-6">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-10 mb-12">
+          <div class="flex flex-col items-center md:items-start">
+            <img src="assets/img/logo.png" alt="DPC Logo" class="h-16 w-auto mb-6" />
+            <div class="flex gap-4">
+              <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition-all group">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              </a>
+              <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition-all group">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.17.054 1.805.249 2.227.412.558.217.957.477 1.377.896.42.419.68.818.896 1.377.163.422.358 1.057.412 2.227.059 1.266.071 1.646.071 4.85s-.012 3.584-.07 4.85c-.054 1.17-.249 1.805-.412 2.227-.217.558-.477.957-.896 1.377-.419.42-.818.68-1.377.896-.422.163-1.057.358-2.227.412-1.266.059-1.646.071-4.85.071s-3.584-.012-4.85-.07c-1.17-.054-1.805-.249-2.227-.412-.558-.217-.957-.477-1.377-.896-.419-.42-.68-.818-.896-1.377-.163-.422-.358-1.057-.412-2.227-.059-1.266-.071-1.646-.071-4.85s.012-3.584.07-4.85c.054-1.17.249-1.805.412-2.227.217-.558.477-.957.896-1.377.419-.42.818-.68 1.377-.896.422-.163 1.057-.358 2.227-.412 1.266-.059 1.646-.071 4.85-.071zM12 0C8.741 0 8.333.014 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.014 8.333 0 8.741 0 12s.014 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126s1.384 1.078 2.126 1.384c.766.296 1.636.499 2.913.558C8.333 23.986 8.741 24 12 24s3.667-.014 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384s1.078-1.384 1.384-2.126c.296-.765.499-1.636.558-2.913.058-1.28.072-1.687.072-4.947s-.014-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.058.935 19.85.53 19.06.306c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+              </a>
+              <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition-all group">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.872.505 9.377.505 9.377.505s7.505 0 9.377-.505a3.017 3.017 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+              </a>
+            </div>
+          </div>
+          <nav class="flex flex-wrap justify-center gap-x-8 gap-y-4">
+            <a href="index.html" class="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors">Inicio</a>
+            <a href="nosotros.html" class="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors">Nosotros</a>
+            <a href="productos.html" class="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors">Productos</a>
+            <a href="noticias.html" class="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors">Noticias</a>
+            <a href="productos.html" class="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors">Habilitaciones</a>
+            <a href="contacto.html" class="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors">Contacto</a>
+          </nav>
+        </div>
+        <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[9px] uppercase font-bold tracking-[0.2em] text-slate-500">
+          <p>© 2026 DPC - Desarrollo Profesional Confiable. Colombia 2589, Tucumán.</p>
+          <div class="flex gap-8">
+            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[10px]">verified</span> Calidad ANMAT</span>
+            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[10px]">public</span> Industria Nacional</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script>
+      window.addEventListener("scroll", function () {
+        const nav = document.getElementById("main-nav");
+        if (window.scrollY > 100) {
+          nav.classList.add("nav-scrolled");
+        } else {
+          nav.classList.remove("nav-scrolled");
+        }
+      });
+    </script>
+    <a
+      class="fixed bottom-10 right-10 z-[60] w-20 h-20 bg-[#25D366] rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform group"
+      href="https://wa.me/543814456789?text=Hola,%20quisiera%20realizar%20una%20consulta."
+      target="_blank"
+    >
+      <svg class="w-10 h-10 text-white fill-current" viewBox="0 0 24 24">
+        <path
+          d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.185-.573c.948.517 2.139.945 3.145.945 3.181 0 5.768-2.586 5.768-5.766 0-3.18-2.587-5.766-5.767-5.766zm3.371 8.203c-.144.405-.833.748-1.15.773-.243.018-.56.033-1.602-.383-1.353-.54-2.226-1.888-2.293-1.979-.066-.091-.539-.717-.539-1.379 0-.662.348-.988.472-1.12.124-.132.273-.166.364-.166.091 0 .182.001.261.005.083.004.195-.032.304.233.112.274.385.938.418 1.005.033.066.054.144.01.233-.044.089-.066.144-.132.221-.066.077-.14.173-.2.235-.069.071-.141.148-.061.286.08.138.354.584.76 0.941.522.459.963.601 1.102.668.138.066.221.055.304-.042.083-.097.354-.412.449-.553.095-.141.19-.118.32-.07.13.047.825.389.968.461.143.072.238.107.273.167.035.06.035.348-.109.753z"
+        ></path>
+      </svg>
+      <div
+        class="absolute -top-1 -right-1 w-6 h-6 bg-red-500 rounded-full border-2 border-white flex items-center justify-center text-white text-[10px] font-bold"
+      >
+        1
+      </div>
+    </a>
+  </body>
+</html>

@@ -1,0 +1,1202 @@
+<!doctype html>
+<html class="scroll-smooth" lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>DPC – Fábrica de Ropa Hospitalaria Descartable</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;900&amp;family=Bebas+Neue&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+      .swiper-pagination-bullet-active { background-color: #0c1a30 !important; }
+    </style>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1A4F9C",
+              accent: "#D42B2B",
+              "dark-navy": "#0B1A2E",
+              "deep-blue": "#112240",
+              "light-blue-gray": "#F8FAFC",
+              "background-light": "#FFFFFF",
+              "background-dark": "#0B1A2E",
+            },
+            fontFamily: {
+              display: ["Public Sans", "sans-serif"],
+              title: ["Bebas Neue", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <style type="text/tailwindcss">
+      @layer components {
+        .dot-grid {
+          background-image: radial-gradient(
+            rgba(26, 79, 156, 0.04) 1px,
+            transparent 1px
+          );
+          background-size: 24px 24px;
+        }
+        .glass {
+          background: rgba(255, 255, 255, 0.9);
+          backdrop-filter: blur(12px);
+          border: 1px solid rgba(26, 79, 156, 0.08);
+        }
+        .nav-scrolled {
+          background-color: rgba(255, 255, 255, 0.97) !important;
+          border-bottom: 1px solid rgba(26, 79, 156, 0.08);
+          @apply shadow-sm;
+        }
+        .nav-scrolled a,
+        .nav-scrolled span,
+        .nav-scrolled button {
+          color: #0b1a2e !important;
+        }
+        .nav-scrolled .nav-cta {
+          color: #ffffff !important;
+        }
+        .parallax-bg {
+          background-attachment: fixed;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+        }
+        .watermark-text {
+          font-size: 35vw;
+          line-height: 0.8;
+          font-weight: 900;
+          letter-spacing: -0.05em;
+          background: linear-gradient(180deg, #1a4f9c 0%, transparent 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          opacity: 0.04;
+          user-select: none;
+          pointer-events: none;
+        }
+        .hero-slide {
+          @apply absolute inset-0 transition-opacity duration-1000 opacity-0;
+        }
+        .hero-slide.active {
+          @apply opacity-100;
+        }
+        @keyframes dpcLayerMove {
+          0%, 100% { transform: translateY(0) scale(1) rotate(0deg); }
+          50% { transform: translateY(-15px) scale(1.03) rotate(1deg); }
+        }
+        .animate-dpc-move {
+          animation: dpcLayerMove 5s ease-in-out infinite;
+        }
+        /* Dropdown nav */
+        .nav-dropdown {
+          min-width: 200px;
+          top: calc(100% + 12px);
+        }
+        .nav-megamenu {
+          min-width: 520px;
+          top: calc(100% + 12px);
+          left: 50%;
+          transform: translateX(-50%);
+        }
+        @keyframes customFloat {
+          0%, 100% { transform: translateY(0) rotate(0); }
+          50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        .animate-float-slow {
+          animation: customFloat 8s ease-in-out infinite;
+        }
+        .glass-v2 {
+          background: rgba(255, 255, 255, 0.4);
+          backdrop-filter: blur(20px);
+          @apply border border-white/40 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)];
+        }
+        /* Mesh Gradient Background */
+        .mesh-bg {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: -1;
+          background-color: #ffffff;
+          background-image: 
+            radial-gradient(at 0% 0%, rgba(26, 79, 156, 0.05) 0px, transparent 50%),
+            radial-gradient(at 100% 0%, rgba(212, 43, 43, 0.02) 0px, transparent 50%),
+            radial-gradient(at 100% 100%, rgba(26, 79, 156, 0.05) 0px, transparent 50%),
+            radial-gradient(at 0% 100%, rgba(212, 43, 43, 0.02) 0px, transparent 50%);
+        }
+        /* Continuous Connection Line */
+        .connection-line {
+          position: fixed;
+          left: 40px;
+          top: 0;
+          bottom: 0;
+          width: 1px;
+          background: linear-gradient(to bottom, transparent, rgba(26, 79, 156, 0.1) 10%, rgba(26, 79, 156, 0.1) 90%, transparent);
+          z-index: 5;
+          pointer-events: none;
+        }
+        .connection-line::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -2px;
+          width: 5px;
+          height: 5px;
+          background: #1A4F9C;
+          border-radius: 50%;
+          animation: slideDown 20s linear infinite;
+          opacity: 0.3;
+        }
+        @keyframes slideDown {
+          0% { top: 0; }
+          100% { top: 100%; }
+        }
+        /* Giant Watermark */
+        .bg-watermark {
+          position: absolute;
+          font-size: 25vw;
+          font-weight: 900;
+          color: rgba(26, 79, 156, 0.02);
+          pointer-events: none;
+          user-select: none;
+          z-index: 0;
+          white-space: nowrap;
+        }
+        /* Layered Wave Animation */
+        .wave-layer {
+          animation: waveMove 15s ease-in-out infinite;
+        }
+        .wave-layer-slow {
+          animation: waveMove 25s ease-in-out infinite;
+        }
+        @keyframes waveMove {
+          0%, 100% { transform: translateX(0); }
+          50% { transform: translateX(-2%); }
+        }
+      }
+    </style>
+  </head>
+  <body
+    class="font-display bg-background-light text-slate-900 overflow-x-hidden"
+  >
+    <div class="mesh-bg"></div>
+    <div class="connection-line"></div>
+    <nav
+      class="fixed top-0 w-full z-50 transition-all duration-500 px-6 py-3 flex items-center justify-between"
+      id="main-nav"
+    >
+      <div class="flex items-center gap-3">
+        <img src="assets/img/logo.png" alt="DPC Logo" class="h-14 w-auto" />
+      </div>
+      <div class="hidden md:flex items-center gap-8">
+        <!-- INICIO -->
+        <a class="text-sm font-semibold tracking-wide text-white hover:text-white/70 transition-colors" href="index.html">INICIO</a>
+        <!-- NOSOTROS con dropdown -->
+        <div class="relative group flex items-center">
+          <a href="nosotros.html" class="text-sm font-semibold tracking-wide text-white hover:text-white/70 transition-colors uppercase">NOSOTROS</a>
+          <button class="flex items-center text-white hover:text-white/70 transition-colors ml-1">
+            <span class="material-symbols-outlined text-base" style="font-size:16px">expand_more</span>
+          </button>
+          <div class="nav-dropdown absolute invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 bg-white rounded-2xl shadow-2xl shadow-slate-200/80 border border-slate-100 py-2 z-50">
+            <a href="nosotros.html#historia" class="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:text-primary hover:bg-slate-50 transition-colors">
+              <span class="material-symbols-outlined text-primary" style="font-size:18px">history_edu</span>Historia
+            </a>
+            <a href="nosotros.html#certificacion" class="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:text-primary hover:bg-slate-50 transition-colors">
+              <span class="material-symbols-outlined text-primary" style="font-size:18px">verified_user</span>Certificación
+            </a>
+            <a href="nosotros.html#equipo" class="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:text-primary hover:bg-slate-50 transition-colors">
+              <span class="material-symbols-outlined text-primary" style="font-size:18px">group</span>Equipo de Trabajo
+            </a>
+            <a href="nosotros.html#cultura" class="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:text-primary hover:bg-slate-50 transition-colors">
+              <span class="material-symbols-outlined text-primary" style="font-size:18px">diversity_3</span>Cultura
+            </a>
+          </div>
+        </div>
+        <!-- PRODUCTOS con mega-menú -->
+        <div class="relative group flex items-center">
+          <a href="#productos" class="text-sm font-semibold tracking-wide text-white hover:text-white/70 transition-colors uppercase">PRODUCTOS</a>
+          <button class="flex items-center text-white hover:text-white/70 transition-colors ml-1">
+            <span class="material-symbols-outlined text-base" style="font-size:16px">expand_more</span>
+          </button>
+          <div class="nav-megamenu absolute invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 bg-white rounded-2xl shadow-2xl shadow-slate-200/80 border border-slate-100 p-6 z-50">
+            <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-4 pb-3 border-b border-slate-100">Catálogo de Productos</p>
+            <div class="grid grid-cols-2 gap-x-8 gap-y-1">
+              <a href="productos.html?cat=proteccion" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Protección Personal</a>
+              <a href="productos.html?cat=camisolines" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Camisolines</a>
+              <a href="productos.html?cat=quirurgico" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Quirúrgico</a>
+              <a href="productos.html?cat=kits" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Kits y Tratamientos</a>
+              <a href="productos.html?cat=cama" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Cama y Campo</a>
+              <a href="productos.html?cat=otros" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Otros Accesorios</a>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100">
+              <a href="productos.html" class="inline-flex items-center gap-2 text-xs font-bold text-primary hover:underline">
+                Ver catálogo completo <span class="material-symbols-outlined" style="font-size:14px">arrow_forward</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <a class="text-sm font-semibold tracking-wide text-white hover:text-white/70 transition-colors" href="noticias.html">NOTICIAS</a>
+        <a class="text-sm font-semibold tracking-wide text-white hover:text-white/70 transition-colors" href="contacto.html">CONTACTO</a>
+        <a href="assets/pdf/catalogo.pdf" target="_blank"
+          class="nav-cta bg-primary hover:bg-[#153f7a] text-white px-6 py-2.5 rounded-full font-semibold text-sm transition-all shadow-md shadow-primary/20">
+          CATÁLOGO
+        </a>
+      </div>
+      <button class="md:hidden text-white" id="mobile-menu-btn">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+    </nav>
+    <section
+      class="relative h-screen min-h-screen w-full overflow-hidden bg-dark-navy"
+      id="inicio"
+    >
+      <div class="hero-slide active">
+        <img
+          alt="Medical environment"
+          class="w-full h-full object-cover opacity-60"
+          src="assets/img/Hospitalaria.webp"
+        />
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-dark-navy/80 via-dark-navy/40 to-transparent"
+        ></div>
+      </div>
+      <div class="hero-slide">
+        <img
+          alt="Protective gear"
+          class="w-full h-full object-cover opacity-60"
+          src="assets/img/ropa-hospitalaria-lavanderia-limpieza-sanidad.jpg"
+        />
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-dark-navy/80 via-dark-navy/40 to-transparent"
+        ></div>
+      </div>
+      <div
+        class="relative z-20 h-full flex flex-col justify-center container mx-auto px-6"
+      >
+        <div class="max-w-3xl pt-20">
+          <span
+            class="inline-block px-4 py-1.5 rounded-full bg-white/20 border border-white/40 text-white font-semibold text-xs tracking-widest uppercase mb-6"
+            >Excelencia en Descartables</span
+          >
+          <h1
+            class="text-4xl md:text-6xl lg:text-7xl font-title tracking-wide text-white mb-6 leading-none"
+          >
+            Soluciones Hospitalarias con
+            <span class="text-white block mt-2 opacity-90">Estándares de Calidad</span>
+          </h1>
+          <p
+            class="text-xl md:text-2xl text-white mb-12 max-w-xl leading-relaxed font-light opacity-90"
+          >
+            En DPC trabajamos con un enfoque de mejora continua y eficiencia
+            operativa. Preparados para atender la demanda del mercado
+            hospitalario.
+          </p>
+          <div class="flex flex-wrap gap-5">
+            <a href="#productos"
+              class="bg-white hover:bg-slate-100 text-dark-navy px-10 py-4 rounded-full font-semibold text-base shadow-xl transition-all hover:-translate-y-1"
+            >
+              Ver Productos
+            </a>
+            <a href="nosotros.html"
+              class="bg-transparent hover:bg-white/10 text-white border border-white px-10 py-4 rounded-full font-semibold text-base backdrop-blur-md transition-all"
+            >
+              Nuestra Empresa
+            </a>
+          </div>
+        </div>
+      </div>
+      <div
+        class="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 animate-bounce cursor-pointer flex flex-col items-center opacity-80 hover:opacity-100 transition-opacity"
+        onclick="window.scrollBy({top: window.innerHeight, behavior: 'smooth'})"
+      >
+        <span class="text-white text-xs font-semibold tracking-[0.2em] uppercase mb-1">Explorar</span>
+        <span class="material-symbols-outlined text-white text-3xl"
+          >keyboard_arrow_down</span
+        >
+      </div>
+    </section>
+    <section
+      class="relative h-[40vh] md:h-[60vh] overflow-hidden flex items-center justify-center border-y border-slate-100"
+      style="background-color: #F0F7FF;"
+    >
+      <!-- Texture Overlay (Fabric) -->
+      <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
+      
+      <!-- Animación de Fondo Oceánico (Waves Background) -->
+      <div class="absolute inset-0 z-0">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100%" height="100%" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; box-sizing: border-box; display: block; background-color: transparent;">
+          <defs>
+            <linearGradient id="bg">
+              <stop offset="0%" style="stop-color:rgba(148, 163, 184, 0.1)"></stop>
+              <stop offset="50%" style="stop-color:rgba(100, 116, 139, 0.1)"></stop>
+              <stop offset="100%" style="stop-color:rgba(71, 85, 105, 0.05)"></stop>
+            </linearGradient>
+            <path id="wave" fill="url(#bg)" d="M-363.852,502.589c0,0,236.988-41.997,505.475,0
+          s371.981,38.998,575.971,0s293.985-39.278,505.474,5.859s493.475,48.368,716.963-4.995v560.106H-363.852V502.589z" />
+          </defs>
+          <g>
+            <use xlink:href='#wave' opacity=".3">
+              <animateTransform
+                attributeName="transform"
+                attributeType="XML"
+                type="translate"
+                dur="10s"
+                calcMode="spline"
+                values="270 230; -334 180; 270 230"
+                keyTimes="0; .5; 1"
+                keySplines="0.42, 0, 0.58, 1.0;0.42, 0, 0.58, 1.0"
+                repeatCount="indefinite" />
+            </use>
+            <use xlink:href='#wave' opacity=".6">
+              <animateTransform
+                attributeName="transform"
+                attributeType="XML"
+                type="translate"
+                dur="8s"
+                calcMode="spline"
+                values="-270 230;243 220;-270 230"
+                keyTimes="0; .6; 1"
+                keySplines="0.42, 0, 0.58, 1.0;0.42, 0, 0.58, 1.0"
+                repeatCount="indefinite" />
+            </use>
+          </g>
+        </svg>
+      </div>
+
+      <div class="absolute inset-0 flex flex-col items-center justify-center select-none overflow-hidden pointer-events-none z-10 px-4">
+        <div id="parallax-watermark">
+          <!-- Logo text inline y movimiento -->
+          <div class="flex flex-row items-center justify-center animate-dpc-move">
+            <img src="assets/img/logo.png" alt="DPC Logo" class="h-[35vw] md:h-[28vw] object-contain" style="filter: drop-shadow(0 20px 40px rgba(11, 26, 46, 0.3));" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Animación de Fondo Oceánico (Waves Foreground) -->
+      <div class="absolute inset-0 z-20 pointer-events-none">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100%" height="100%" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; box-sizing: border-box; display: block; background: transparent;">
+          <defs>
+            <linearGradient id="bg-fg">
+              <stop offset="0%" style="stop-color:rgba(148, 163, 184, 0.1)"></stop>
+              <stop offset="50%" style="stop-color:rgba(100, 116, 139, 0.15)"></stop>
+              <stop offset="100%" style="stop-color:rgba(71, 85, 105, 0.1)"></stop>
+            </linearGradient>
+            <path id="wave-fg" fill="url(#bg-fg)" d="M-363.852,502.589c0,0,236.988-41.997,505.475,0
+          s371.981,38.998,575.971,0s293.985-39.278,505.474,5.859s493.475,48.368,716.963-4.995v560.106H-363.852V502.589z" />
+          </defs>
+          <g>
+            <use xlink:href='#wave-fg' opacity=".4">
+              <animateTransform
+                attributeName="transform"
+                attributeType="XML"
+                type="translate"
+                dur="6s"
+                calcMode="spline"
+                values="0 230;-140 200;0 230"
+                keyTimes="0; .4; 1"
+                keySplines="0.42, 0, 0.58, 1.0;0.42, 0, 0.58, 1.0"
+                repeatCount="indefinite" />
+            </use>
+          </g>
+        </svg>
+      </div>
+
+      <!-- CONTADORES TEMPORALMENTE OCULTOS (A REVISAR LUEGO) 
+      <div
+        class="relative z-10 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-16"
+      >
+        <div class="text-center group">
+          <p
+            class="text-5xl font-black text-primary mb-2 transition-transform group-hover:scale-110"
+          >
+            +5
+          </p>
+          <p
+            class="text-slate-400 text-[10px] font-black uppercase tracking-widest"
+          >
+            Años de Trayectoria
+          </p>
+        </div>
+        <div class="text-center group">
+          <p
+            class="text-5xl font-black text-primary mb-2 transition-transform group-hover:scale-110"
+          >
+            +50
+          </p>
+          <p
+            class="text-slate-400 text-[10px] font-black uppercase tracking-widest"
+          >
+            Productos
+          </p>
+        </div>
+        <div class="text-center group">
+          <p
+            class="text-5xl font-black text-primary mb-2 transition-transform group-hover:scale-110 uppercase"
+          >
+            ANMAT
+          </p>
+          <p
+            class="text-slate-400 text-[10px] font-black uppercase tracking-widest"
+          >
+            Certificación
+          </p>
+        </div>
+        <div class="text-center group">
+          <p
+            class="text-5xl font-black text-primary mb-2 transition-transform group-hover:scale-110 uppercase"
+          >
+            AR
+          </p>
+          <p
+            class="text-slate-400 text-[10px] font-black uppercase tracking-widest"
+          >
+            Sede Tucumán
+          </p>
+        </div>
+      </div>
+      -->
+    </section>
+    <section class="py-32 bg-transparent relative overflow-hidden" id="nosotros">
+      <!-- Olas decorativas de transición (MULTICAPA) -->
+      <div class="absolute top-0 inset-x-0 h-48 -mt-1 overflow-hidden pointer-events-none">
+        <svg class="absolute top-0 left-0 w-[120%] h-full wave-layer-slow opacity-20 fill-primary" viewBox="0 0 1440 120" preserveAspectRatio="none">
+          <path d="M0,32L48,37.3C96,43,192,53,288,58.7C384,64,480,64,576,58.7C672,53,768,43,864,42.7C960,43,1056,53,1152,53.3C1248,53,1344,43,1392,37.3L1440,32V0H1392C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0H0Z"></path>
+        </svg>
+        <svg class="absolute top-0 left-0 w-[110%] h-full wave-layer opacity-40 fill-[#F0F7FF]" viewBox="0 0 1440 120" preserveAspectRatio="none" style="animation-delay: -2s">
+          <path d="M0,64L48,69.3C96,75,192,85,288,80C384,75,480,53,576,48C672,43,768,53,864,64C960,75,1056,85,1152,85.3C1248,85,1344,75,1392,69.3L1440,64V0H1392C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0H0Z"></path>
+        </svg>
+      </div>
+      
+      <!-- Partículas de fondo (Efecto clínico parallax sutil) -->
+      <div class="absolute inset-0 pointer-events-none overflow-hidden">
+        <div class="absolute top-20 left-10 w-24 h-24 bg-primary/2 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div class="absolute top-60 right-20 w-32 h-32 bg-accent/3 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 2s"></div>
+        <div class="absolute bottom-40 left-1/4 w-40 h-40 bg-primary/2 rounded-full blur-[100px] animate-pulse-slow"></div>
+        
+        <!-- Símbolos flotantes médicos -->
+        <span class="material-symbols-outlined absolute top-40 left-[5%] text-primary/5 text-6xl animate-float-slow" style="animation-delay: 1s">medical_services</span>
+        <span class="material-symbols-outlined absolute bottom-40 right-[10%] text-primary/5 text-8xl animate-float-slow" style="animation-duration: 10s">science</span>
+        <span class="material-symbols-outlined absolute top-1/2 left-[80%] text-accent/5 text-5xl animate-float-slow" style="animation-delay: 3s">biotech</span>
+      </div>
+      
+      <div class="absolute inset-0 dot-grid opacity-20"></div>
+      
+      <div class="container mx-auto px-6 relative z-10">
+        <div class="text-center mb-20 max-w-2xl mx-auto">
+          <span class="text-primary font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Nuestra Identidad</span>
+          <h2 class="text-3xl md:text-5xl font-black text-dark-navy mb-6 tracking-tight">
+            Por qué elegir DPC
+          </h2>
+          <div class="w-20 h-1 bg-primary mx-auto rounded-full mb-6"></div>
+          <p class="text-slate-500 font-light text-lg">
+            Estamos comprometidos en brindar soluciones hospitalarias descartables de primer nivel, apoyados en la innovación tecnológica y los más altos estándares.
+          </p>
+        </div>
+
+        <!-- Grid de 4 Cards -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          
+          <!-- Card 1 -->
+          <div class="glass-v2 rounded-[2rem] p-8 hover:shadow-2xl hover:shadow-primary/10 hover:border-primary/20 transition-all duration-300 group flex flex-col h-full transform hover:-translate-y-2 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-[100px] -z-10 group-hover:scale-110 transition-transform"></div>
+            <div class="w-16 h-16 rounded-2xl bg-primary/5 text-primary flex items-center justify-center mb-8 group-hover:bg-primary group-hover:text-white transition-colors">
+              <span class="material-symbols-outlined text-3xl">precision_manufacturing</span>
+            </div>
+            <h3 class="text-xl font-black text-dark-navy mb-4 leading-tight">Somos Fabricante</h3>
+            <p class="text-slate-500 font-light text-sm mb-8 flex-grow leading-relaxed">
+              Estamos preparados para atender la demanda y cumplir con las exigencias de nuestros clientes, garantizando soluciones que satisfacen plenamente sus requerimientos.
+            </p>
+            <button class="inline-flex items-center gap-2 text-primary font-bold text-sm uppercase tracking-wider group-hover:gap-3 transition-all mt-auto" onclick="openModal(0)">
+              Leer Más <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </button>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="glass-v2 rounded-[2rem] p-8 hover:shadow-2xl hover:shadow-primary/10 hover:border-primary/20 transition-all duration-300 group flex flex-col h-full transform hover:-translate-y-2 lg:mt-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-[100px] -z-10 group-hover:scale-110 transition-transform"></div>
+            <div class="w-16 h-16 rounded-2xl bg-primary/5 text-primary flex items-center justify-center mb-8 group-hover:bg-primary group-hover:text-white transition-colors">
+              <span class="material-symbols-outlined text-3xl">language</span>
+            </div>
+            <h3 class="text-xl font-black text-dark-navy mb-4 leading-tight">Tecnología</h3>
+            <p class="text-slate-500 font-light text-sm mb-8 flex-grow leading-relaxed">
+              Trabajamos permanentemente en la implementación de nuevos métodos que nos permiten incrementar la calidad de nuestros productos.
+            </p>
+            <button class="inline-flex items-center gap-2 text-primary font-bold text-sm uppercase tracking-wider group-hover:gap-3 transition-all mt-auto" onclick="openModal(1)">
+              Leer Más <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </button>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="glass-v2 rounded-[2rem] p-8 hover:shadow-2xl hover:shadow-primary/10 hover:border-primary/20 transition-all duration-300 group flex flex-col h-full transform hover:-translate-y-2 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-[100px] -z-10 group-hover:scale-110 transition-transform"></div>
+            <div class="w-16 h-16 rounded-2xl bg-primary/5 text-primary flex items-center justify-center mb-8 group-hover:bg-primary group-hover:text-white transition-colors">
+              <span class="material-symbols-outlined text-3xl">workspace_premium</span>
+            </div>
+            <h3 class="text-xl font-black text-dark-navy mb-4 leading-tight">Estándares de Calidad</h3>
+            <p class="text-slate-500 font-light text-sm mb-8 flex-grow leading-relaxed">
+              Contamos con la capacidad y experiencia necesarias para atender las exigencias actuales del mercado hospitalario.
+            </p>
+            <button class="inline-flex items-center gap-2 text-primary font-bold text-sm uppercase tracking-wider group-hover:gap-3 transition-all mt-auto" onclick="openModal(2)">
+              Leer Más <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </button>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="glass-v2 rounded-[2rem] p-8 hover:shadow-2xl hover:shadow-primary/10 hover:border-primary/20 transition-all duration-300 group flex flex-col h-full transform hover:-translate-y-2 lg:mt-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-[100px] -z-10 group-hover:scale-110 transition-transform"></div>
+            <div class="w-16 h-16 rounded-2xl bg-primary/5 text-primary flex items-center justify-center mb-8 group-hover:bg-primary group-hover:text-white transition-colors">
+              <span class="material-symbols-outlined text-3xl">rule</span>
+            </div>
+            <h3 class="text-xl font-black text-dark-navy mb-4 leading-tight">Requisitos Reglamentarios</h3>
+            <p class="text-slate-500 font-light text-sm mb-8 flex-grow leading-relaxed">
+              En DPC trabajamos con un enfoque de mejora continua y eficiencia operativa.
+            </p>
+            <button class="inline-flex items-center gap-2 text-primary font-bold text-sm uppercase tracking-wider group-hover:gap-3 transition-all mt-auto" onclick="openModal(3)">
+              Leer Más <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Modal -->
+      <div id="infoModal" class="fixed inset-0 z-[100] flex items-center justify-center invisible opacity-0 transition-all duration-300">
+        <div class="absolute inset-0 bg-dark-navy/90 backdrop-blur-md transition-opacity" onclick="closeModal()"></div>
+        <div class="bg-white w-full max-w-3xl mx-4 rounded-[2rem] shadow-2xl relative z-10 transform scale-95 opacity-0 transition-all duration-300 flex flex-col overflow-hidden" id="modalContent">
+          <!-- Decoración superior Modal -->
+          <div class="absolute top-0 inset-x-0 h-2 bg-gradient-to-r from-primary to-accent"></div>
+          
+          <div class="px-8 md:px-12 py-8 border-b border-slate-100 flex justify-between items-start mt-2">
+            <div class="flex items-start gap-5">
+              <div class="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center shrink-0" id="modalIconContainer">
+                <span class="material-symbols-outlined text-3xl" id="modalIcon">info</span>
+              </div>
+              <div>
+                <span class="text-slate-400 text-xs font-bold uppercase tracking-widest mb-1 block">Detalle de Sección</span>
+                <h3 class="text-3xl font-black text-dark-navy leading-tight" id="modalTitle">Título Modal</h3>
+              </div>
+            </div>
+            <button onclick="closeModal()" class="w-12 h-12 rounded-full hover:bg-slate-100 text-slate-400 hover:text-dark-navy flex items-center justify-center transition-all shrink-0">
+              <span class="material-symbols-outlined">close</span>
+            </button>
+          </div>
+          
+          <div class="px-8 md:px-12 py-10 bg-slate-50/50">
+            <p class="text-slate-600 leading-relaxed font-light text-xl" id="modalText">
+              Texto detallado del modal...
+            </p>
+          </div>
+          
+          <div class="px-8 md:px-12 py-8 flex justify-end gap-3 bg-white">
+            <button onclick="closeModal()" class="px-10 py-4 rounded-full bg-primary text-white font-bold tracking-wider hover:bg-[#153f7a] transition-colors shadow-xl shadow-primary/30">
+              Entendido
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        const modalData = [
+          {
+            title: "Somos Fabricante",
+            icon: "precision_manufacturing",
+            text: "La exigencia del mercado se refleja en nuestro compromiso con la sociedad. Desarrollamos productos que marcan la diferencia, diseñados para cumplir su función y responder a las expectativas de quienes los utilizan. Contamos con una planta de producción moderna y eficiente, preparada para atender la demanda y las exigencias de nuestros clientes."
+          },
+          {
+            title: "Tecnología",
+            icon: "language",
+            text: "El ámbito de la salud requiere estándares elevados de calidad y responsabilidad. La tecnología desempeña un rol fundamental en la obtención de resultados confiables, motivo por el cual impulsamos la búsqueda permanente de nuevos métodos orientados a mejorar la calidad de nuestros productos."
+          },
+          {
+            title: "Estándares de Calidad",
+            icon: "workspace_premium",
+            text: "En el ámbito hospitalario, la disponibilidad oportuna de productos es fundamental para garantizar una atención adecuada al paciente. Conscientes de esta necesidad, contamos con una capacidad de respuesta inmediata, lo que nos permite estar preparados para atender las exigencias del mercado."
+          },
+          {
+            title: "Cumplimiento Reglamentario",
+            icon: "rule",
+            text: "Fabricamos ropa hospitalaria descartable que cumple con los requisitos reglamentarios, diseñada para satisfacer las necesidades diarias de nuestros clientes y usuarios. Estamos comprometidos con la mejora continua y con el mantenimiento de la eficacia de nuestros procesos, respaldados por un equipo de trabajo profesional que garantiza los más altos estándares de calidad y asepsia."
+          }
+        ];
+
+        const modal = document.getElementById('infoModal');
+        const modalContent = document.getElementById('modalContent');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalText = document.getElementById('modalText');
+        const modalIcon = document.getElementById('modalIcon');
+
+        function openModal(index) {
+          document.body.style.overflow = 'hidden';
+          const data = modalData[index];
+          
+          modalTitle.textContent = data.title;
+          modalText.textContent = data.text;
+          modalIcon.textContent = data.icon;
+          
+          modal.classList.remove('invisible', 'opacity-0');
+          modalContent.classList.remove('scale-95', 'opacity-0');
+          modalContent.classList.add('scale-100', 'opacity-100');
+        }
+
+        function closeModal() {
+          document.body.style.overflow = '';
+          
+          modalContent.classList.remove('scale-100', 'opacity-100');
+          modalContent.classList.add('scale-95', 'opacity-0');
+          
+          setTimeout(() => {
+            modal.classList.add('invisible', 'opacity-0');
+          }, 300); // match transition duration
+        }
+
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && !modal.classList.contains('invisible')) {
+            closeModal();
+          }
+        });
+      </script>
+    </section>
+    <section class="py-24 bg-white relative overflow-hidden" id="productos">
+      <div class="container mx-auto px-6 relative z-10 mb-8">
+        <div class="flex flex-col md:flex-row justify-between items-end gap-8 text-center md:text-left">
+          <div class="max-w-xl mx-auto md:mx-0">
+            <span class="text-primary font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Nuestro Catálogo</span>
+            <h2 class="text-4xl md:text-5xl font-black text-dark-navy leading-tight tracking-tight">
+              Soluciones Descartables
+            </h2>
+          </div>
+          <div class="mx-auto md:mx-0">
+            <a href="productos.html" class="inline-flex items-center gap-3 bg-primary text-white px-8 py-4 rounded-full font-bold shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-all hover:-translate-y-1">
+              Catálogo Completo
+              <span class="material-symbols-outlined">dataset_linked</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="w-full relative px-0 pb-12 pt-10">
+        <div class="swiper productSwiper pb-16">
+          <div class="swiper-wrapper">
+            
+            <!-- Protección Facial y de Cabeza -->
+            <div class="swiper-slide !w-[300px] md:!w-[450px]">
+              <a href="productos.html?cat=proteccion" class="relative block h-64 md:h-80 rounded-[2rem] overflow-hidden group shadow-2xl border border-white/10">
+                <img src="assets/img/catalogo/barbijo.png" alt="Protección Facial" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-dark-navy/90 via-dark-navy/20 to-transparent"></div>
+                <div class="absolute inset-0 flex flex-col justify-end p-8 md:p-10">
+                  <h3 class="text-white text-2xl md:text-3xl font-black uppercase tracking-tight mb-4 drop-shadow-lg leading-none">
+                    Protección Facial <br>& de Cabeza
+                  </h3>
+                  <div class="inline-block self-start bg-[#F3B844] hover:bg-[#ffcc66] text-dark-navy px-8 py-3 rounded-md font-black text-xs uppercase tracking-widest shadow-xl transform transition-all group-hover:scale-105 active:scale-95">
+                    Explorar Ahora
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <!-- Camisolines -->
+            <div class="swiper-slide !w-[300px] md:!w-[450px]">
+              <a href="productos.html?cat=camisolines" class="relative block h-64 md:h-80 rounded-[2rem] overflow-hidden group shadow-2xl border border-white/10">
+                <img src="assets/img/catalogo/camisolin-lineapremium.png" alt="Camisolines" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-dark-navy/90 via-dark-navy/20 to-transparent"></div>
+                <div class="absolute inset-0 flex flex-col justify-end p-8 md:p-10">
+                  <h3 class="text-white text-2xl md:text-3xl font-black uppercase tracking-tight mb-4 drop-shadow-lg leading-none">
+                    Camisolines <br>Línea Hospitalaria
+                  </h3>
+                  <div class="inline-block self-start bg-[#F3B844] hover:bg-[#ffcc66] text-dark-navy px-8 py-3 rounded-md font-black text-xs uppercase tracking-widest shadow-xl transform transition-all group-hover:scale-105 active:scale-95">
+                    Explorar Ahora
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <!-- Equipos de Cirugía -->
+            <div class="swiper-slide !w-[300px] md:!w-[450px]">
+              <a href="productos.html?cat=quirurgico" class="relative block h-64 md:h-80 rounded-[2rem] overflow-hidden group shadow-2xl border border-white/10">
+                <img src="assets/img/catalogo/equipodecirugiageneral.png" alt="Equipos de Cirugía" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-dark-navy/90 via-dark-navy/20 to-transparent"></div>
+                <div class="absolute inset-0 flex flex-col justify-end p-8 md:p-10">
+                  <h3 class="text-white text-2xl md:text-3xl font-black uppercase tracking-tight mb-4 drop-shadow-lg leading-none">
+                    Equipos de Cirugía <br>Estériles
+                  </h3>
+                  <div class="inline-block self-start bg-[#F3B844] hover:bg-[#ffcc66] text-dark-navy px-8 py-3 rounded-md font-black text-xs uppercase tracking-widest shadow-xl transform transition-all group-hover:scale-105 active:scale-95">
+                    Explorar Ahora
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <!-- Ropa de Cama y Campos -->
+            <div class="swiper-slide !w-[300px] md:!w-[450px]">
+              <a href="productos.html?cat=cama" class="relative block h-64 md:h-80 rounded-[2rem] overflow-hidden group shadow-2xl border border-white/10">
+                <img src="assets/img/catalogo/sabanas.png" alt="Ropa de Cama" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-dark-navy/90 via-dark-navy/20 to-transparent"></div>
+                <div class="absolute inset-0 flex flex-col justify-end p-8 md:p-10">
+                  <h3 class="text-white text-2xl md:text-3xl font-black uppercase tracking-tight mb-4 drop-shadow-lg leading-none">
+                    Ropa de Cama <br>& Campos
+                  </h3>
+                  <div class="inline-block self-start bg-[#F3B844] hover:bg-[#ffcc66] text-dark-navy px-8 py-3 rounded-md font-black text-xs uppercase tracking-widest shadow-xl transform transition-all group-hover:scale-105 active:scale-95">
+                    Explorar Ahora
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <!-- Kits Específicos -->
+            <div class="swiper-slide !w-[300px] md:!w-[450px]">
+              <a href="productos.html?cat=kits" class="relative block h-64 md:h-80 rounded-[2rem] overflow-hidden group shadow-2xl border border-white/10">
+                <img src="assets/img/catalogo/kitpaciente.png" alt="Kits Específicos" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-dark-navy/90 via-dark-navy/20 to-transparent"></div>
+                <div class="absolute inset-0 flex flex-col justify-end p-8 md:p-10">
+                  <h3 class="text-white text-2xl md:text-3xl font-black uppercase tracking-tight mb-4 drop-shadow-lg leading-none">
+                    Kits Específicos <br>& Tratamientos
+                  </h3>
+                  <div class="inline-block self-start bg-[#F3B844] hover:bg-[#ffcc66] text-dark-navy px-8 py-3 rounded-md font-black text-xs uppercase tracking-widest shadow-xl transform transition-all group-hover:scale-105 active:scale-95">
+                    Explorar Ahora
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <!-- Otros Productos -->
+            <div class="swiper-slide !w-[300px] md:!w-[450px]">
+              <a href="productos.html?cat=otros" class="relative block h-64 md:h-80 rounded-[2rem] overflow-hidden group shadow-2xl border border-white/10">
+                <img src="assets/img/catalogo/ambos.png" alt="Otros Productos" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-dark-navy/90 via-dark-navy/20 to-transparent"></div>
+                <div class="absolute inset-0 flex flex-col justify-end p-8 md:p-10">
+                  <h3 class="text-white text-2xl md:text-3xl font-black uppercase tracking-tight mb-4 drop-shadow-lg leading-none">
+                    Otros Productos <br>& Accesorios
+                  </h3>
+                  <div class="inline-block self-start bg-[#F3B844] hover:bg-[#ffcc66] text-dark-navy px-8 py-3 rounded-md font-black text-xs uppercase tracking-widest shadow-xl transform transition-all group-hover:scale-105 active:scale-95">
+                    Explorar Ahora
+                  </div>
+                </div>
+              </a>
+            </div>
+
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Divisor de Ola MULTICAPA entre Productos y Misión -->
+    <div class="relative h-40 overflow-hidden -mt-1 bg-transparent pointer-events-none">
+      <svg class="absolute bottom-0 left-0 w-[130%] h-full wave-layer-slow opacity-10 fill-primary" viewBox="0 0 1440 120" preserveAspectRatio="none">
+        <path d="M0,64L48,80C96,96,192,128,288,128C384,128,480,96,576,80C672,64,768,64,864,80C960,96,1056,128,1152,123.7C1248,117,1344,75,1392,53.3L1440,32V120H1392C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120H0Z"></path>
+      </svg>
+      <svg class="absolute bottom-0 left-0 w-[115%] h-full wave-layer opacity-20 fill-primary/30" viewBox="0 0 1440 120" preserveAspectRatio="none" style="animation-delay: -7s">
+        <path d="M0,96L48,85.3C96,75,192,53,288,53.3C384,53,480,75,576,85.3C672,96,768,96,864,85.3C960,75,1056,53,1152,53.3C1248,53,1344,75,1392,85.3L1440,96V120H1392C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120H0Z"></path>
+      </svg>
+      <svg class="absolute bottom-0 left-0 w-full h-full fill-slate-50" viewBox="0 0 1440 120" preserveAspectRatio="none">
+        <path d="M0,32L48,42.7C96,53,192,75,288,85.3C384,96,480,96,576,85.3C672,75,768,53,864,42.7C960,32,1056,32,1152,42.7C1248,53,1344,75,1392,85.3L1440,96V120H1392C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120H0Z"></path>
+      </svg>
+    </div>
+
+    <section class="py-32 bg-slate-50 relative overflow-hidden">
+      <!-- Símbolos flotantes médicos -->
+      <div class="absolute inset-0 pointer-events-none overflow-hidden">
+        <span class="material-symbols-outlined absolute top-20 right-[15%] text-primary/5 text-9xl animate-float-slow">vaccines</span>
+        <span class="material-symbols-outlined absolute bottom-40 left-[10%] text-primary/5 text-7xl animate-float-slow" style="animation-delay: 4s">monitor_heart</span>
+      </div>
+      
+      <div class="absolute inset-0 dot-grid opacity-20"></div>
+      <!-- Círculo decorativo de fondo -->
+      <div class="absolute -right-20 -top-20 w-96 h-96 bg-primary/2 rounded-full blur-3xl"></div>
+      <div class="container mx-auto px-6 relative z-10">
+        <div class="grid md:grid-cols-12 gap-16 items-center">
+          <div class="md:col-span-6 lg:col-span-5">
+            <span class="text-primary font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Cultura Institucional</span>
+            <h2 class="text-4xl md:text-5xl font-black text-dark-navy mb-8 leading-tight">
+              Nuestra Misión
+            </h2>
+            <p class="text-slate-500 text-lg leading-relaxed mb-10 font-light">
+              Nos especializamos en la fabricación y comercialización de insumos médicos que cumplen con los requisitos regulatorios y los más altos estándares de calidad, con el objetivo de satisfacer las necesidades de nuestros clientes, usuarios y demás partes interesadas. Contamos con un equipo humano competente y comprometido con la mejora continua.
+            </p>
+            <a href="nosotros.html#cultura" class="inline-flex items-center gap-3 bg-white text-primary border border-primary/20 hover:border-primary/40 px-8 py-4 rounded-full font-bold shadow-lg shadow-slate-200/50 hover:shadow-xl transition-all hover:-translate-y-1">
+              Ver más sobre nuestra cultura
+              <span class="material-symbols-outlined">arrow_forward</span>
+            </a>
+          </div>
+          
+          <div class="md:col-span-6 lg:col-span-7 flex flex-col gap-2">
+            <a href="nosotros.html#cultura" class="flex items-center gap-6 p-5 rounded-[2rem] glass-v2 hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-300 group border border-transparent hover:border-slate-100">
+              <div class="w-16 h-16 rounded-2xl bg-white text-primary flex items-center justify-center shadow-sm border border-slate-100 group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-all shrink-0">
+                <span class="material-symbols-outlined text-3xl">visibility</span>
+              </div>
+              <div>
+                <h4 class="text-xl font-black text-dark-navy mb-1 group-hover:text-primary transition-colors">Visión a Futuro</h4>
+                <p class="text-slate-500 font-light text-sm">Innovación continua y sostenible.</p>
+              </div>
+              <span class="material-symbols-outlined text-slate-300 md:text-2xl ml-auto group-hover:text-primary transition-all group-hover:translate-x-2">arrow_forward</span>
+            </a>
+            
+            <a href="nosotros.html#cultura" class="flex items-center gap-6 p-5 rounded-[2rem] hover:bg-white hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-300 group border border-transparent hover:border-slate-100">
+              <div class="w-16 h-16 rounded-2xl bg-white text-primary flex items-center justify-center shadow-sm border border-slate-100 group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-all shrink-0">
+                <span class="material-symbols-outlined text-3xl">verified</span>
+              </div>
+              <div>
+                <h4 class="text-xl font-black text-dark-navy mb-1 group-hover:text-primary transition-colors">Calidad Garantizada</h4>
+                <p class="text-slate-500 font-light text-sm">Estrictos estándares normativos.</p>
+              </div>
+              <span class="material-symbols-outlined text-slate-300 md:text-2xl ml-auto group-hover:text-primary transition-all group-hover:translate-x-2">arrow_forward</span>
+            </a>
+
+            <a href="nosotros.html#cultura" class="flex items-center gap-6 p-5 rounded-[2rem] hover:bg-white hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-300 group border border-transparent hover:border-slate-100">
+              <div class="w-16 h-16 rounded-2xl bg-white text-primary flex items-center justify-center shadow-sm border border-slate-100 group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-all shrink-0">
+                <span class="material-symbols-outlined text-3xl">lightbulb</span>
+              </div>
+              <div>
+                <h4 class="text-xl font-black text-dark-navy mb-1 group-hover:text-primary transition-colors">Innovación Responsable</h4>
+                <p class="text-slate-500 font-light text-sm">Impacto social y ambiental.</p>
+              </div>
+              <span class="material-symbols-outlined text-slate-300 md:text-2xl ml-auto group-hover:text-primary transition-all group-hover:translate-x-2">arrow_forward</span>
+            </a>
+
+            <a href="nosotros.html" class="flex items-center gap-6 p-5 rounded-[2rem] hover:bg-white hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-300 group border border-transparent hover:border-slate-100">
+              <div class="w-16 h-16 rounded-2xl bg-white text-primary flex items-center justify-center shadow-sm border border-slate-100 group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-all shrink-0">
+                <span class="material-symbols-outlined text-3xl">history_edu</span>
+              </div>
+              <div>
+                <h4 class="text-xl font-black text-dark-navy mb-1 group-hover:text-primary transition-colors">Nuestra Trayectoria</h4>
+                <p class="text-slate-500 font-light text-sm">Evolución e hitos históricos de DPC.</p>
+              </div>
+              <span class="material-symbols-outlined text-slate-300 md:text-2xl ml-auto group-hover:text-primary transition-all group-hover:translate-x-2">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Divisor de Ola MULTICAPA entre Misión y Habilitaciones -->
+    <div class="relative h-24 overflow-hidden -mt-1 bg-transparent pointer-events-none">
+      <svg class="absolute bottom-0 left-0 w-[125%] h-full wave-layer opacity-10 fill-primary" viewBox="0 0 1440 120" preserveAspectRatio="none" style="animation-direction: reverse;">
+        <path d="M0,64L48,80C96,96,192,128,288,128C384,128,480,96,576,80C672,64,768,64,864,80C960,96,1056,128,1152,123.7C1248,117,1344,75,1392,53.3L1440,32V120H1392C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120H0Z"></path>
+      </svg>
+      <svg class="absolute bottom-0 left-0 w-full h-full fill-slate-50 rotate-180 opacity-40" viewBox="0 0 1440 120" preserveAspectRatio="none">
+        <path d="M0,32L48,42.7C96,53,192,75,288,85.3C384,96,480,96,576,85.3C672,75,768,53,864,42.7C960,32,1056,32,1152,42.7C1248,53,1344,75,1392,85.3L1440,96V120H1392C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120H0Z"></path>
+      </svg>
+    </div>
+
+    <section class="py-20 bg-gradient-to-br from-slate-50 via-blue-50/40 to-slate-100 relative">
+      <div class="absolute inset-0 dot-grid opacity-10"></div>
+      <div class="container mx-auto px-6 relative z-10">
+        <div class="text-center mb-12">
+          <span class="text-primary font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Habilitaciones</span>
+          <h2 class="text-4xl font-black text-dark-navy mb-4 tracking-tight">
+            Acreditaciones Oficiales
+          </h2>
+          <p class="text-slate-500 font-light max-w-xl mx-auto text-base leading-relaxed">
+            Nuestros procesos están auditados bajo los más altos rigores de
+            control nacional para productos biomédicos.
+          </p>
+        </div>
+        
+        <div class="flex items-center justify-center gap-12 md:gap-20 mb-12 flex-wrap">
+          <img src="assets/img/Logo_ANMAT.png" alt="Logo ANMAT" class="h-16 md:h-20 object-contain grayscale hover:grayscale-0 transition-all duration-500 opacity-60 hover:opacity-100 hover:scale-105" />
+          <img src="assets/img/Minsaludarg.png" alt="Logo Ministerio de Salud" class="h-16 md:h-20 object-contain grayscale hover:grayscale-0 transition-all duration-500 opacity-60 hover:opacity-100 hover:scale-105" />
+        </div>
+
+        <div class="text-center">
+          <a href="nosotros.html#certificaciones" class="inline-flex items-center gap-3 bg-white text-dark-navy border border-slate-200 hover:border-primary px-8 py-4 rounded-full font-bold shadow-lg shadow-slate-200/50 hover:shadow-primary/10 transition-all hover:-translate-y-1 group">
+            Ver Certificaciones
+            <span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">verified</span>
+          </a>
+        </div>
+      </div>
+    </section>
+    <section class="py-32 bg-transparent relative overflow-hidden" id="noticias">
+      <!-- Watermark Gigante -->
+      <div class="bg-watermark top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-12">NEWS / DPC</div>
+      <div class="container mx-auto px-6">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-16">
+          <h2 class="text-5xl font-black text-dark-navy">
+            Novedades DPC
+          </h2>
+          <p class="text-slate-500 font-light mt-4 md:mt-0">
+            Lo último en tecnología y eventos del sector.
+          </p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-12">
+          <article
+            class="bg-white rounded-[2rem] overflow-hidden shadow-xl shadow-slate-200/50 group hover:-translate-y-2 transition-all duration-500"
+          >
+            <div class="h-64 overflow-hidden">
+              <img
+                alt="New Tech"
+                class="w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnaeoYrsNGuGC0NbZAgq-uBpmVojq0u2drINzS2Zq4i8FV_6ea79oASG2ESW9aaYliN545CLo1fC8jdzPagGZQuWptOKW1ddILcEg1DgfFtZoo5XxqB0urL0vj5e839i4YPMCZHqCFFz6ROV-GF-OKgojMT-KKajZZGJI_7axSxRiMg5ZTmY56fgLSeCPhNFdJ8EW66sR1p2lHLmTGfFgfXHEU1n1e8kTcCPBaoN6A5ehSK3FcC_3JHaY4p41tEfcgLGI_MirMPQc"
+              />
+            </div>
+            <div class="p-10">
+              <time
+                class="text-[10px] font-black text-accent uppercase tracking-widest mb-4 block"
+                >12 OCT 2024</time
+              >
+              <h3 class="text-xl font-bold text-dark-navy mb-4 leading-tight">
+                Implementación de termofusión ultrasónica
+              </h3>
+              <p class="text-slate-500 text-sm font-light leading-relaxed">
+                Optimizamos la estanqueidad de nuestras costuras para cirugías
+                de alta complejidad.
+              </p>
+            </div>
+          </article>
+          <article
+            class="bg-white rounded-[2rem] overflow-hidden shadow-xl shadow-slate-200/50 group hover:-translate-y-2 transition-all duration-500"
+          >
+            <div class="h-64 overflow-hidden">
+              <img
+                alt="Event"
+                class="w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIv8lDWGJk9vWnGprrKoE0uO84k-iLQTBcZQJH3qgzNVGxpMiQlqaW1j0vFgNM97wEuBqHJNcZgsIaaXwxozVpCUl-rXrnvqoLKBXR5sZxfUIv9jCCoMaSL75kcGQq9sm4LQwvUdklHBz0akh--1DwfG-_l9gQHcHseI8JifgDpBnDwj6wxG6tmcswiTPFkLtfq5nr1jcdlBARlD2mqtBXgEWNvkkqRfFKc2T0JZpUUTw5Hnfw9doK7Z79-a3hf1H73L3-JktWmtQ"
+              />
+            </div>
+            <div class="p-10">
+              <time
+                class="text-[10px] font-black text-accent uppercase tracking-widest mb-4 block"
+                >05 SEP 2024</time
+              >
+              <h3 class="text-xl font-bold text-dark-navy mb-4 leading-tight">
+                Cumbre Federal de Salud en el NOA
+              </h3>
+              <p class="text-slate-500 text-sm font-light leading-relaxed">
+                Presentamos nuestras nuevas barreras biológicas ante referentes
+                del sistema sanitario.
+              </p>
+            </div>
+          </article>
+          <article
+            class="bg-white rounded-[2rem] overflow-hidden shadow-xl shadow-slate-200/50 group hover:-translate-y-2 transition-all duration-500"
+          >
+            <div class="h-64 overflow-hidden">
+              <img
+                alt="Audit"
+                class="w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOaxb-2udFA6bjM5iLStNi2T1mfdwrJ3B-UVOQUyPf9teDxj2rgND7JDOBa8yKTAbec2HqQ4kzL1vNvAlfWROdYvhGcqket_pTlg8KbiB8VsbiBlePQTwtrTbHINH82oenNpNlA0OaE3AI5jdF0BY3si5XUTSGIimc4iejpPLUQW4AdrT0JsucE1rdAiZQtIfgm2yxPAr-PzM7CeTkJnugNGBFP70HMHkK0C1BxR8UxUy-BFpsHPGQgHv7zDppKDO5yhgJ9EFK_QQ"
+              />
+            </div>
+            <div class="p-10">
+              <time
+                class="text-[10px] font-black text-accent uppercase tracking-widest mb-4 block"
+                >20 AGO 2024</time
+              >
+              <h3 class="text-xl font-bold text-dark-navy mb-4 leading-tight">
+                Auditoría ANMAT: Resultado sobresaliente
+              </h3>
+              <p class="text-slate-500 text-sm font-light leading-relaxed">
+                Renovación exitosa de todas nuestras certificaciones de calidad
+                operativa.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="py-32 bg-transparent relative overflow-hidden" id="contacto">
+      <!-- Watermark Gigante -->
+      <div class="bg-watermark top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-6">CONTACT / DPC</div>
+      <div class="container mx-auto px-6">
+        <div class="max-w-5xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <span class="text-primary font-black tracking-widest uppercase text-xs mb-4 block">Hablemos</span>
+            <h2 class="text-5xl font-black text-dark-navy mb-10 leading-none">
+              Consultas <br><span class="text-primary italic">Profesionales</span>
+            </h2>
+            <div class="space-y-8">
+              <div class="flex gap-6 items-center">
+                <div class="w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center border border-slate-100 text-primary">
+                  <span class="material-symbols-outlined text-2xl">location_on</span>
+                </div>
+                <div>
+                  <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Dirección</p>
+                  <p class="text-lg font-bold text-dark-navy leading-tight">Colombia 2589, San Miguel de Tucumán</p>
+                </div>
+              </div>
+              <div class="flex gap-6 items-center">
+                <div class="w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center border border-slate-100 text-primary">
+                  <span class="material-symbols-outlined text-2xl">mail</span>
+                </div>
+                <div>
+                  <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Email Corporativo</p>
+                  <p class="text-lg font-bold text-dark-navy leading-tight">ventas@dpc.com.ar</p>
+                </div>
+              </div>
+              <div class="flex gap-6 items-center">
+                <div class="w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center border border-slate-100 text-primary">
+                  <span class="material-symbols-outlined text-2xl">call</span>
+                </div>
+                <div>
+                  <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Teléfono</p>
+                  <p class="text-lg font-bold text-dark-navy leading-tight">+54 381 445-6789</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-white p-8 md:p-12 rounded-[2.5rem] border border-slate-200 shadow-2xl shadow-slate-200/60 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-[100px] -z-0"></div>
+            <form class="space-y-6 relative z-10">
+              <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Nombre Completo</label>
+                  <input type="text" class="w-full bg-slate-50 border border-slate-100 rounded-xl px-5 py-3.5 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none text-sm" placeholder="Ej: Juan Pérez">
+                </div>
+                <div>
+                  <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Institución</label>
+                  <input type="text" class="w-full bg-slate-50 border border-slate-100 rounded-xl px-5 py-3.5 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none text-sm" placeholder="Clínica / Hospital">
+                </div>
+              </div>
+              <div>
+                <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Producto de Interés</label>
+                <select class="w-full bg-slate-50 border border-slate-100 rounded-xl px-5 py-3.5 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none text-sm appearance-none cursor-pointer">
+                  <option value="" disabled selected>Seleccione una categoría</option>
+                  <option>Protección Facial y de Cabeza (Barbijos, Cofias)</option>
+                  <option>Camisolines (Económica, Medium, Premium, Especial, Brin)</option>
+                  <option>Equipos de Cirugía (Estériles)</option>
+                  <option>Ropa de Cama y Campos (Sábanas, Campos)</option>
+                  <option>Kits Específicos (Kits Paciente, Kits Catéter y Fístula)</option>
+                  <option>Otros Productos (Cubre calzado, Ambos)</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Email</label>
+                <input type="email" class="w-full bg-slate-50 border border-slate-100 rounded-xl px-5 py-3.5 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none text-sm" placeholder="usuario@empresa.com">
+              </div>
+              <div>
+                <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Mensaje</label>
+                <textarea rows="3" class="w-full bg-slate-50 border border-slate-100 rounded-xl px-5 py-3.5 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none text-sm resize-none" placeholder="Detalle su consulta aquí..."></textarea>
+              </div>
+              <button class="w-full bg-primary hover:bg-[#153f7a] text-white font-black py-4 rounded-xl transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-3 text-sm tracking-widest group">
+                ENVIAR SOLICITUD
+                <span class="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="bg-dark-navy text-white pt-16 pb-12 relative overflow-hidden">
+      <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-accent to-primary opacity-50"></div>
+      <div class="container mx-auto px-6">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-10 mb-12">
+          <div class="flex flex-col items-center md:items-start">
+            <img src="assets/img/logo.png" alt="DPC Logo" class="h-16 w-auto mb-6" />
+            <div class="flex gap-4">
+              <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition-all group">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              </a>
+              <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition-all group">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.17.054 1.805.249 2.227.412.558.217.957.477 1.377.896.42.419.68.818.896 1.377.163.422.358 1.057.412 2.227.059 1.266.071 1.646.071 4.85s-.012 3.584-.07 4.85c-.054 1.17-.249 1.805-.412 2.227-.217.558-.477.957-.896 1.377-.419.42-.818.68-1.377.896-.422.163-1.057.358-2.227.412-1.266.059-1.646.071-4.85.071s-3.584-.012-4.85-.07c-1.17-.054-1.805-.249-2.227-.412-.558-.217-.957-.477-1.377-.896-.419-.42-.68-.818-.896-1.377-.163-.422-.358-1.057-.412-2.227-.059-1.266-.071-1.646-.071-4.85s.012-3.584.07-4.85c.054-1.17.249-1.805.412-2.227.217-.558.477-.957.896-1.377.419-.42.818-.68 1.377-.896.422-.163 1.057-.358 2.227-.412 1.266-.059 1.646-.071 4.85-.071zM12 0C8.741 0 8.333.014 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.014 8.333 0 8.741 0 12s.014 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126s1.384 1.078 2.126 1.384c.766.296 1.636.499 2.913.558C8.333 23.986 8.741 24 12 24s3.667-.014 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384s1.078-1.384 1.384-2.126c.296-.765.499-1.636.558-2.913.058-1.28.072-1.687.072-4.947s-.014-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.058.935 19.85.53 19.06.306c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+              </a>
+              <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition-all group">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.872.505 9.377.505 9.377.505s7.505 0 9.377-.505a3.017 3.017 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+              </a>
+            </div>
+          </div>
+          <nav class="flex flex-wrap justify-center gap-x-8 gap-y-4">
+            <a href="index.html" class="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors">Inicio</a>
+            <a href="nosotros.html" class="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors">Nosotros</a>
+            <a href="#productos" class="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors">Productos</a>
+            <a href="noticias.html" class="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors">Noticias</a>
+            <a href="productos.html" class="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors">Habilitaciones</a>
+            <a href="contacto.html" class="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors">Contacto</a>
+          </nav>
+        </div>
+        <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[9px] uppercase font-bold tracking-[0.2em] text-slate-500">
+          <p>© 2026 DPC - Desarrollo Profesional Confiable. Colombia 2589, Tucumán.</p>
+          <div class="flex gap-8">
+            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[10px]">verified</span> Calidad ANMAT</span>
+            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[10px]">public</span> Industria Nacional</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <a
+      class="fixed bottom-10 right-10 z-[60] w-20 h-20 bg-[#25D366] rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform group"
+      href="https://wa.me/543814456789?text=Hola,%20quisiera%20realizar%20una%20consulta."
+      target="_blank"
+    >
+      <svg class="w-10 h-10 text-white fill-current" viewBox="0 0 24 24">
+        <path
+          d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.185-.573c.948.517 2.139.945 3.145.945 3.181 0 5.768-2.586 5.768-5.766 0-3.18-2.587-5.766-5.767-5.766zm3.371 8.203c-.144.405-.833.748-1.15.773-.243.018-.56.033-1.602-.383-1.353-.54-2.226-1.888-2.293-1.979-.066-.091-.539-.717-.539-1.379 0-.662.348-.988.472-1.12.124-.132.273-.166.364-.166.091 0 .182.001.261.005.083.004.195-.032.304.233.112.274.385.938.418 1.005.033.066.054.144.01.233-.044.089-.066.144-.132.221-.066.077-.14.173-.2.235-.069.071-.141.148-.061.286.08.138.354.584.76 0.941.522.459.963.601 1.102.668.138.066.221.055.304-.042.083-.097.354-.412.449-.553.095-.141.19-.118.32-.07.13.047.825.389.968.461.143.072.238.107.273.167.035.06.035.348-.109.753z"
+        ></path>
+      </svg>
+      <div
+        class="absolute -top-1 -right-1 w-6 h-6 bg-red-500 rounded-full border-2 border-white flex items-center justify-center text-white text-[10px] font-bold"
+      >
+        1
+      </div>
+    </a>
+    <script>
+      // Navigation Scroll Transition
+      window.addEventListener("scroll", function () {
+        const nav = document.getElementById("main-nav");
+        if (window.scrollY > 100) {
+          nav.classList.add("nav-scrolled");
+        } else {
+          nav.classList.remove("nav-scrolled");
+        }
+      });
+      // Parallax Effect for Watermark Section
+      window.addEventListener("scroll", function () {
+        const watermark = document.getElementById("parallax-watermark");
+        const scrollPos = window.scrollY;
+        // Basic parallax formula: move background faster/slower than scroll
+        const offset = (scrollPos - watermark.parentElement.offsetTop) * 0.4;
+        watermark.style.transform = `translateX(${offset}px)`;
+      });
+      // Simple Hero Slider Logic
+      let currentSlide = 0;
+      const slides = document.querySelectorAll(".hero-slide");
+      function nextSlide() {
+        slides[currentSlide].classList.remove("active");
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add("active");
+      }
+      setInterval(nextSlide, 6000);
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+      var productSwiper = new Swiper(".productSwiper", {
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: "auto",
+        spaceBetween: 20,
+        loop: true,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+          dynamicBullets: true,
+        },
+        autoplay: {
+          delay: 3000,
+          disableOnInteraction: false,
+        }
+      });
+    </script>
+  </body>
+</html>
