@@ -147,6 +147,31 @@
           z-index: 0;
           white-space: nowrap;
         }
+        /* Layered Wave Animation */
+        .wave-layer {
+          animation: waveMove 15s ease-in-out infinite;
+        }
+        .wave-layer-slow {
+          animation: waveMove 25s ease-in-out infinite;
+        }
+        @keyframes waveMove {
+          0%, 100% { transform: translateX(0); }
+          50% { transform: translateX(-2%); }
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+          from { opacity: 0; transform: translateY(40px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+          animation: fadeIn 1s ease-out forwards;
+        }
+        .animate-fade-in-up {
+          animation: fadeInUp 1s ease-out forwards;
+        }
       }
     </style>
   </head>
@@ -219,29 +244,37 @@
     </nav>
     <main>
       <!-- Hero Section Premium -->
-      <section class="relative min-h-[450px] flex items-center justify-center overflow-hidden bg-navy-dark pt-20">
-        <!-- Mesh Background Layer -->
-        <div class="absolute inset-0 z-0 opacity-30 animate-pulse-slow">
-          <div class="mesh-bg !fixed !z-0"></div>
+      <section class="relative h-[450px] md:h-[500px] flex items-center justify-center overflow-hidden bg-navy-dark pt-20">
+        <!-- Background Decoration: Animated Waves Behind -->
+        <div class="absolute inset-0 z-0 pointer-events-none opacity-20">
+          <svg class="w-full h-full" viewBox="0 0 1440 400" preserveAspectRatio="none">
+            <path class="wave-layer-slow fill-primary/30" d="M0,160L48,176C96,192,192,224,288,224C384,224,480,192,576,176C672,160,768,160,864,176C960,192,1056,224,1152,218.7C1248,213,1344,171,1392,149.3L1440,128V400H1392C1344,400,1248,400,1152,400C1056,400,960,400,864,400C768,400,672,400,576,400C480,400,384,400,288,400C192,400,96,400,48,400H0Z"></path>
+          </svg>
+        </div>
+
+        <!-- Big Floating Watermark -->
+        <div class="absolute inset-0 z-0 flex items-center justify-center select-none pointer-events-none">
+          <span class="text-[18vw] font-black text-white/5 tracking-[0.1em] uppercase animate-float-slow">CONTACTO</span>
         </div>
         
-        <!-- Big Watermark -->
-        <div class="bg-watermark top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-6 opacity-5 select-none pointer-events-none">CONTACT / DPC</div>
-        
-        <div class="relative z-10 w-full max-w-7xl mx-auto px-6 text-center md:text-left">
-          <div class="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-black uppercase tracking-[0.2em] animate-fade-in">
-            <span class="relative flex h-2 w-2">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-            </span>
+        <div class="relative z-10 w-full max-w-7xl mx-auto px-6 text-center pb-24 md:pb-12">
+          <div class="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full bg-white/5 border border-white/10 text-white/60 text-[10px] font-bold uppercase tracking-[0.15em] backdrop-blur-sm animate-fade-in">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
             Atención Global y Personalizada
           </div>
-          <h1 class="text-5xl md:text-7xl font-black text-white mb-6 leading-none tracking-tight animate-fade-in-up">
-            Estamos para <br><span class="text-primary italic">Asesorarlo</span>
+          <h1 class="text-4xl md:text-7xl font-black text-white mb-6 leading-none tracking-tight animate-fade-in-up">
+            Estamos para <br><span class="text-slate-400 italic">Asesorarlo</span>
           </h1>
-          <p class="mt-4 max-w-xl text-lg md:text-xl text-slate-300 font-light leading-relaxed animate-fade-in-up" style="animation-delay: 200ms">
+          <p class="mt-4 max-w-xl mx-auto text-base md:text-xl text-slate-400 font-light leading-relaxed animate-fade-in-up" style="animation-delay: 200ms">
             Contáctenos para recibir asesoramiento profesional sobre nuestros insumos industriales y clínicos. Nuestro equipo técnico responderá su consulta en menos de 24 hs.
           </p>
+        </div>
+
+        <!-- Bottom Wave Transition (Foreground) -->
+        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[101%] leading-[0] z-20">
+          <svg class="relative block w-full h-[60px] md:h-[100px]" viewBox="0 0 1440 120" preserveAspectRatio="none">
+            <path class="wave-layer fill-background-light" d="M0,32L48,42.7C96,53,192,75,288,85.3C384,96,480,96,576,85.3C672,75,768,53,864,42.7C960,32,1056,32,1152,42.7C1248,53,1344,75,1392,85.3L1440,96V120H1392C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120H0Z"></path>
+          </svg>
         </div>
       </section>
       <!-- Contact Split Layout -->
