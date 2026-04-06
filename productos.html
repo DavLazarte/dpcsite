@@ -3,7 +3,10 @@
 <html class="light" lang="es">
   <head>
     <meta charset="utf-8" />
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -67,6 +70,18 @@
         .filter-btn.active {
           @apply bg-primary text-white font-bold;
         }
+        .filter-btn.active img {
+          filter: brightness(0) invert(1);
+        }
+        .filter-btn img {
+          width: 20px;
+          height: 20px;
+          object-fit: contain;
+          transition: all 0.3s ease;
+        }
+        .filter-btn:not(.active) img {
+          opacity: 0.7;
+        }
         .filter-btn:not(.active) {
           @apply text-slate-600 dark:text-slate-400 font-medium hover:bg-slate-200 dark:hover:bg-navy-medium;
         }
@@ -90,8 +105,13 @@
           transform: translateX(-50%);
         }
         @keyframes customFloat {
-          0%, 100% { transform: translateY(0) rotate(0); }
-          50% { transform: translateY(-20px) rotate(5deg); }
+          0%,
+          100% {
+            transform: translateY(0) rotate(0);
+          }
+          50% {
+            transform: translateY(-20px) rotate(5deg);
+          }
         }
         .animate-float-slow {
           animation: customFloat 8s ease-in-out infinite;
@@ -110,11 +130,27 @@
           height: 100%;
           z-index: -1;
           background-color: #ffffff;
-          background-image: 
-            radial-gradient(at 0% 0%, rgba(26, 79, 156, 0.05) 0px, transparent 50%),
-            radial-gradient(at 100% 0%, rgba(212, 43, 43, 0.02) 0px, transparent 50%),
-            radial-gradient(at 100% 100%, rgba(26, 79, 156, 0.05) 0px, transparent 50%),
-            radial-gradient(at 0% 100%, rgba(212, 43, 43, 0.02) 0px, transparent 50%);
+          background-image:
+            radial-gradient(
+              at 0% 0%,
+              rgba(26, 79, 156, 0.05) 0px,
+              transparent 50%
+            ),
+            radial-gradient(
+              at 100% 0%,
+              rgba(212, 43, 43, 0.02) 0px,
+              transparent 50%
+            ),
+            radial-gradient(
+              at 100% 100%,
+              rgba(26, 79, 156, 0.05) 0px,
+              transparent 50%
+            ),
+            radial-gradient(
+              at 0% 100%,
+              rgba(212, 43, 43, 0.02) 0px,
+              transparent 50%
+            );
         }
         /* Continuous Connection Line */
         .connection-line {
@@ -123,37 +159,59 @@
           top: 0;
           bottom: 0;
           width: 1px;
-          background: linear-gradient(to bottom, transparent, rgba(26, 79, 156, 0.1) 10%, rgba(26, 79, 156, 0.1) 90%, transparent);
+          background: linear-gradient(
+            to bottom,
+            transparent,
+            rgba(26, 79, 156, 0.1) 10%,
+            rgba(26, 79, 156, 0.1) 90%,
+            transparent
+          );
           z-index: 5;
           pointer-events: none;
         }
         .connection-line::after {
-          content: '';
+          content: "";
           position: absolute;
           top: 0;
           left: -2px;
           width: 5px;
           height: 5px;
-          background: #1A4F9C;
+          background: #1a4f9c;
           border-radius: 50%;
           animation: slideDown 20s linear infinite;
           opacity: 0.3;
         }
         @keyframes slideDown {
-          0% { top: 0; }
-          100% { top: 100%; }
-        }        @keyframes waveMove {
-          0%, 100% { transform: translateX(0); }
-          50% { transform: translateX(-2%); }
+          0% {
+            top: 0;
+          }
+          100% {
+            top: 100%;
+          }
+        }
+        @keyframes waveMove {
+          0%,
+          100% {
+            transform: translateX(0);
+          }
+          50% {
+            transform: translateX(-2%);
+          }
         }
         @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(10px); }
-          to { opacity: 1; transform: translateY(0); }
+          from {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
         .animate-fade-in {
           animation: fadeIn 0.5s ease-out forwards;
         }
-        
+
         /* Category Card Enhancements */
         .category-card {
           @apply relative transition-all duration-500 overflow-hidden rounded-[2rem] shadow-xl border border-white/20 cursor-pointer;
@@ -172,7 +230,6 @@
         }
       }
     </style>
-
   </head>
   <body
     class="bg-background-light text-slate-900 transition-colors duration-200 overflow-x-hidden"
@@ -188,53 +245,164 @@
           <img src="assets/img/logo.png" alt="DPC Logo" class="h-14 w-auto" />
         </div>
         <div class="hidden md:flex items-center gap-8">
-          <a class="text-sm font-semibold tracking-wide text-white hover:text-white/70 transition-colors" href="index.html">INICIO</a>
+          <a
+            class="text-sm font-semibold tracking-wide text-white hover:text-white/70 transition-colors"
+            href="index.html"
+            >INICIO</a
+          >
           <div class="relative group flex items-center">
-            <a href="nosotros.html" class="text-sm font-semibold tracking-wide text-white hover:text-white/70 transition-colors uppercase">NOSOTROS</a>
-            <button class="flex items-center text-white hover:text-white/70 transition-colors ml-1">
-              <span class="material-symbols-outlined text-base" style="font-size:16px">expand_more</span>
+            <a
+              href="nosotros.html"
+              class="text-sm font-semibold tracking-wide text-white hover:text-white/70 transition-colors uppercase"
+              >NOSOTROS</a
+            >
+            <button
+              class="flex items-center text-white hover:text-white/70 transition-colors ml-1"
+            >
+              <span
+                class="material-symbols-outlined text-base"
+                style="font-size: 16px"
+                >expand_more</span
+              >
             </button>
-            <div class="nav-dropdown absolute invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 bg-white rounded-2xl shadow-2xl shadow-slate-200/80 border border-slate-100 py-2 z-50">
-              <a href="nosotros.html#historia" class="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:text-primary hover:bg-slate-50 transition-colors">
-                <span class="material-symbols-outlined text-primary" style="font-size:18px">history_edu</span>Historia
+            <div
+              class="nav-dropdown absolute invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 bg-white rounded-2xl shadow-2xl shadow-slate-200/80 border border-slate-100 py-2 z-50"
+            >
+              <a
+                href="nosotros.html#historia"
+                class="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:text-primary hover:bg-slate-50 transition-colors"
+              >
+                <span
+                  class="material-symbols-outlined text-primary"
+                  style="font-size: 18px"
+                  >history_edu</span
+                >Historia
               </a>
-              <a href="nosotros.html#certificacion" class="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:text-primary hover:bg-slate-50 transition-colors">
-                <span class="material-symbols-outlined text-primary" style="font-size:18px">verified_user</span>Certificación
+              <a
+                href="nosotros.html#certificacion"
+                class="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:text-primary hover:bg-slate-50 transition-colors"
+              >
+                <span
+                  class="material-symbols-outlined text-primary"
+                  style="font-size: 18px"
+                  >verified_user</span
+                >Certificación
               </a>
-              <a href="nosotros.html#equipo" class="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:text-primary hover:bg-slate-50 transition-colors">
-                <span class="material-symbols-outlined text-primary" style="font-size:18px">group</span>Equipo de Trabajo
+              <a
+                href="nosotros.html#equipo"
+                class="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:text-primary hover:bg-slate-50 transition-colors"
+              >
+                <span
+                  class="material-symbols-outlined text-primary"
+                  style="font-size: 18px"
+                  >group</span
+                >Equipo de Trabajo
               </a>
-              <a href="nosotros.html#cultura" class="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:text-primary hover:bg-slate-50 transition-colors">
-                <span class="material-symbols-outlined text-primary" style="font-size:18px">diversity_3</span>Cultura
+              <a
+                href="nosotros.html#cultura"
+                class="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:text-primary hover:bg-slate-50 transition-colors"
+              >
+                <span
+                  class="material-symbols-outlined text-primary"
+                  style="font-size: 18px"
+                  >diversity_3</span
+                >Cultura
               </a>
             </div>
           </div>
           <div class="relative group flex items-center">
-            <a href="productos.html" class="text-sm font-semibold tracking-wide text-white hover:text-white/70 transition-colors uppercase">PRODUCTOS</a>
-            <button class="flex items-center text-white hover:text-white/70 transition-colors ml-1">
-              <span class="material-symbols-outlined text-base" style="font-size:16px">expand_more</span>
+            <a
+              href="productos.html"
+              class="text-sm font-semibold tracking-wide text-white hover:text-white/70 transition-colors uppercase"
+              >PRODUCTOS</a
+            >
+            <button
+              class="flex items-center text-white hover:text-white/70 transition-colors ml-1"
+            >
+              <span
+                class="material-symbols-outlined text-base"
+                style="font-size: 16px"
+                >expand_more</span
+              >
             </button>
-            <div class="nav-megamenu absolute invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 bg-white rounded-2xl shadow-2xl shadow-slate-200/80 border border-slate-100 p-6 z-50">
-              <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-4 pb-3 border-b border-slate-100">Catálogo de Productos</p>
+            <div
+              class="nav-megamenu absolute invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 bg-white rounded-2xl shadow-2xl shadow-slate-200/80 border border-slate-100 p-6 z-50"
+            >
+              <p
+                class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-4 pb-3 border-b border-slate-100"
+              >
+                Catálogo de Productos
+              </p>
               <div class="grid grid-cols-2 gap-x-8 gap-y-1">
-                <a href="productos.html?cat=proteccion" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Protección Personal</a>
-                <a href="productos.html?cat=camisolines" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Camisolines</a>
-                <a href="productos.html?cat=quirurgico" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Quirúrgico</a>
-                <a href="productos.html?cat=kits" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Kits y Tratamientos</a>
-                <a href="productos.html?cat=cama" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Cama y Campo</a>
-                <a href="productos.html?cat=otros" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Otros Accesorios</a>
+                <a
+                  href="productos.html?cat=proteccion"
+                  class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors"
+                  >Protección Personal</a
+                >
+                <a
+                  href="productos.html?cat=camisolines"
+                  class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors"
+                  >Camisolines</a
+                >
+                <a
+                  href="productos.html?cat=quirurgico"
+                  class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors"
+                  >Quirúrgico</a
+                >
+                <a
+                  href="productos.html?cat=kits"
+                  class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors"
+                  >Kits y Tratamientos</a
+                >
+                <a
+                  href="productos.html?cat=cama"
+                  class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors"
+                  >Camilla y Campo</a
+                >
+                <a
+                  href="productos.html?cat=otros"
+                  class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors"
+                  >Otros Accesorios</a
+                >
               </div>
               <div class="mt-4 pt-3 border-t border-slate-100">
-                <a href="productos.html" class="inline-flex items-center gap-2 text-xs font-bold text-primary hover:underline">
-                  Ver catálogo completo <span class="material-symbols-outlined" style="font-size:14px">arrow_forward</span>
+                <a
+                  href="productos.html"
+                  class="inline-flex items-center gap-2 text-xs font-bold text-primary hover:underline"
+                >
+                  Ver catálogo completo
+                  <span
+                    class="material-symbols-outlined"
+                    style="font-size: 14px"
+                    >arrow_forward</span
+                  >
                 </a>
               </div>
             </div>
           </div>
-          <a class="text-sm font-semibold tracking-wide text-white hover:text-white/70 transition-colors" href="noticias.html">NOTICIAS</a>
-          <a class="text-sm font-semibold tracking-wide text-white hover:text-white/70 transition-colors" href="contacto.html">CONTACTO</a>
-          <a href="assets/pdf/catalogo.pdf" target="_blank"
-            class="nav-cta bg-primary hover:bg-[#153f7a] text-white px-6 py-2.5 rounded-full font-semibold text-sm transition-all shadow-md shadow-primary/20">
+          <a
+            class="text-sm font-semibold tracking-wide text-white hover:text-white/70 transition-colors"
+            href="noticias.html"
+            >NOTICIAS</a
+          >
+          <a
+            class="text-sm font-semibold tracking-wide text-white hover:text-white/70 transition-colors"
+            href="contacto.html"
+            >CONTACTO</a
+          >
+
+          <!-- Language Flags -->
+          <div class="flex items-center gap-2.5 px-2.5 border-l border-white/10 ml-2">
+            <a href="#" title="Español" class="flex"><img src="https://flagcdn.com/w40/es.png" class="w-5 h-5 rounded-full object-cover border border-white/20 hover:scale-110 transition-transform shadow-sm" alt="ES"></a>
+            <a href="#" title="English" class="flex"><img src="https://flagcdn.com/w40/us.png" class="w-5 h-5 rounded-full object-cover border border-white/20 hover:scale-110 transition-transform shadow-sm" alt="EN"></a>
+            <a href="#" title="Português" class="flex"><img src="https://flagcdn.com/w40/br.png" class="w-5 h-5 rounded-full object-cover border border-white/20 hover:scale-110 transition-transform shadow-sm" alt="PT"></a>
+          </div>
+
+          <a
+            href="assets/pdf/catalogo.pdf"
+            target="_blank"
+            class="nav-cta bg-primary hover:bg-[#153f7a] text-white px-6 py-2.5 rounded-full font-semibold text-sm transition-all shadow-md shadow-primary/20"
+          >
             CATÁLOGO
           </a>
         </div>
@@ -289,7 +457,9 @@
                       class="filter-btn flex items-center gap-3 rounded-xl glass-v2 px-4 py-3 text-sm font-bold transition-all active"
                       data-category="todos"
                     >
-                      <span class="material-symbols-outlined text-xl">grid_view</span>
+                      <span class="material-symbols-outlined text-xl"
+                        >grid_view</span
+                      >
                       Ver Todos
                     </button>
                     <!-- Sidebar filters remain for quick access once inside or as alternative -->
@@ -298,7 +468,7 @@
                       class="filter-btn flex items-center gap-3 rounded-xl glass-v2 px-4 py-3 text-sm font-medium hover:bg-white/40 transition-all"
                       data-category="proteccion"
                     >
-                      <span class="material-symbols-outlined text-xl">shield_with_heart</span>
+                      <img src="assets/img/iconos/proteccion.png" alt="Protección">
                       Protección Personal
                     </button>
                     <button
@@ -306,7 +476,7 @@
                       class="filter-btn flex items-center gap-3 rounded-xl glass-v2 px-4 py-3 text-sm font-medium hover:bg-white/40 transition-all"
                       data-category="camisolines"
                     >
-                      <span class="material-symbols-outlined text-xl">apparel</span>
+                      <img src="assets/img/iconos/camisolin.png" alt="Camisolines">
                       Camisolines
                     </button>
                     <button
@@ -314,7 +484,7 @@
                       class="filter-btn flex items-center gap-3 rounded-xl glass-v2 px-4 py-3 text-sm font-medium hover:bg-white/40 transition-all"
                       data-category="quirurgico"
                     >
-                      <span class="material-symbols-outlined text-xl">content_cut</span>
+                      <img src="assets/img/iconos/quirurgico.png" alt="Quirúrgico">
                       Quirúrgico
                     </button>
                     <button
@@ -322,7 +492,7 @@
                       class="filter-btn flex items-center gap-3 rounded-xl glass-v2 px-4 py-3 text-sm font-medium hover:bg-white/40 transition-all"
                       data-category="kits"
                     >
-                      <span class="material-symbols-outlined text-xl">package_2</span>
+                      <img src="assets/img/iconos/kit.png" alt="Kits">
                       Kits
                     </button>
                     <button
@@ -330,15 +500,17 @@
                       class="filter-btn flex items-center gap-3 rounded-xl glass-v2 px-4 py-3 text-sm font-medium hover:bg-white/40 transition-all"
                       data-category="cama"
                     >
-                      <span class="material-symbols-outlined text-xl">bed</span>
-                      Cama y Campo
+                      <img src="assets/img/iconos/camilla-medica.png" alt="Camilla">
+                      Camilla y Campo
                     </button>
                     <button
                       onclick="filterProducts('otros')"
                       class="filter-btn flex items-center gap-3 rounded-xl glass-v2 px-4 py-3 text-sm font-medium hover:bg-white/40 transition-all"
                       data-category="otros"
                     >
-                      <span class="material-symbols-outlined text-xl">more_horiz</span>
+                      <span class="material-symbols-outlined text-xl"
+                        >more_horiz</span
+                      >
                       Otros
                     </button>
                   </nav>
@@ -346,30 +518,50 @@
               </div>
             </aside>
             <div class="flex-1">
-              <div id="view-header" class="mb-8 flex items-center justify-between border-b border-slate-200 dark:border-navy-medium pb-4">
+              <div
+                id="view-header"
+                class="mb-8 flex items-center justify-between border-b border-slate-200 dark:border-navy-medium pb-4"
+              >
                 <div class="flex items-center gap-4">
-                  <button id="back-to-categories" onclick="showCategoryGrid()" class="hidden w-10 h-10 rounded-full bg-primary/5 text-primary flex items-center justify-center hover:bg-primary hover:text-white transition-all shadow-sm group">
+                  <button
+                    id="back-to-categories"
+                    onclick="showCategoryGrid()"
+                    class="hidden w-10 h-10 rounded-full bg-primary/5 text-primary flex items-center justify-center hover:bg-primary hover:text-white transition-all shadow-sm group"
+                  >
                     <span class="material-symbols-outlined">arrow_back</span>
                   </button>
-                  <h2 id="section-title" class="text-2xl font-black text-dark-navy uppercase tracking-tight">Nuestras Categorías</h2>
+                  <h2
+                    id="section-title"
+                    class="text-2xl font-black text-dark-navy uppercase tracking-tight"
+                  >
+                    Nuestras Categorías
+                  </h2>
                 </div>
-                <div id="stats-display" class="flex items-center gap-4 text-sm font-medium text-slate-500">
+                <div
+                  id="stats-display"
+                  class="flex items-center gap-4 text-sm font-medium text-slate-500"
+                >
                   <span id="product-count">Seleccione un grupo</span>
                 </div>
               </div>
 
               <!-- Vista de Cuadrícula de Categorías (Entrada Principal) -->
-              <div id="category-grid-view" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 animate-fade-in">
+              <div
+                id="category-grid-view"
+                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 animate-fade-in"
+              >
                 <!-- Se renderizará dinámicamente -->
               </div>
 
               <!-- Vista de Listado de Productos (Filtrado) -->
               <div id="product-list-view" class="hidden">
-                <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4" id="product-grid">
+                <div
+                  class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
+                  id="product-grid"
+                >
                   <!-- Products will be rendered here dynamically -->
                 </div>
               </div>
-
             </div>
           </div>
         </section>
@@ -398,7 +590,9 @@
                       <span class="material-symbols-outlined">verified</span>
                     </div>
                     <div>
-                      <h4 class="font-bold text-white">Certificación ISO</h4>
+                      <h4 class="font-bold text-white">
+                        Certificación por ANMAT
+                      </h4>
                       <p class="text-xs text-slate-500">
                         Procesos estandarizados internacionalmente.
                       </p>
@@ -411,9 +605,12 @@
                       <span class="material-symbols-outlined">sanitizer</span>
                     </div>
                     <div>
-                      <h4 class="font-bold text-white">Esterilización ETO</h4>
+                      <h4 class="font-bold text-white">
+                        Esterilización por vapor
+                      </h4>
                       <p class="text-xs text-slate-500">
-                        Óxido de etileno para eliminación de patógenos.
+                        Tecnología de calor húmedo que asegura la máxima asepsia
+                        en indumentaria hospitalaria.
                       </p>
                     </div>
                   </div>
@@ -476,14 +673,44 @@
       });
 
       // --- Gestión de Datos y Vistas ---
-      
+
       const categories = [
-        { id: 'proteccion', title: 'Protección Personal', image: 'assets/img/catalogo/barbijo.png', desc: 'Barbijos, cofias y barreras de protección directa.' },
-        { id: 'camisolines', title: 'Camisolines', image: 'assets/img/catalogo/camisolin-lineapremium.png', desc: 'Líneas Económica, Medium, Premium y Especial.' },
-        { id: 'quirurgico', title: 'Equipos Quirúrgicos', image: 'assets/img/catalogo/equipodecirugiageneral.png', desc: 'Kits estériles de alta complejidad y cirugía general.' },
-        { id: 'kits', title: 'Kits & Tratamientos', image: 'assets/img/catalogo/kitpaciente.png', desc: 'Sets para diálisis, catéteres y fístulas especializados.' },
-        { id: 'cama', title: 'Cama y Campo', image: 'assets/img/catalogo/sabanas.png', desc: 'Sábanas, campos y cubrecamillas de alta resistencia.' },
-        { id: 'otros', title: 'Otros Accesorios', image: 'assets/img/catalogo/ambos.png', desc: 'Ambos, cubrepies y accesorios complementarios.' }
+        {
+          id: "proteccion",
+          title: "Protección Personal",
+          image: "assets/img/catalogo/barbijo.png",
+          desc: "Barbijos, cofias y barreras de protección directa.",
+        },
+        {
+          id: "camisolines",
+          title: "Camisolines",
+          image: "assets/img/catalogo/camisolin-lineapremium.png",
+          desc: "Líneas Económica, Medium, Premium y Especial.",
+        },
+        {
+          id: "quirurgico",
+          title: "Quirúrgico",
+          image: "assets/img/catalogo/equipodecirugiageneral.png",
+          desc: "Kits estériles de alta complejidad y cirugía general.",
+        },
+        {
+          id: "kits",
+          title: "Kits",
+          image: "assets/img/catalogo/kitpaciente.png",
+          desc: "Sets para diálisis, catéteres y fístulas especializados.",
+        },
+        {
+          id: "cama",
+          title: "Camilla y Campo",
+          image: "assets/img/catalogo/sabanas.png",
+          desc: "Sábanas, campos y cubrecamillas de alta resistencia.",
+        },
+        {
+          id: "otros",
+          title: "Otros Accesorios",
+          image: "assets/img/catalogo/ambos.png",
+          desc: "Ambos, cubrepies y accesorios complementarios.",
+        },
       ];
 
       const products = [
@@ -491,20 +718,31 @@
         {
           name: "Barbijos Triple Capa",
           category: "proteccion",
-          description: "Tela SMS/Meltblown triple capa con ajuste elástico y nasal. Celeste o blanco.",
+          description:
+            "Tela SMS/Meltblown triple capa con ajuste elástico y nasal. Celeste o blanco.",
           image: "assets/img/catalogo/barbijo.png",
           stock: "En Stock",
           tags: ["ANMAT"],
-          specs: ["Capa exterior SMS", "Filtro Meltblown BFE > 98%", "Capa interior suave", "Ajuste nasal maleable"]
+          specs: [
+            "Capa exterior SMS",
+            "Filtro Meltblown BFE > 98%",
+            "Capa interior suave",
+            "Ajuste nasal maleable",
+          ],
         },
         {
           name: "Cofias Plisadas",
           category: "proteccion",
-          description: "Tela SMS triple capa con ajuste elástico. Paquetes de 100 unidades.",
+          description:
+            "Tela SMS triple capa con ajuste elástico. Paquetes de 100 unidades.",
           image: "assets/img/catalogo/cofias.png",
           stock: "En Stock",
           tags: ["Premium"],
-          specs: ["Tela no tejida de polipropileno", "Bordes elásticos reforzados", "Respirables y ligeras"]
+          specs: [
+            "Tela no tejida de polipropileno",
+            "Bordes elásticos reforzados",
+            "Respirables y ligeras",
+          ],
         },
         // Camisolines
         {
@@ -514,16 +752,26 @@
           image: "assets/img/catalogo/camisolin-lineaeconomica.png",
           stock: "En Stock",
           tags: ["Económico"],
-          specs: ["SMS 15 gr", "Puño elástico", "Largo: 1m o 1,20m", "Colores: Azul o Blanco"]
+          specs: [
+            "SMS 15 gr",
+            "Puño elástico",
+            "Largo: 1m o 1,20m",
+            "Colores: Azul o Blanco",
+          ],
         },
         {
           name: "Camisolín Línea Médium",
           category: "camisolines",
-          description: "SMS 20 o 30 gr con puño elástico o de morley. Varios tamaños.",
+          description:
+            "SMS 20 o 30 gr con puño elástico o de morley. Varios tamaños.",
           image: "assets/img/catalogo/camisolin-lineamedium.png",
           stock: "Bajo Pedido",
           tags: ["Médium"],
-          specs: ["SMS 20/30 gr", "Puño de Morley o Elástico", "Tamaños: 1m, 1,20m, 1,40m"]
+          specs: [
+            "SMS 20/30 gr",
+            "Puño de Morley o Elástico",
+            "Tamaños: 1m, 1,20m, 1,40m",
+          ],
         },
         {
           name: "Camisolín Línea Premium",
@@ -532,23 +780,33 @@
           image: "assets/img/catalogo/camisolin-lineapremium.png",
           stock: "En Stock",
           tags: ["Premium"],
-          specs: ["SMS 45/50 gr", "Alta resistencia a la tracción", "Barrera bacteriana superior"]
+          specs: [
+            "SMS 45/50 gr",
+            "Alta resistencia a la tracción",
+            "Barrera bacteriana superior",
+          ],
         },
         {
           name: "Camisolín Línea Especial",
           category: "camisolines",
           description: "Hemorrepelentes y laminados para alta exposición.",
           image: "assets/img/catalogo/camisolin-lineaespecial.png",
-          detailImage: "assets/img/catalogo/camisolin-lineaespecial-detalle.png",
+          detailImage:
+            "assets/img/catalogo/camisolin-lineaespecial-detalle.png",
           stock: "En Stock",
           tags: ["Técnico"],
-          specs: ["Laminado impermeable", "Hemorrepelente", "Refuerzos en zonas críticas"]
+          specs: [
+            "Laminado impermeable",
+            "Hemorrepelente",
+            "Refuerzos en zonas críticas",
+          ],
         },
         // Quirúrgico
         {
           name: "Equipo de Cirugía General",
           category: "quirurgico",
-          description: "Kit estéril completo para procedimientos de cirugía general. Autorizado bajo PM 2521-1/3.",
+          description:
+            "Kit estéril completo para procedimientos de cirugía general. Autorizado bajo PM 2521-1/3.",
           image: "assets/img/catalogo/equipodecirugiageneral.png",
           stock: "Estéril",
           tags: ["Kit"],
@@ -556,13 +814,14 @@
             "4 Campos (100x100 cm)",
             "4 Camisolines con puño morley",
             "5 Sábanas (200x150 cm)",
-            "5 Toallas de secado"
-          ]
+            "5 Toallas de secado",
+          ],
         },
         {
           name: "Equipo de Cirugía Traumatológica",
           category: "quirurgico",
-          description: "Insumos específicos para TyO / Rodilla / Cadera / Hombro. Autorizado bajo PM 2521-1/3.",
+          description:
+            "Insumos específicos para TyO / Rodilla / Cadera / Hombro. Autorizado bajo PM 2521-1/3.",
           image: "assets/img/catalogo/equipodecirugiatyo.png",
           stock: "Estéril",
           tags: ["Traumatología"],
@@ -570,59 +829,77 @@
             "4 Campos",
             "4 Camisolines",
             "4 Sábanas",
-            "4 Toallas de secado"
-          ]
+            "4 Toallas de secado",
+          ],
         },
         // Kits
         {
           name: "Kit Paciente",
           category: "kits",
-          description: "Incluye los elementos esenciales para el ingreso del paciente.",
+          description:
+            "Incluye los elementos esenciales para el ingreso del paciente.",
           image: "assets/img/catalogo/kitpaciente.png",
           stock: "En Stock",
           tags: ["Protocolo"],
-          specs: ["1 Camisolín", "1 Par de botas", "1 Cofia", "1 Barbijo (Opcional)"]
+          specs: [
+            "1 Camisolín",
+            "1 Par de botas",
+            "1 Cofia",
+            "1 Barbijo (Opcional)",
+          ],
         },
         {
           name: "Kit Catéter MOD 1",
           category: "kits",
-          description: "Sets técnicos de conexión y desconexión para hemodiálisis.",
+          description:
+            "Sets técnicos de conexión y desconexión para hemodiálisis.",
           image: "assets/img/catalogo/kidcatetermod1.png",
           detailImage: "assets/img/catalogo/kidcatetermod1-detalle.png",
           stock: "Especializado",
           tags: ["MOD 1"],
           specs: [
             "Conexión: Bandeja, 2 pares guantes n7, 2 gasas, aguja 25/8, 2 jeringas 10ml, camisolín, 2 cofias, 2 campos, 2 barbijos",
-            "Desconexión: Bandeja, guantes, 2 gasas, 2 jeringas 10ml, 2 tapones heparina, aguja 25/8"
-          ]
+            "Desconexión: Bandeja, guantes, 2 gasas, 2 jeringas 10ml, 2 tapones heparina, aguja 25/8",
+          ],
         },
         // Cama y Campo
         {
           name: "Sábanas Descartables",
           category: "cama",
-          description: "Sábanas de SMS de alta densidad para camillas y camas hospitalarias.",
+          description:
+            "Sábanas de SMS de alta densidad para camillas y camas hospitalarias.",
           image: "assets/img/catalogo/sabanas.png",
           stock: "En Stock",
           tags: ["Hospitalario"],
-          specs: ["Material: SMS 30/40g", "Hipoalergénicas", "Resistentes a fluidos"]
+          specs: [
+            "Material: SMS 30/40g",
+            "Hipoalergénicas",
+            "Resistentes a fluidos",
+          ],
         },
         // Otros
         {
           name: "Ambos SMS / Brin",
           category: "otros",
-          description: "Conjuntos de chaqueta y pantalón. Descartables o reutilizables.",
+          description:
+            "Conjuntos de chaqueta y pantalón. Descartables o reutilizables.",
           image: "assets/img/catalogo/ambos.png",
           stock: "A Pedido",
           tags: ["Indumentaria"],
-          specs: ["Chaqueta cuello V", "Pantalón con elástico o lazo", "Variedad de talles", "Colores: Azul o Blanco"]
-        }
+          specs: [
+            "Chaqueta cuello V",
+            "Pantalón con elástico o lazo",
+            "Variedad de talles",
+            "Colores: Azul o Blanco",
+          ],
+        },
       ];
 
       function renderCategories() {
-        const grid = document.getElementById('category-grid-view');
-        grid.innerHTML = '';
-        
-        categories.forEach(cat => {
+        const grid = document.getElementById("category-grid-view");
+        grid.innerHTML = "";
+
+        categories.forEach((cat) => {
           const card = `
             <div onclick="filterProducts('${cat.id}')" class="category-card h-64 md:h-72 animate-fade-in">
               <img src="${cat.image}" alt="${cat.title}">
@@ -645,44 +922,47 @@
       }
 
       function filterProducts(category) {
-        const gridView = document.getElementById('category-grid-view');
-        const listView = document.getElementById('product-list-view');
-        const backBtn = document.getElementById('back-to-categories');
-        const sectionTitle = document.getElementById('section-title');
-        const productGrid = document.getElementById('product-grid');
-        const countDisplay = document.getElementById('product-count');
+        const gridView = document.getElementById("category-grid-view");
+        const listView = document.getElementById("product-list-view");
+        const backBtn = document.getElementById("back-to-categories");
+        const sectionTitle = document.getElementById("section-title");
+        const productGrid = document.getElementById("product-grid");
+        const countDisplay = document.getElementById("product-count");
 
         // Update Filters Sidebar UI
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-          if(btn.dataset.category === category) btn.classList.add('active');
-          else btn.classList.remove('active');
+        document.querySelectorAll(".filter-btn").forEach((btn) => {
+          if (btn.dataset.category === category) btn.classList.add("active");
+          else btn.classList.remove("active");
         });
 
-        if (category === 'todos') {
+        if (category === "todos") {
           showCategoryGrid();
           return;
         }
 
         // Switch Views
-        gridView.classList.add('hidden');
-        listView.classList.remove('hidden');
-        backBtn.classList.remove('hidden');
+        gridView.classList.add("hidden");
+        listView.classList.remove("hidden");
+        backBtn.classList.remove("hidden");
 
         // Update Header
-        const catData = categories.find(c => c.id === category);
-        sectionTitle.innerText = catData ? catData.title : 'Productos';
-        
+        const catData = categories.find((c) => c.id === category);
+        sectionTitle.innerText = catData ? catData.title : "Productos";
+
         // Filter and Render
-        const filtered = products.filter(p => p.category === category);
-        productGrid.innerHTML = '';
-        
+        const filtered = products.filter((p) => p.category === category);
+        productGrid.innerHTML = "";
+
         if (filtered.length === 0) {
-          productGrid.innerHTML = '<div class="col-span-full py-20 text-center text-slate-400 font-light italic">No se encontraron productos en esta categoría.</div>';
-          countDisplay.innerText = '0 productos';
+          productGrid.innerHTML =
+            '<div class="col-span-full py-20 text-center text-slate-400 font-light italic">No se encontraron productos en esta categoría.</div>';
+          countDisplay.innerText = "0 productos";
         } else {
           countDisplay.innerText = `${filtered.length} productos`;
           filtered.forEach((product) => {
-            const originalIndex = products.findIndex(p => p.name === product.name);
+            const originalIndex = products.findIndex(
+              (p) => p.name === product.name,
+            );
             const card = `
               <div class="group flex flex-col rounded-3xl glass-v2 overflow-hidden transition-all hover:shadow-2xl hover:-translate-y-1 animate-fade-in border-white/40">
                 <div class="relative aspect-square w-full overflow-hidden bg-slate-50/50">
@@ -691,7 +971,7 @@
                 </div>
                 <div class="flex flex-1 flex-col p-6">
                   <div class="flex gap-2 mb-3">
-                    ${product.tags.map(tag => `<span class="text-[8px] font-black uppercase tracking-[0.15em] text-primary bg-primary/10 px-2 py-0.5 rounded-full">${tag}</span>`).join('')}
+                    ${product.tags.map((tag) => `<span class="text-[8px] font-black uppercase tracking-[0.15em] text-primary bg-primary/10 px-2 py-0.5 rounded-full">${tag}</span>`).join("")}
                   </div>
                   <h3 class="text-base font-bold text-dark-navy mb-2 leading-tight">${product.name}</h3>
                   <p class="text-[11px] text-slate-500 leading-relaxed mb-4 line-clamp-2">${product.description}</p>
@@ -702,78 +982,88 @@
             productGrid.innerHTML += card;
           });
         }
-        
+
         // Scroll to content top sutilly
-        window.scrollTo({ top: document.getElementById('view-header').offsetTop - 120, behavior: 'smooth' });
+        window.scrollTo({
+          top: document.getElementById("view-header").offsetTop - 120,
+          behavior: "smooth",
+        });
       }
 
       function showCategoryGrid() {
-        document.getElementById('category-grid-view').classList.remove('hidden');
-        document.getElementById('product-list-view').classList.add('hidden');
-        document.getElementById('back-to-categories').classList.add('hidden');
-        document.getElementById('section-title').innerText = 'Nuestras Categorías';
-        document.getElementById('product-count').innerText = 'Seleccione un grupo';
-        
+        document
+          .getElementById("category-grid-view")
+          .classList.remove("hidden");
+        document.getElementById("product-list-view").classList.add("hidden");
+        document.getElementById("back-to-categories").classList.add("hidden");
+        document.getElementById("section-title").innerText =
+          "Nuestras Categorías";
+        document.getElementById("product-count").innerText =
+          "Seleccione un grupo";
+
         // Reset filters UI
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-          if(btn.dataset.category === 'todos') btn.classList.add('active');
-          else btn.classList.remove('active');
+        document.querySelectorAll(".filter-btn").forEach((btn) => {
+          if (btn.dataset.category === "todos") btn.classList.add("active");
+          else btn.classList.remove("active");
         });
       }
 
       // Modal Functions
       function openModal(index) {
         const product = products[index];
-        const modal = document.getElementById('product-modal');
-        const modalContent = document.getElementById('modal-content');
-        
+        const modal = document.getElementById("product-modal");
+        const modalContent = document.getElementById("modal-content");
+
         const detailImg = product.detailImage || product.image;
-        
-        document.getElementById('modal-img').src = detailImg;
-        document.getElementById('modal-title').innerText = product.name;
-        document.getElementById('modal-category').innerText = product.category.toUpperCase();
-        document.getElementById('modal-desc').innerText = product.description;
-        
-        const specsList = document.getElementById('modal-specs');
-        specsList.innerHTML = '';
+
+        document.getElementById("modal-img").src = detailImg;
+        document.getElementById("modal-title").innerText = product.name;
+        document.getElementById("modal-category").innerText =
+          product.category.toUpperCase();
+        document.getElementById("modal-desc").innerText = product.description;
+
+        const specsList = document.getElementById("modal-specs");
+        specsList.innerHTML = "";
         if (product.specs && product.specs.length > 0) {
-          product.specs.forEach(spec => {
-            const li = document.createElement('li');
-            li.className = 'flex items-start gap-2 text-sm text-slate-600 mb-2';
+          product.specs.forEach((spec) => {
+            const li = document.createElement("li");
+            li.className = "flex items-start gap-2 text-sm text-slate-600 mb-2";
             li.innerHTML = `<span class="material-symbols-outlined text-primary text-lg">check_circle</span> <span>${spec}</span>`;
             specsList.appendChild(li);
           });
         } else {
-          specsList.innerHTML = '<p class="text-sm text-slate-400 italic">No hay especificaciones adicionales disponibles.</p>';
+          specsList.innerHTML =
+            '<p class="text-sm text-slate-400 italic">No hay especificaciones adicionales disponibles.</p>';
         }
 
-        document.getElementById('modal-wa').href = `https://wa.me/543814456789?text=Hola,%20quisiera%20consultar%20por%20el%20producto:%20${encodeURIComponent(product.name)}`;
+        document.getElementById("modal-wa").href =
+          `https://wa.me/543814456789?text=Hola,%20quisiera%20consultar%20por%20el%20producto:%20${encodeURIComponent(product.name)}`;
 
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
         setTimeout(() => {
-          modalContent.classList.remove('opacity-0', 'scale-95');
+          modalContent.classList.remove("opacity-0", "scale-95");
         }, 10);
       }
 
       function closeModal() {
-        const modal = document.getElementById('product-modal');
-        const modalContent = document.getElementById('modal-content');
-        modalContent.classList.add('opacity-0', 'scale-95');
+        const modal = document.getElementById("product-modal");
+        const modalContent = document.getElementById("modal-content");
+        modalContent.classList.add("opacity-0", "scale-95");
         setTimeout(() => {
-          modal.classList.add('hidden');
-          modal.classList.remove('flex');
+          modal.classList.add("hidden");
+          modal.classList.remove("flex");
         }, 300);
       }
 
       // Initial Load
-      document.addEventListener('DOMContentLoaded', () => {
+      document.addEventListener("DOMContentLoaded", () => {
         renderCategories();
-        
+
         const params = new URLSearchParams(window.location.search);
-        const catParam = params.get('cat');
-        
-        if (catParam && categories.find(c => c.id === catParam)) {
+        const catParam = params.get("cat");
+
+        if (catParam && categories.find((c) => c.id === catParam)) {
           filterProducts(catParam);
         } else {
           showCategoryGrid();
@@ -781,78 +1071,185 @@
       });
     </script>
 
-    <footer class="bg-dark-navy text-white pt-16 pb-12 relative overflow-hidden">
-      <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-accent to-primary opacity-50"></div>
+    <footer
+      class="bg-dark-navy text-white pt-16 pb-12 relative overflow-hidden"
+    >
+      <div
+        class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-accent to-primary opacity-50"
+      ></div>
       <div class="container mx-auto px-6">
-        <div class="flex flex-col md:flex-row justify-between items-center gap-10 mb-12">
+        <div
+          class="flex flex-col md:flex-row justify-between items-center gap-10 mb-12"
+        >
           <div class="flex flex-col items-center md:items-start">
-            <img src="assets/img/logo.png" alt="DPC Logo" class="h-16 w-auto mb-6" />
+            <img
+              src="assets/img/logo.png"
+              alt="DPC Logo"
+              class="h-16 w-auto mb-6"
+            />
             <div class="flex gap-4">
-              <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition-all group">
-                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition-all group"
+              >
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                  <path
+                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                  />
+                </svg>
               </a>
-              <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition-all group">
-                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.17.054 1.805.249 2.227.412.558.217.957.477 1.377.896.42.419.68.818.896 1.377.163.422.358 1.057.412 2.227.059 1.266.071 1.646.071 4.85s-.012 3.584-.07 4.85c-.054 1.17-.249 1.805-.412 2.227-.217.558-.477.957-.896 1.377-.419.42-.818.68-1.377.896-.422.163-1.057.358-2.227.412-1.266.059-1.646.071-4.85.071s-3.584-.012-4.85-.07c-1.17-.054-1.805-.249-2.227-.412-.558-.217-.957-.477-1.377-.896-.419-.42-.68-.818-.896-1.377-.163-.422-.358-1.057-.412-2.227-.059-1.266-.071-1.646-.071-4.85s.012-3.584.07-4.85c.054-1.17.249-1.805.412-2.227.217-.558.477-.957.896-1.377.419-.42.818-.68 1.377-.896.422-.163 1.057-.358 2.227-.412 1.266-.059 1.646-.071 4.85-.071zM12 0C8.741 0 8.333.014 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.014 8.333 0 8.741 0 12s.014 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126s1.384 1.078 2.126 1.384c.766.296 1.636.499 2.913.558C8.333 23.986 8.741 24 12 24s3.667-.014 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384s1.078-1.384 1.384-2.126c.296-.765.499-1.636.558-2.913.058-1.28.072-1.687.072-4.947s-.014-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.058.935 19.85.53 19.06.306c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition-all group"
+              >
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                  <path
+                    d="M12 2.163c3.204 0 3.584.012 4.85.07 1.17.054 1.805.249 2.227.412.558.217.957.477 1.377.896.42.419.68.818.896 1.377.163.422.358 1.057.412 2.227.059 1.266.071 1.646.071 4.85s-.012 3.584-.07 4.85c-.054 1.17-.249 1.805-.412 2.227-.217.558-.477.957-.896 1.377-.419.42-.818.68-1.377.896-.422.163-1.057.358-2.227.412-1.266.059-1.646.071-4.85.071s-3.584-.012-4.85-.07c-1.17-.054-1.805-.249-2.227-.412-.558-.217-.957-.477-1.377-.896-.419-.42-.68-.818-.896-1.377-.163-.422-.358-1.057-.412-2.227-.059-1.266-.071-1.646-.071-4.85s.012-3.584.07-4.85c.054-1.17.249-1.805.412-2.227.217-.558.477-.957.896-1.377.419-.42.818-.68 1.377-.896.422-.163 1.057-.358 2.227-.412 1.266-.059 1.646-.071 4.85-.071zM12 0C8.741 0 8.333.014 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.014 8.333 0 8.741 0 12s.014 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126s1.384 1.078 2.126 1.384c.766.296 1.636.499 2.913.558C8.333 23.986 8.741 24 12 24s3.667-.014 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384s1.078-1.384 1.384-2.126c.296-.765.499-1.636.558-2.913.058-1.28.072-1.687.072-4.947s-.014-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.058.935 19.85.53 19.06.306c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"
+                  />
+                </svg>
               </a>
-              <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition-all group">
-                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.872.505 9.377.505 9.377.505s7.505 0 9.377-.505a3.017 3.017 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition-all group"
+              >
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                  <path
+                    d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.872.505 9.377.505 9.377.505s7.505 0 9.377-.505a3.017 3.017 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
+                  />
+                </svg>
               </a>
             </div>
           </div>
           <nav class="flex flex-wrap justify-center gap-x-8 gap-y-4">
-            <a href="index.html" class="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors">Inicio</a>
-            <a href="nosotros.html" class="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors">Nosotros</a>
-            <a href="productos.html" class="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors">Productos</a>
-            <a href="noticias.html" class="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors">Noticias</a>
-            <a href="productos.html" class="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors">Habilitaciones</a>
-            <a href="contacto.html" class="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors">Contacto</a>
+            <a
+              href="index.html"
+              class="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors"
+              >Inicio</a
+            >
+            <a
+              href="nosotros.html"
+              class="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors"
+              >Nosotros</a
+            >
+            <a
+              href="productos.html"
+              class="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors"
+              >Productos</a
+            >
+            <a
+              href="noticias.html"
+              class="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors"
+              >Noticias</a
+            >
+            <a
+              href="productos.html"
+              class="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors"
+              >Habilitaciones</a
+            >
+            <a
+              href="contacto.html"
+              class="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors"
+              >Contacto</a
+            >
           </nav>
         </div>
-        <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[9px] uppercase font-bold tracking-[0.2em] text-slate-500">
-          <p>© 2026 DPC - Desarrollo Profesional Confiable. Colombia 2589, Tucumán.</p>
+        <div
+          class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[9px] uppercase font-bold tracking-[0.2em] text-slate-500"
+        >
+          <p>
+            © 2026 DPC - Desarrollo Profesional Confiable. Colombia 2589,
+            Tucumán.
+          </p>
           <div class="flex gap-8">
-            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[10px]">verified</span> Calidad ANMAT</span>
-            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[10px]">public</span> Industria Nacional</span>
+            <span class="flex items-center gap-1"
+              ><span class="material-symbols-outlined text-[10px]"
+                >verified</span
+              >
+              Calidad ANMAT</span
+            >
+            <span class="flex items-center gap-1"
+              ><span class="material-symbols-outlined text-[10px]">public</span>
+              Industria Nacional</span
+            >
           </div>
         </div>
       </div>
     </footer>
 
-
     <!-- Product Modal -->
-    <div id="product-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-navy-dark/80 backdrop-blur-sm p-4 transition-all duration-300">
-      <div id="modal-content" class="relative w-full max-w-4xl bg-white dark:bg-navy-dark rounded-3xl shadow-2xl overflow-hidden opacity-0 scale-95 transition-all duration-300 flex flex-col md:flex-row">
+    <div
+      id="product-modal"
+      class="fixed inset-0 z-[100] hidden items-center justify-center bg-navy-dark/80 backdrop-blur-sm p-4 transition-all duration-300"
+    >
+      <div
+        id="modal-content"
+        class="relative w-full max-w-4xl bg-white dark:bg-navy-dark rounded-3xl shadow-2xl overflow-hidden opacity-0 scale-95 transition-all duration-300 flex flex-col md:flex-row"
+      >
         <!-- Close Button -->
-        <button onclick="closeModal()" class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-slate-400 hover:text-white transition-all">
+        <button
+          onclick="closeModal()"
+          class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-slate-400 hover:text-white transition-all"
+        >
           <span class="material-symbols-outlined">close</span>
         </button>
-        
+
         <!-- Image Area -->
-        <div class="w-full md:w-1/2 bg-slate-50 flex items-center justify-center p-8">
-          <img id="modal-img" src="" alt="Product Detail" class="max-h-[80vh] w-auto object-contain drop-shadow-2xl">
+        <div
+          class="w-full md:w-1/2 bg-slate-50 flex items-center justify-center p-8"
+        >
+          <img
+            id="modal-img"
+            src=""
+            alt="Product Detail"
+            class="max-h-[80vh] w-auto object-contain drop-shadow-2xl"
+          />
         </div>
-        
+
         <!-- Content Area -->
         <div class="w-full md:w-1/2 p-8 md:p-12 overflow-y-auto max-h-[90vh]">
-          <span id="modal-category" class="text-[10px] font-black uppercase tracking-[0.2em] text-primary mb-2 block">QUIRÚRGICO</span>
-          <h2 id="modal-title" class="text-3xl font-black text-dark-navy mb-4">Nombre del Producto</h2>
-          <p id="modal-desc" class="text-sm text-slate-500 mb-8 leading-relaxed">
+          <span
+            id="modal-category"
+            class="text-[10px] font-black uppercase tracking-[0.2em] text-primary mb-2 block"
+            >QUIRÚRGICO</span
+          >
+          <h2 id="modal-title" class="text-3xl font-black text-dark-navy mb-4">
+            Nombre del Producto
+          </h2>
+          <p
+            id="modal-desc"
+            class="text-sm text-slate-500 mb-8 leading-relaxed"
+          >
             Descripción técnica detallada del producto.
           </p>
-          
+
           <div class="mb-10">
-            <h4 class="text-xs font-black uppercase tracking-widest text-dark-navy mb-4 border-b border-slate-100 pb-2">Especificaciones Técnicas</h4>
+            <h4
+              class="text-xs font-black uppercase tracking-widest text-dark-navy mb-4 border-b border-slate-100 pb-2"
+            >
+              Especificaciones Técnicas
+            </h4>
             <ul id="modal-specs" class="space-y-3">
               <!-- Specs will be injected here -->
             </ul>
           </div>
-          
+
           <div class="flex flex-col sm:flex-row gap-4 mt-auto">
-            <a href="assets/pdf/catalogo.pdf" target="_blank" class="flex-1 flex items-center justify-center gap-2 rounded-xl border-2 border-primary py-3 text-xs font-black uppercase tracking-widest text-primary hover:bg-primary/5 transition-all">
-              <span class="material-symbols-outlined text-lg">picture_as_pdf</span>
+            <a
+              href="assets/pdf/catalogo.pdf"
+              target="_blank"
+              class="flex-1 flex items-center justify-center gap-2 rounded-xl border-2 border-primary py-3 text-xs font-black uppercase tracking-widest text-primary hover:bg-primary/5 transition-all"
+            >
+              <span class="material-symbols-outlined text-lg"
+                >picture_as_pdf</span
+              >
               Ver Catálogo PDF
             </a>
-            <a id="modal-wa" href="#" target="_blank" class="flex-1 flex items-center justify-center gap-3 rounded-xl bg-green-600 py-3 text-xs font-black uppercase tracking-widest text-white hover:bg-green-700 transition-all shadow-lg shadow-green-600/20">
+            <a
+              id="modal-wa"
+              href="#"
+              target="_blank"
+              class="flex-1 flex items-center justify-center gap-3 rounded-xl bg-green-600 py-3 text-xs font-black uppercase tracking-widest text-white hover:bg-green-700 transition-all shadow-lg shadow-green-600/20"
+            >
               <span class="material-symbols-outlined text-lg">chat</span>
               Consultar
             </a>
