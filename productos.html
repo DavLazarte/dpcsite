@@ -248,12 +248,14 @@
           <a
             class="text-sm font-semibold tracking-wide text-white hover:text-white/70 transition-colors"
             href="index.html"
+            data-i18n="nav_home"
             >INICIO</a
           >
           <div class="relative group flex items-center">
             <a
               href="nosotros.html"
               class="text-sm font-semibold tracking-wide text-white hover:text-white/70 transition-colors uppercase"
+              data-i18n="nav_about"
               >NOSOTROS</a
             >
             <button
@@ -271,6 +273,7 @@
               <a
                 href="nosotros.html#historia"
                 class="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:text-primary hover:bg-slate-50 transition-colors"
+                data-i18n="nav_about_history"
               >
                 <span
                   class="material-symbols-outlined text-primary"
@@ -281,6 +284,7 @@
               <a
                 href="nosotros.html#certificacion"
                 class="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:text-primary hover:bg-slate-50 transition-colors"
+                data-i18n="nav_about_certification"
               >
                 <span
                   class="material-symbols-outlined text-primary"
@@ -291,6 +295,7 @@
               <a
                 href="nosotros.html#equipo"
                 class="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:text-primary hover:bg-slate-50 transition-colors"
+                data-i18n="nav_about_team"
               >
                 <span
                   class="material-symbols-outlined text-primary"
@@ -301,6 +306,7 @@
               <a
                 href="nosotros.html#cultura"
                 class="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:text-primary hover:bg-slate-50 transition-colors"
+                data-i18n="nav_about_culture"
               >
                 <span
                   class="material-symbols-outlined text-primary"
@@ -314,6 +320,7 @@
             <a
               href="productos.html"
               class="text-sm font-semibold tracking-wide text-white hover:text-white/70 transition-colors uppercase"
+              data-i18n="nav_products"
               >PRODUCTOS</a
             >
             <button
@@ -330,6 +337,7 @@
             >
               <p
                 class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-4 pb-3 border-b border-slate-100"
+                data-i18n="nav_products_catalog"
               >
                 Catálogo de Productos
               </p>
@@ -393,15 +401,16 @@
 
           <!-- Language Flags -->
           <div class="flex items-center gap-2.5 px-2.5 border-l border-white/10 ml-2">
-            <a href="#" title="Español" class="flex"><img src="https://flagcdn.com/w40/es.png" class="w-5 h-5 rounded-full object-cover border border-white/20 hover:scale-110 transition-transform shadow-sm" alt="ES"></a>
-            <a href="#" title="English" class="flex"><img src="https://flagcdn.com/w40/us.png" class="w-5 h-5 rounded-full object-cover border border-white/20 hover:scale-110 transition-transform shadow-sm" alt="EN"></a>
-            <a href="#" title="Português" class="flex"><img src="https://flagcdn.com/w40/br.png" class="w-5 h-5 rounded-full object-cover border border-white/20 hover:scale-110 transition-transform shadow-sm" alt="PT"></a>
+            <a href="#" onclick="event.preventDefault(); i18n.load('es');" title="Español" class="flex" data-i18n-title="nav_lang_es"><img src="https://flagcdn.com/w40/es.png" class="w-5 h-5 rounded-full object-cover border border-white/20 hover:scale-110 transition-transform shadow-sm" alt="ES"></a>
+            <a href="#" onclick="event.preventDefault(); i18n.load('en');" title="English" class="flex" data-i18n-title="nav_lang_en"><img src="https://flagcdn.com/w40/us.png" class="w-5 h-5 rounded-full object-cover border border-white/20 hover:scale-110 transition-transform shadow-sm" alt="EN"></a>
+            <a href="#" onclick="event.preventDefault(); i18n.load('pt');" title="Português" class="flex" data-i18n-title="nav_lang_pt"><img src="https://flagcdn.com/w40/br.png" class="w-5 h-5 rounded-full object-cover border border-white/20 hover:scale-110 transition-transform shadow-sm" alt="PT"></a>
           </div>
 
           <a
             href="assets/pdf/catalogo.pdf"
             target="_blank"
             class="nav-cta bg-primary hover:bg-[#153f7a] text-white px-6 py-2.5 rounded-full font-semibold text-sm transition-all shadow-md shadow-primary/20"
+            data-i18n="nav_catalog"
           >
             CATÁLOGO
           </a>
@@ -427,14 +436,15 @@
           >
             <span
               class="mb-4 inline-block rounded-full bg-primary/20 px-4 py-1 text-sm font-bold tracking-wider text-primary uppercase"
-              >Insumos Médicos Profesionales</span
+              data-i18n="products_hero_badge">Insumos Médicos Profesionales</span
             >
             <h1
               class="max-w-2xl text-4xl font-black leading-tight text-white md:text-6xl"
+              data-i18n="products_hero_title"
             >
               Catálogo de Soluciones Hospitalarias
             </h1>
-            <p class="mt-6 max-w-xl text-lg text-slate-300">
+            <p class="mt-6 max-w-xl text-lg text-slate-300" data-i18n="products_hero_desc">
               Insumos descartables de alta calidad fabricados bajo los más
               estrictos estándares de esterilización para entornos médicos
               exigentes.
@@ -448,6 +458,7 @@
                 <div>
                   <h3
                     class="mb-4 text-xs font-bold uppercase tracking-widest text-slate-400"
+                    data-i18n="products_cat_title"
                   >
                     Categorías
                   </h3>
@@ -456,6 +467,7 @@
                       onclick="filterProducts('todos')"
                       class="filter-btn flex items-center gap-3 rounded-xl glass-v2 px-4 py-3 text-sm font-bold transition-all active"
                       data-category="todos"
+                      data-i18n="products_cat_all"
                     >
                       <span class="material-symbols-outlined text-xl"
                         >grid_view</span
@@ -467,6 +479,7 @@
                       onclick="filterProducts('proteccion')"
                       class="filter-btn flex items-center gap-3 rounded-xl glass-v2 px-4 py-3 text-sm font-medium hover:bg-white/40 transition-all"
                       data-category="proteccion"
+                      data-i18n="products_cat_1"
                     >
                       <img src="assets/img/iconos/proteccion.png" alt="Protección">
                       Protección Personal
@@ -475,6 +488,7 @@
                       onclick="filterProducts('camisolines')"
                       class="filter-btn flex items-center gap-3 rounded-xl glass-v2 px-4 py-3 text-sm font-medium hover:bg-white/40 transition-all"
                       data-category="camisolines"
+                      data-i18n="products_cat_2"
                     >
                       <img src="assets/img/iconos/camisolin.png" alt="Camisolines">
                       Camisolines
@@ -483,6 +497,7 @@
                       onclick="filterProducts('quirurgico')"
                       class="filter-btn flex items-center gap-3 rounded-xl glass-v2 px-4 py-3 text-sm font-medium hover:bg-white/40 transition-all"
                       data-category="quirurgico"
+                      data-i18n="products_cat_3"
                     >
                       <img src="assets/img/iconos/quirurgico.png" alt="Quirúrgico">
                       Quirúrgico
@@ -491,6 +506,7 @@
                       onclick="filterProducts('kits')"
                       class="filter-btn flex items-center gap-3 rounded-xl glass-v2 px-4 py-3 text-sm font-medium hover:bg-white/40 transition-all"
                       data-category="kits"
+                      data-i18n="products_cat_4"
                     >
                       <img src="assets/img/iconos/kit.png" alt="Kits">
                       Kits
@@ -499,6 +515,7 @@
                       onclick="filterProducts('cama')"
                       class="filter-btn flex items-center gap-3 rounded-xl glass-v2 px-4 py-3 text-sm font-medium hover:bg-white/40 transition-all"
                       data-category="cama"
+                      data-i18n="products_cat_5"
                     >
                       <img src="assets/img/iconos/camilla-medica.png" alt="Camilla">
                       Camilla y Campo
@@ -507,6 +524,7 @@
                       onclick="filterProducts('otros')"
                       class="filter-btn flex items-center gap-3 rounded-xl glass-v2 px-4 py-3 text-sm font-medium hover:bg-white/40 transition-all"
                       data-category="otros"
+                      data-i18n="products_cat_6"
                     >
                       <span class="material-symbols-outlined text-xl"
                         >more_horiz</span
@@ -533,6 +551,7 @@
                   <h2
                     id="section-title"
                     class="text-2xl font-black text-dark-navy uppercase tracking-tight"
+                    data-i18n="products_view_title"
                   >
                     Nuestras Categorías
                   </h2>
@@ -571,12 +590,12 @@
               <div>
                 <span
                   class="mb-4 inline-block text-sm font-bold tracking-widest text-primary uppercase"
-                  >Garantía DPC</span
+                  data-i18n="products_guarantee_badge">Garantía DPC</span
                 >
-                <h2 class="text-3xl font-bold text-white md:text-4xl">
+                <h2 class="text-3xl font-bold text-white md:text-4xl" data-i18n="products_guarantee_title">
                   Compromiso con la Calidad y Seguridad
                 </h2>
-                <p class="mt-6 text-slate-400 leading-relaxed">
+                <p class="mt-6 text-slate-400 leading-relaxed" data-i18n="products_guarantee_desc">
                   En DPC Hospitalaria, entendemos que la seguridad del paciente
                   y del profesional es lo primero. Por eso, todos nuestros
                   productos pasan por rigurosos controles de calidad y procesos
@@ -590,10 +609,10 @@
                       <span class="material-symbols-outlined">verified</span>
                     </div>
                     <div>
-                      <h4 class="font-bold text-white">
+                      <h4 class="font-bold text-white" data-i18n="products_guarantee_1">
                         Certificación por ANMAT
                       </h4>
-                      <p class="text-xs text-slate-500">
+                      <p class="text-xs text-slate-500" data-i18n="products_guarantee_1_desc">
                         Procesos estandarizados internacionalmente.
                       </p>
                     </div>
@@ -605,10 +624,10 @@
                       <span class="material-symbols-outlined">sanitizer</span>
                     </div>
                     <div>
-                      <h4 class="font-bold text-white">
+                      <h4 class="font-bold text-white" data-i18n="products_guarantee_3">
                         Esterilización por vapor
                       </h4>
-                      <p class="text-xs text-slate-500">
+                      <p class="text-xs text-slate-500" data-i18n="products_guarantee_3_desc">
                         Tecnología de calor húmedo que asegura la máxima asepsia
                         en indumentaria hospitalaria.
                       </p>
@@ -623,8 +642,8 @@
                       >
                     </div>
                     <div>
-                      <h4 class="font-bold text-white">Control Lote a Lote</h4>
-                      <p class="text-xs text-slate-500">
+                      <h4 class="font-bold text-white" data-i18n="products_guarantee_4">Control Lote a Lote</h4>
+                      <p class="text-xs text-slate-500" data-i18n="products_guarantee_4_desc">
                         Trazabilidad completa de cada insumo fabricado.
                       </p>
                     </div>
@@ -662,6 +681,9 @@
       </main>
     </div>
 
+      <!-- i18n integration -->
+    <script src="assets/js/translations.js"></script>
+    <script src="assets/js/i18n.js"></script>
     <script>
       window.addEventListener("scroll", function () {
         const nav = document.getElementById("main-nav");
@@ -690,7 +712,7 @@
         {
           id: "quirurgico",
           title: "Quirúrgico",
-          image: "assets/img/catalogo/equipodecirugiageneral.png",
+            image: "assets/img/catalogo/equipodecirugiageneral.png",
           desc: "Kits estériles de alta complejidad y cirugía general.",
         },
         {
@@ -1124,31 +1146,37 @@
             <a
               href="index.html"
               class="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors"
+              data-i18n="nav_home"
               >Inicio</a
             >
             <a
               href="nosotros.html"
               class="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors"
+              data-i18n="nav_about"
               >Nosotros</a
             >
             <a
               href="productos.html"
               class="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors"
+              data-i18n="nav_products"
               >Productos</a
             >
             <a
               href="noticias.html"
               class="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors"
+              data-i18n="nav_news"
               >Noticias</a
             >
             <a
               href="productos.html"
               class="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors"
+              data-i18n="nav_cert"
               >Habilitaciones</a
             >
             <a
               href="contacto.html"
               class="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors"
+              data-i18n="nav_contact"
               >Contacto</a
             >
           </nav>
@@ -1156,7 +1184,7 @@
         <div
           class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[9px] uppercase font-bold tracking-[0.2em] text-slate-500"
         >
-          <p>
+          <p data-i18n="footer_copy">
             © 2026 DPC - Desarrollo Profesional Confiable. Colombia 2589,
             Tucumán.
           </p>
@@ -1165,11 +1193,11 @@
               ><span class="material-symbols-outlined text-[10px]"
                 >verified</span
               >
-              Calidad ANMAT</span
+              <span data-i18n="footer_tag1">Calidad ANMAT</span></span
             >
             <span class="flex items-center gap-1"
               ><span class="material-symbols-outlined text-[10px]">public</span>
-              Industria Nacional</span
+              <span data-i18n="footer_tag2">Industria Nacional</span></span
             >
           </div>
         </div>
