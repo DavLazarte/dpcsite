@@ -657,8 +657,8 @@
                       >
                     </div>
                     <div>
-                      <h4 class="font-bold text-white">Logística Médica</h4>
-                      <p class="text-xs text-slate-500">
+                      <h4 class="font-bold text-white" data-i18n="products_guarantee_2">Logística Médica</h4>
+                      <p class="text-xs text-slate-500" data-i18n="products_guarantee_2_desc">
                         Distribución bajo normas de bioseguridad.
                       </p>
                     </div>
@@ -694,225 +694,236 @@
         }
       });
 
-      // --- Gestión de Datos y Vistas ---
-
       const categories = [
         {
           id: "proteccion",
-          title: "Protección Personal",
+          titleKey: "prod_cat_proteccion_title",
           image: "assets/img/catalogo/barbijo.png",
-          desc: "Barbijos, cofias y barreras de protección directa.",
+          descKey: "prod_cat_proteccion_desc",
         },
         {
           id: "camisolines",
-          title: "Camisolines",
+          titleKey: "prod_cat_camisolines_title",
           image: "assets/img/catalogo/camisolin-lineapremium.png",
-          desc: "Líneas Económica, Medium, Premium y Especial.",
+          descKey: "prod_cat_camisolines_desc",
         },
         {
           id: "quirurgico",
-          title: "Quirúrgico",
-            image: "assets/img/catalogo/equipodecirugiageneral.png",
-          desc: "Kits estériles de alta complejidad y cirugía general.",
+          titleKey: "prod_cat_quirurgico_title",
+          image: "assets/img/catalogo/equipodecirugiageneral.png",
+          descKey: "prod_cat_quirurgico_desc",
         },
         {
           id: "kits",
-          title: "Kits",
+          titleKey: "prod_cat_kits_title",
           image: "assets/img/catalogo/kitpaciente.png",
-          desc: "Sets para diálisis, catéteres y fístulas especializados.",
+          descKey: "prod_cat_kits_desc",
         },
         {
           id: "cama",
-          title: "Camilla y Campo",
+          titleKey: "prod_cat_cama_title",
           image: "assets/img/catalogo/sabanas.png",
-          desc: "Sábanas, campos y cubrecamillas de alta resistencia.",
+          descKey: "prod_cat_cama_desc",
         },
         {
           id: "otros",
-          title: "Otros Accesorios",
+          titleKey: "prod_cat_otros_title",
           image: "assets/img/catalogo/ambos.png",
-          desc: "Ambos, cubrepies y accesorios complementarios.",
+          descKey: "prod_cat_otros_desc",
         },
       ];
 
+      // Global state for i18n refresh
+      window.currentCategory = "todos";
+
+      window.i18n_refresh = function () {
+        if (window.currentCategory === "todos") {
+          renderCategories();
+        } else {
+          filterProducts(window.currentCategory);
+        }
+      };
+
       const products = [
-        // Protección Personal
         {
-          name: "Barbijos Triple Capa",
+          id: "barbijo",
+          nameKey: "prod_barbijo_name",
           category: "proteccion",
-          description:
-            "Tela SMS/Meltblown triple capa con ajuste elástico y nasal. Celeste o blanco.",
+          descKey: "prod_barbijo_desc",
           image: "assets/img/catalogo/barbijo.png",
-          stock: "En Stock",
-          tags: ["ANMAT"],
-          specs: [
-            "Capa exterior SMS",
-            "Filtro Meltblown BFE > 98%",
-            "Capa interior suave",
-            "Ajuste nasal maleable",
+          stockKey: "prod_barbijo_stock",
+          tags: ["tag_anmat"],
+          specsKeys: [
+            "prod_barbijo_spec1",
+            "prod_barbijo_spec2",
+            "prod_barbijo_spec3",
+            "prod_barbijo_spec4",
           ],
         },
         {
-          name: "Cofias Plisadas",
+          id: "cofia",
+          nameKey: "prod_cofia_name",
           category: "proteccion",
-          description:
-            "Tela SMS triple capa con ajuste elástico. Paquetes de 100 unidades.",
+          descKey: "prod_cofia_desc",
           image: "assets/img/catalogo/cofias.png",
-          stock: "En Stock",
-          tags: ["Premium"],
-          specs: [
-            "Tela no tejida de polipropileno",
-            "Bordes elásticos reforzados",
-            "Respirables y ligeras",
+          stockKey: "prod_cofia_stock",
+          tags: ["tag_premium"],
+          specsKeys: [
+            "prod_cofia_spec1",
+            "prod_cofia_spec2",
+            "prod_cofia_spec3",
           ],
         },
         // Camisolines
         {
-          name: "Camisolín Línea Económica",
+          id: "camis_eco",
+          nameKey: "prod_camis_eco_name",
           category: "camisolines",
-          description: "SMS 15 gr con puño elástico. Tamaños de 1m y 1,20m.",
+          descKey: "prod_camis_eco_desc",
           image: "assets/img/catalogo/camisolin-lineaeconomica.png",
-          stock: "En Stock",
-          tags: ["Económico"],
-          specs: [
-            "SMS 15 gr",
-            "Puño elástico",
-            "Largo: 1m o 1,20m",
-            "Colores: Azul o Blanco",
+          stockKey: "prod_camis_eco_stock",
+          tags: ["tag_economico"],
+          specsKeys: [
+            "prod_camis_eco_spec1",
+            "prod_camis_eco_spec2",
+            "prod_camis_eco_spec3",
+            "prod_camis_eco_spec4",
           ],
         },
         {
-          name: "Camisolín Línea Médium",
+          id: "camis_med",
+          nameKey: "prod_camis_med_name",
           category: "camisolines",
-          description:
-            "SMS 20 o 30 gr con puño elástico o de morley. Varios tamaños.",
+          descKey: "prod_camis_med_desc",
           image: "assets/img/catalogo/camisolin-lineamedium.png",
-          stock: "Bajo Pedido",
-          tags: ["Médium"],
-          specs: [
-            "SMS 20/30 gr",
-            "Puño de Morley o Elástico",
-            "Tamaños: 1m, 1,20m, 1,40m",
+          stockKey: "prod_camis_med_stock",
+          tags: ["tag_medium"],
+          specsKeys: [
+            "prod_camis_med_spec1",
+            "prod_camis_med_spec2",
+            "prod_camis_med_spec3",
           ],
         },
         {
-          name: "Camisolín Línea Premium",
+          id: "camis_pre",
+          nameKey: "prod_camis_pre_name",
           category: "camisolines",
-          description: "SMS 45 o 50 gr. Máxima protección y resistencia.",
+          descKey: "prod_camis_pre_desc",
           image: "assets/img/catalogo/camisolin-lineapremium.png",
-          stock: "En Stock",
-          tags: ["Premium"],
-          specs: [
-            "SMS 45/50 gr",
-            "Alta resistencia a la tracción",
-            "Barrera bacteriana superior",
+          stockKey: "prod_camis_pre_stock",
+          tags: ["tag_premium"],
+          specsKeys: [
+            "prod_camis_pre_spec1",
+            "prod_camis_pre_spec2",
+            "prod_camis_pre_spec3",
           ],
         },
         {
-          name: "Camisolín Línea Especial",
+          id: "camis_esp",
+          nameKey: "prod_camis_esp_name",
           category: "camisolines",
-          description: "Hemorrepelentes y laminados para alta exposición.",
+          descKey: "prod_camis_esp_desc",
           image: "assets/img/catalogo/camisolin-lineaespecial.png",
           detailImage:
             "assets/img/catalogo/camisolin-lineaespecial-detalle.png",
-          stock: "En Stock",
-          tags: ["Técnico"],
-          specs: [
-            "Laminado impermeable",
-            "Hemorrepelente",
-            "Refuerzos en zonas críticas",
+          stockKey: "prod_camis_esp_stock",
+          tags: ["tag_tecnico"],
+          specsKeys: [
+            "prod_camis_esp_spec1",
+            "prod_camis_esp_spec2",
+            "prod_camis_esp_spec3",
           ],
         },
         // Quirúrgico
         {
-          name: "Equipo de Cirugía General",
+          id: "ciru_gral",
+          nameKey: "prod_ciru_gral_name",
           category: "quirurgico",
-          description:
-            "Kit estéril completo para procedimientos de cirugía general. Autorizado bajo PM 2521-1/3.",
+          descKey: "prod_ciru_gral_desc",
           image: "assets/img/catalogo/equipodecirugiageneral.png",
-          stock: "Estéril",
-          tags: ["Kit"],
-          specs: [
-            "4 Campos (100x100 cm)",
-            "4 Camisolines con puño morley",
-            "5 Sábanas (200x150 cm)",
-            "5 Toallas de secado",
+          stockKey: "prod_ciru_gral_stock",
+          tags: ["tag_kit"],
+          specsKeys: [
+            "prod_ciru_gral_spec1",
+            "prod_ciru_gral_spec2",
+            "prod_ciru_gral_spec3",
+            "prod_ciru_gral_spec4",
           ],
         },
         {
-          name: "Equipo de Cirugía Traumatológica",
+          id: "ciru_tyo",
+          nameKey: "prod_ciru_tyo_name",
           category: "quirurgico",
-          description:
-            "Insumos específicos para TyO / Rodilla / Cadera / Hombro. Autorizado bajo PM 2521-1/3.",
+          descKey: "prod_ciru_tyo_desc",
           image: "assets/img/catalogo/equipodecirugiatyo.png",
-          stock: "Estéril",
-          tags: ["Traumatología"],
-          specs: [
-            "4 Campos",
-            "4 Camisolines",
-            "4 Sábanas",
-            "4 Toallas de secado",
+          stockKey: "prod_ciru_tyo_stock",
+          tags: ["tag_trauma"],
+          specsKeys: [
+            "prod_ciru_tyo_spec1",
+            "prod_ciru_tyo_spec2",
+            "prod_ciru_tyo_spec3",
+            "prod_ciru_tyo_spec4",
           ],
         },
         // Kits
         {
-          name: "Kit Paciente",
+          id: "kit_paci",
+          nameKey: "prod_kit_paci_name",
           category: "kits",
-          description:
-            "Incluye los elementos esenciales para el ingreso del paciente.",
+          descKey: "prod_kit_paci_desc",
           image: "assets/img/catalogo/kitpaciente.png",
-          stock: "En Stock",
-          tags: ["Protocolo"],
-          specs: [
-            "1 Camisolín",
-            "1 Par de botas",
-            "1 Cofia",
-            "1 Barbijo (Opcional)",
+          stockKey: "prod_kit_paci_stock",
+          tags: ["tag_protocolo"],
+          specsKeys: [
+            "prod_kit_paci_spec1",
+            "prod_kit_paci_spec2",
+            "prod_kit_paci_spec3",
+            "prod_kit_paci_spec4",
           ],
         },
         {
-          name: "Kit Catéter MOD 1",
+          id: "kit_cat1",
+          nameKey: "prod_kit_cat1_name",
           category: "kits",
-          description:
-            "Sets técnicos de conexión y desconexión para hemodiálisis.",
+          descKey: "prod_kit_cat1_desc",
           image: "assets/img/catalogo/kidcatetermod1.png",
           detailImage: "assets/img/catalogo/kidcatetermod1-detalle.png",
-          stock: "Especializado",
-          tags: ["MOD 1"],
-          specs: [
-            "Conexión: Bandeja, 2 pares guantes n7, 2 gasas, aguja 25/8, 2 jeringas 10ml, camisolín, 2 cofias, 2 campos, 2 barbijos",
-            "Desconexión: Bandeja, guantes, 2 gasas, 2 jeringas 10ml, 2 tapones heparina, aguja 25/8",
+          stockKey: "prod_kit_cat1_stock",
+          tags: ["tag_mod1"],
+          specsKeys: [
+            "prod_kit_cat1_spec1",
+            "prod_kit_cat1_spec2",
           ],
         },
         // Cama y Campo
         {
-          name: "Sábanas Descartables",
+          id: "saba_desc",
+          nameKey: "prod_saba_desc_name",
           category: "cama",
-          description:
-            "Sábanas de SMS de alta densidad para camillas y camas hospitalarias.",
+          descKey: "prod_saba_desc_desc",
           image: "assets/img/catalogo/sabanas.png",
-          stock: "En Stock",
-          tags: ["Hospitalario"],
-          specs: [
-            "Material: SMS 30/40g",
-            "Hipoalergénicas",
-            "Resistentes a fluidos",
+          stockKey: "prod_saba_desc_stock",
+          tags: ["tag_hospitalario"],
+          specsKeys: [
+            "prod_saba_desc_spec1",
+            "prod_saba_desc_spec2",
+            "prod_saba_desc_spec3",
           ],
         },
         // Otros
         {
-          name: "Ambos SMS / Brin",
+          id: "ambo_sms",
+          nameKey: "prod_ambo_sms_name",
           category: "otros",
-          description:
-            "Conjuntos de chaqueta y pantalón. Descartables o reutilizables.",
+          descKey: "prod_ambo_sms_desc",
           image: "assets/img/catalogo/ambos.png",
-          stock: "A Pedido",
-          tags: ["Indumentaria"],
-          specs: [
-            "Chaqueta cuello V",
-            "Pantalón con elástico o lazo",
-            "Variedad de talles",
-            "Colores: Azul o Blanco",
+          stockKey: "prod_ambo_sms_stock",
+          tags: ["tag_indumentaria"],
+          specsKeys: [
+            "prod_ambo_sms_spec1",
+            "prod_ambo_sms_spec2",
+            "prod_ambo_sms_spec3",
+            "prod_ambo_sms_spec4",
           ],
         },
       ];
@@ -924,17 +935,17 @@
         categories.forEach((cat) => {
           const card = `
             <div onclick="filterProducts('${cat.id}')" class="category-card h-64 md:h-72 animate-fade-in">
-              <img src="${cat.image}" alt="${cat.title}">
+              <img src="${cat.image}" alt="${i18n.t(cat.titleKey)}">
               <div class="category-overlay"></div>
               <div class="absolute inset-0 flex flex-col justify-end p-8">
                 <h3 class="text-white text-2xl font-black uppercase tracking-tight mb-2 drop-shadow-lg leading-tight">
-                  ${cat.title}
+                  ${i18n.t(cat.titleKey)}
                 </h3>
                 <p class="text-slate-300 text-xs font-light mb-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 line-clamp-2">
-                  ${cat.desc}
+                  ${i18n.t(cat.descKey)}
                 </p>
                 <div class="inline-block self-start bg-[#F3B844] text-dark-navy px-6 py-2.5 rounded-md font-black text-[10px] uppercase tracking-widest shadow-xl transform transition-all group-hover:bg-[#ffcc66]">
-                  Explorar Ahora
+                  ${i18n.t("btn_explore_now")}
                 </div>
               </div>
             </div>
@@ -944,6 +955,7 @@
       }
 
       function filterProducts(category) {
+        window.currentCategory = category;
         const gridView = document.getElementById("category-grid-view");
         const listView = document.getElementById("product-list-view");
         const backBtn = document.getElementById("back-to-categories");
@@ -969,7 +981,7 @@
 
         // Update Header
         const catData = categories.find((c) => c.id === category);
-        sectionTitle.innerText = catData ? catData.title : "Productos";
+        sectionTitle.innerText = catData ? i18n.t(catData.titleKey) : i18n.t("nav_products");
 
         // Filter and Render
         const filtered = products.filter((p) => p.category === category);
@@ -988,16 +1000,16 @@
             const card = `
               <div class="group flex flex-col rounded-3xl glass-v2 overflow-hidden transition-all hover:shadow-2xl hover:-translate-y-1 animate-fade-in border-white/40">
                 <div class="relative aspect-square w-full overflow-hidden bg-slate-50/50">
-                  <img class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" src="${product.image}" alt="${product.name}">
-                  <span class="absolute right-4 top-4 rounded-full bg-primary/90 backdrop-blur-md px-3 py-1 text-[9px] font-black uppercase text-white tracking-widest shadow-lg">${product.stock}</span>
+                  <img class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" src="${product.image}" alt="${i18n.t(product.nameKey)}">
+                  <span class="absolute right-4 top-4 rounded-full bg-primary/90 backdrop-blur-md px-3 py-1 text-[9px] font-black uppercase text-white tracking-widest shadow-lg">${i18n.t(product.stockKey)}</span>
                 </div>
                 <div class="flex flex-1 flex-col p-6">
                   <div class="flex gap-2 mb-3">
-                    ${product.tags.map((tag) => `<span class="text-[8px] font-black uppercase tracking-[0.15em] text-primary bg-primary/10 px-2 py-0.5 rounded-full">${tag}</span>`).join("")}
+                    ${product.tags.map((tagKey) => `<span class="text-[8px] font-black uppercase tracking-[0.15em] text-primary bg-primary/10 px-2 py-0.5 rounded-full">${i18n.t(tagKey)}</span>`).join("")}
                   </div>
-                  <h3 class="text-base font-bold text-dark-navy mb-2 leading-tight">${product.name}</h3>
-                  <p class="text-[11px] text-slate-500 leading-relaxed mb-4 line-clamp-2">${product.description}</p>
-                  <button onclick="openModal(${originalIndex})" class="w-full mt-auto rounded-xl border border-primary/20 bg-primary/5 py-3 text-[10px] font-black uppercase tracking-widest text-primary hover:bg-primary hover:text-white transition-all">Ver Detalle</button>
+                  <h3 class="text-base font-bold text-dark-navy mb-2 leading-tight">${i18n.t(product.nameKey)}</h3>
+                  <p class="text-[11px] text-slate-500 leading-relaxed mb-4 line-clamp-2">${i18n.t(product.descKey)}</p>
+                  <button onclick="openModal(${originalIndex})" class="w-full mt-auto rounded-xl border border-primary/20 bg-primary/5 py-3 text-[10px] font-black uppercase tracking-widest text-primary hover:bg-primary hover:text-white transition-all">${i18n.t("btn_view_details") || "Ver Detalle"}</button>
                 </div>
               </div>
             `;
@@ -1013,15 +1025,16 @@
       }
 
       function showCategoryGrid() {
+        window.currentCategory = "todos";
         document
           .getElementById("category-grid-view")
           .classList.remove("hidden");
         document.getElementById("product-list-view").classList.add("hidden");
         document.getElementById("back-to-categories").classList.add("hidden");
         document.getElementById("section-title").innerText =
-          "Nuestras Categorías";
+          i18n.t("products_view_title");
         document.getElementById("product-count").innerText =
-          "Seleccione un grupo";
+          i18n.t("products_select_group");
 
         // Reset filters UI
         document.querySelectorAll(".filter-btn").forEach((btn) => {
@@ -1039,18 +1052,18 @@
         const detailImg = product.detailImage || product.image;
 
         document.getElementById("modal-img").src = detailImg;
-        document.getElementById("modal-title").innerText = product.name;
+        document.getElementById("modal-title").innerText = i18n.t(product.nameKey);
         document.getElementById("modal-category").innerText =
-          product.category.toUpperCase();
-        document.getElementById("modal-desc").innerText = product.description;
+          i18n.t(categories.find(c => c.id === product.category).titleKey).toUpperCase();
+        document.getElementById("modal-desc").innerText = i18n.t(product.descKey);
 
         const specsList = document.getElementById("modal-specs");
         specsList.innerHTML = "";
-        if (product.specs && product.specs.length > 0) {
-          product.specs.forEach((spec) => {
+        if (product.specsKeys && product.specsKeys.length > 0) {
+          product.specsKeys.forEach((specKey) => {
             const li = document.createElement("li");
             li.className = "flex items-start gap-2 text-sm text-slate-600 mb-2";
-            li.innerHTML = `<span class="material-symbols-outlined text-primary text-lg">check_circle</span> <span>${spec}</span>`;
+            li.innerHTML = `<span class="material-symbols-outlined text-primary text-lg">check_circle</span> <span>${i18n.t(specKey)}</span>`;
             specsList.appendChild(li);
           });
         } else {

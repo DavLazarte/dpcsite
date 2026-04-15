@@ -20,9 +20,9 @@ const i18n = {
       localStorage.setItem('lang', lang);
       this.updateDOM();
       
-      // Attempt to refresh dynamic content if exposed
-      if (typeof window.renderProducts === 'function' && window.currentCategory) {
-          window.filterProducts(window.currentCategory);
+      // Refresh dynamic content if a hook is registered
+      if (typeof window.i18n_refresh === 'function') {
+          window.i18n_refresh();
       }
     } catch (error) {
       console.error('Error loading translations:', error);
