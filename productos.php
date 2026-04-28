@@ -1,0 +1,552 @@
+<?php
+require_once __DIR__ . '/db/database.php';
+$db = getDB();
+
+// Obtener productos de la DB
+$stmt = $db->query('SELECT * FROM productos WHERE activo = 1 ORDER BY categoria, orden ASC, nombre ASC');
+$dbProducts = $stmt->fetchAll();
+
+// Convertir para JS
+$jsProducts = [];
+foreach ($dbProducts as $p) {
+    $jsProducts[] = [
+        "id"          => $p['id'],
+        "nombre"      => $p['nombre'],
+        "nombre_en"   => $p['nombre_en'] ?? '',
+        "nombre_pt"   => $p['nombre_pt'] ?? '',
+        "category"    => $p['categoria'],
+        "descripcion" => $p['descripcion'],
+        "descripcion_en" => $p['descripcion_en'] ?? '',
+        "descripcion_pt" => $p['descripcion_pt'] ?? '',
+        "desc_corta"  => $p['desc_corta'],
+        "desc_corta_en" => $p['desc_corta_en'] ?? '',
+        "desc_corta_pt" => $p['desc_corta_pt'] ?? '',
+        "image"       => $p['imagen'],
+        "specs"       => json_decode($p['specs'] ?? '[]', true),
+        "specs_en"    => json_decode($p['specs_en'] ?? '[]', true),
+        "specs_pt"    => json_decode($p['specs_pt'] ?? '[]', true),
+        "stockLabel"  => "EN STOCK", 
+        "tags"        => ["tag_anmat"] 
+    ];
+}
+?>
+<!doctype html>
+<html class="light" lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>DPC Hospitalaria - Catálogo de Productos</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1A4F9C",
+              accent: "#D42B2B",
+              "dark-navy": "#0B1A2E",
+              "navy-dark": "#0B1A2E",
+              "navy-medium": "#112240",
+              "deep-blue": "#112240",
+              "light-blue-gray": "#F8FAFC",
+              "background-light": "#F0F4FA",
+              "background-dark": "#0B1A2E",
+            },
+            fontFamily: { display: ["Public Sans", "sans-serif"] },
+            borderRadius: { DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px" },
+          },
+        },
+      };
+    </script>
+    <style type="text/tailwindcss">
+      @layer components {
+        .dot-grid { background-image: radial-gradient(rgba(26, 79, 156, 0.04) 1px, transparent 1px); background-size: 24px 24px; }
+        .nav-scrolled { background-color: rgba(255, 255, 255, 0.97) !important; border-bottom: 1px solid rgba(26, 79, 156, 0.08); @apply shadow-sm; }
+        .filter-btn.active { @apply bg-primary text-white font-bold; }
+        .filter-btn.active img { filter: brightness(0) invert(1); }
+        .filter-btn img { width: 20px; height: 20px; object-fit: contain; transition: all 0.3s ease; }
+        .filter-btn:not(.active) img { opacity: 0.7; }
+        .filter-btn:not(.active) { @apply text-slate-600 dark:text-slate-400 font-medium hover:bg-slate-200 dark:hover:bg-navy-medium; }
+        .nav-scrolled a, .nav-scrolled span, .nav-scrolled button { color: #0b1a2e !important; }
+        .nav-scrolled .nav-cta { color: #ffffff !important; }
+        .nav-dropdown { min-width: 200px; top: calc(100% + 12px); }
+        .nav-megamenu { min-width: 520px; top: calc(100% + 12px); left: 50%; transform: translateX(-50%); }
+        @keyframes customFloat { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-20px) rotate(5deg); } }
+        .animate-float-slow { animation: customFloat 8s ease-in-out infinite; }
+        .glass-v2 { background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(20px); @apply border border-white/40 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)]; }
+        .mesh-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-color: #ffffff; background-image: radial-gradient(at 0% 0%, rgba(26, 79, 156, 0.05) 0px, transparent 50%), radial-gradient(at 100% 0%, rgba(212, 43, 43, 0.02) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(26, 79, 156, 0.05) 0px, transparent 50%), radial-gradient(at 0% 100%, rgba(212, 43, 43, 0.02) 0px, transparent 50%); }
+        .connection-line { position: fixed; left: 40px; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, transparent, rgba(26, 79, 156, 0.1) 10%, rgba(26, 79, 156, 0.1) 90%, transparent); z-index: 5; pointer-events: none; }
+        .connection-line::after { content: ""; position: absolute; top: 0; left: -2px; width: 5px; height: 5px; background: #1a4f9c; border-radius: 50%; animation: slideDown 20s linear infinite; opacity: 0.3; }
+        @keyframes slideDown { 0% { top: 0; } 100% { top: 100%; } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fadeIn 0.5s ease-out forwards; }
+        .category-card { @apply relative transition-all duration-500 overflow-hidden rounded-[2rem] shadow-xl border border-white/20 cursor-pointer; }
+        .category-card img { @apply absolute inset-0 w-full h-full object-cover transition-transform duration-700; }
+        .category-card:hover img { @apply scale-110; }
+        .category-overlay { @apply absolute inset-0 bg-gradient-to-t from-dark-navy/95 via-dark-navy/40 to-transparent transition-opacity duration-300; }
+        .category-card:hover .category-overlay { @apply from-dark-navy/100 via-dark-navy/60; }
+      }
+    </style>
+  </head>
+  <body class="bg-background-light text-slate-900 transition-colors duration-200 overflow-x-hidden">
+    <div class="mesh-bg"></div>
+    <div class="connection-line"></div>
+    
+    <div class="relative flex min-h-screen flex-col overflow-x-hidden">
+      <!-- Navbar -->
+      <nav class="fixed top-0 w-full z-50 transition-all duration-500 px-6 py-3 flex items-center justify-between" id="main-nav">
+        <div class="flex items-center gap-3">
+          <img src="assets/img/logo.png" alt="DPC Logo" class="h-14 w-auto" />
+        </div>
+        <div class="hidden md:flex items-center gap-8">
+          <a class="text-sm font-semibold tracking-wide text-white hover:text-white/70 transition-colors" href="index.php" data-i18n="nav_home">INICIO</a>
+          <div class="relative group flex items-center">
+            <a href="nosotros.html" class="text-sm font-semibold tracking-wide text-white hover:text-white/70 transition-colors uppercase" data-i18n="nav_about">NOSOTROS</a>
+            <button class="flex items-center text-white hover:text-white/70 transition-colors ml-1"><span class="material-symbols-outlined text-base" style="font-size: 16px">expand_more</span></button>
+            <div class="nav-dropdown absolute invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 bg-white rounded-2xl shadow-2xl shadow-slate-200/80 border border-slate-100 py-2 z-50">
+              <a href="nosotros.html#historia" class="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:text-primary hover:bg-slate-50 transition-colors" data-i18n="nav_about_history"><span class="material-symbols-outlined text-primary" style="font-size: 18px">history_edu</span>Historia</a>
+              <a href="nosotros.html#certificacion" class="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:text-primary hover:bg-slate-50 transition-colors" data-i18n="nav_about_certification"><span class="material-symbols-outlined text-primary" style="font-size: 18px">verified_user</span>Certificación</a>
+              <a href="nosotros.html#equipo" class="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:text-primary hover:bg-slate-50 transition-colors" data-i18n="nav_about_team"><span class="material-symbols-outlined text-primary" style="font-size: 18px">group</span>Equipo de Trabajo</a>
+              <a href="nosotros.html#cultura" class="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:text-primary hover:bg-slate-50 transition-colors" data-i18n="nav_about_culture"><span class="material-symbols-outlined text-primary" style="font-size: 18px">diversity_3</span>Cultura</a>
+            </div>
+          </div>
+          <div class="relative group flex items-center">
+            <a href="productos.php" class="text-sm font-semibold tracking-wide text-white hover:text-white/70 transition-colors uppercase" data-i18n="nav_products">PRODUCTOS</a>
+            <button class="flex items-center text-white hover:text-white/70 transition-colors ml-1"><span class="material-symbols-outlined text-base" style="font-size: 16px">expand_more</span></button>
+            <div class="nav-megamenu absolute invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 bg-white rounded-2xl shadow-2xl shadow-slate-200/80 border border-slate-100 p-6 z-50">
+              <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-4 pb-3 border-b border-slate-100" data-i18n="nav_products_catalog">Catálogo de Productos</p>
+              <div class="grid grid-cols-2 gap-x-8 gap-y-1">
+                <a href="productos.php?cat=proteccion" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Protección Personal</a>
+                <a href="productos.php?cat=camisolines" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Camisolines</a>
+                <a href="productos.php?cat=quirurgico" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Quirúrgico</a>
+                <a href="productos.php?cat=kits" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Kits y Tratamientos</a>
+                <a href="productos.php?cat=cama" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Camilla y Campo</a>
+                <a href="productos.php?cat=otros" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Otros Accesorios</a>
+              </div>
+              <div class="mt-4 pt-3 border-t border-slate-100">
+                <a href="productos.php" class="inline-flex items-center gap-2 text-xs font-bold text-primary hover:underline">Ver catálogo completo <span class="material-symbols-outlined" style="font-size: 14px">arrow_forward</span></a>
+              </div>
+            </div>
+          </div>
+          <a class="text-sm font-semibold tracking-wide text-white hover:text-white/70 transition-colors" href="noticias.html">NOTICIAS</a>
+          <a class="text-sm font-semibold tracking-wide text-white hover:text-white/70 transition-colors" href="contacto.html">CONTACTO</a>
+          
+          <div class="flex items-center gap-2.5 px-4 border-l border-white/10 ml-2">
+            <button onclick="openGlobalSearch()" class="flex items-center text-white hover:text-white/70 transition-colors mr-2" title="Buscar">
+              <span class="material-symbols-outlined text-xl">search</span>
+            </button>
+            <a href="#" onclick="event.preventDefault(); i18n.load('es');" title="Español" class="flex" data-i18n-title="nav_lang_es"><img src="https://flagcdn.com/w40/es.png" class="w-5 h-5 rounded-full object-cover border border-white/20 hover:scale-110 transition-transform shadow-sm" alt="ES"></a>
+            <a href="#" onclick="event.preventDefault(); i18n.load('en');" title="English" class="flex" data-i18n-title="nav_lang_en"><img src="https://flagcdn.com/w40/us.png" class="w-5 h-5 rounded-full object-cover border border-white/20 hover:scale-110 transition-transform shadow-sm" alt="EN"></a>
+            <a href="#" onclick="event.preventDefault(); i18n.load('pt');" title="Português" class="flex" data-i18n-title="nav_lang_pt"><img src="https://flagcdn.com/w40/br.png" class="w-5 h-5 rounded-full object-cover border border-white/20 hover:scale-110 transition-transform shadow-sm" alt="PT"></a>
+          </div>
+          <a href="assets/pdf/catalogo.pdf" target="_blank" class="nav-cta bg-primary hover:bg-[#153f7a] text-white px-6 py-2.5 rounded-full font-semibold text-sm transition-all shadow-md shadow-primary/20" data-i18n="nav_catalog">CATÁLOGO</a>
+          <a href="admin/login.php" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold transition-all border border-white/10">
+            <span class="material-symbols-outlined text-sm">login</span>
+            INGRESAR
+          </a>
+        </div>
+        <button class="md:hidden text-white" id="mobile-menu-btn"><span class="material-symbols-outlined">menu</span></button>
+      </nav>
+
+      <main class="flex-1">
+        <!-- Hero Section -->
+        <section class="relative h-[400px] w-full overflow-hidden bg-navy-dark">
+          <div class="absolute inset-0 opacity-40 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA8z5ePlqA00oXDdIbwNsZcdhVYGSVz8JJ9S3WMtYzeiyaUoc6bNfMHnlGbybyvcQDaPSJjXR3rSl0_eIAoADkSmNbZFjp-aE2cqDP8un_H0FgBdOuucpE4x0ZotuTamoUM3ZOMfpZQGC7oOqCto1HFhaGDfUFmdZ8SgYrFweOQ3V0sdkmCJhZNcKM-F8BvALAbIsMrliNq5c9TC3LONn0llnb9v3RWL0q98C2b9MNXORcMMNWk05L-PVrbuJFHmjDoTJR0mJ5nd1c');"></div>
+          <div class="absolute inset-0 bg-gradient-to-r from-navy-dark via-navy-dark/80 to-transparent"></div>
+          <div class="relative mx-auto flex h-full max-w-7xl flex-col justify-center px-6 md:px-20">
+            <span class="mb-4 inline-block rounded-full bg-primary/20 px-4 py-1 text-sm font-bold tracking-wider text-primary uppercase" data-i18n="products_hero_badge">Insumos Médicos Profesionales</span>
+            <h1 class="max-w-2xl text-4xl font-black leading-tight text-white md:text-6xl" data-i18n="products_hero_title">Catálogo de Soluciones Hospitalarias</h1>
+            <p class="mt-6 max-w-xl text-lg text-slate-300" data-i18n="products_hero_desc">Insumos descartables de alta calidad fabricados bajo los más estrictos estándares de esterilización para entornos médicos exigentes.</p>
+          </div>
+        </section>
+
+        <!-- Products Grid Section -->
+        <section class="mx-auto max-w-[1440px] px-6 md:px-10 py-12">
+          <div class="flex flex-col gap-8 lg:flex-row">
+            <aside class="w-full shrink-0 lg:w-64">
+              <div class="sticky top-28 space-y-8">
+                <div>
+                  <h3 class="mb-4 text-xs font-bold uppercase tracking-widest text-slate-400" data-i18n="products_cat_title">Categorías</h3>
+                  <nav class="flex flex-col gap-2" id="category-filters">
+                    <button onclick="filterProducts('todos')" class="filter-btn flex items-center gap-3 rounded-xl glass-v2 px-4 py-3 text-sm font-bold transition-all active" data-category="todos" data-i18n="products_cat_all"><span class="material-symbols-outlined text-xl">grid_view</span> Ver Todos</button>
+                    <button onclick="filterProducts('proteccion')" class="filter-btn flex items-center gap-3 rounded-xl glass-v2 px-4 py-3 text-sm font-medium transition-all" data-category="proteccion" data-i18n="products_cat_1"><img src="assets/img/iconos/proteccion.png" alt=""> Protección Personal</button>
+                    <button onclick="filterProducts('camisolines')" class="filter-btn flex items-center gap-3 rounded-xl glass-v2 px-4 py-3 text-sm font-medium transition-all" data-category="camisolines" data-i18n="products_cat_2"><img src="assets/img/iconos/camisolin.png" alt=""> Camisolines</button>
+                    <button onclick="filterProducts('quirurgico')" class="filter-btn flex items-center gap-3 rounded-xl glass-v2 px-4 py-3 text-sm font-medium transition-all" data-category="quirurgico" data-i18n="products_cat_3"><img src="assets/img/iconos/quirurgico.png" alt=""> Quirúrgico</button>
+                    <button onclick="filterProducts('kits')" class="filter-btn flex items-center gap-3 rounded-xl glass-v2 px-4 py-3 text-sm font-medium transition-all" data-category="kits" data-i18n="products_cat_4"><img src="assets/img/iconos/kit.png" alt=""> Kits</button>
+                    <button onclick="filterProducts('cama')" class="filter-btn flex items-center gap-3 rounded-xl glass-v2 px-4 py-3 text-sm font-medium transition-all" data-category="cama" data-i18n="products_cat_5"><img src="assets/img/iconos/camilla-medica.png" alt=""> Camilla y Campo</button>
+                    <button onclick="filterProducts('otros')" class="filter-btn flex items-center gap-3 rounded-xl glass-v2 px-4 py-3 text-sm font-medium transition-all" data-category="otros" data-i18n="products_cat_6"><span class="material-symbols-outlined text-xl">more_horiz</span> Otros</button>
+                  </nav>
+                </div>
+              </div>
+            </aside>
+            <div class="flex-1">
+              <div id="view-header" class="mb-8 flex items-center justify-between border-b border-slate-200 dark:border-navy-medium pb-4">
+                <div class="flex items-center gap-4">
+                  <button id="back-to-categories" onclick="showCategoryGrid()" class="hidden w-10 h-10 rounded-full bg-primary/5 text-primary flex items-center justify-center hover:bg-primary hover:text-white transition-all shadow-sm group"><span class="material-symbols-outlined">arrow_back</span></button>
+                  <h2 id="section-title" class="text-2xl font-black text-dark-navy uppercase tracking-tight" data-i18n="products_view_title">Nuestras Categorías</h2>
+                </div>
+                <div id="stats-display" class="flex items-center gap-4 text-sm font-medium text-slate-500"><span id="product-count">Seleccione un grupo</span></div>
+              </div>
+              <div id="category-grid-view" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 animate-fade-in"></div>
+              <div id="product-list-view" class="hidden">
+                <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4" id="product-grid"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Guarantee Section -->
+        <section class="bg-navy-medium py-20 relative overflow-hidden">
+          <div class="absolute inset-0 dot-grid opacity-10"></div>
+          <div class="mx-auto max-w-7xl px-6 md:px-20 relative z-10">
+            <div class="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
+              <div>
+                <span class="mb-4 inline-block text-sm font-bold tracking-widest text-primary uppercase" data-i18n="products_guarantee_badge">Garantía DPC</span>
+                <h2 class="text-3xl font-bold text-white md:text-4xl" data-i18n="products_guarantee_title">Compromiso con la Calidad y Seguridad</h2>
+                <p class="mt-6 text-slate-400 leading-relaxed" data-i18n="products_guarantee_desc">
+                  En DPC Hospitalaria, entendemos que la seguridad del paciente y del profesional es lo primero. Por eso, todos nuestros productos pasan por rigurosos controles de calidad y procesos de esterilización validados.
+                </p>
+                <div class="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
+                  <div class="flex gap-4">
+                    <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/20 text-primary">
+                      <span class="material-symbols-outlined">verified</span>
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-white" data-i18n="products_guarantee_1">Certificación por ANMAT</h4>
+                      <p class="text-xs text-slate-500" data-i18n="products_guarantee_1_desc">Procesos estandarizados internacionalmente.</p>
+                    </div>
+                  </div>
+                  <div class="flex gap-4">
+                    <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/20 text-primary">
+                      <span class="material-symbols-outlined">sanitizer</span>
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-white" data-i18n="products_guarantee_3">Esterilización por vapor</h4>
+                      <p class="text-xs text-slate-500" data-i18n="products_guarantee_3_desc">Tecnología de calor húmedo que asegura la máxima asepsia.</p>
+                    </div>
+                  </div>
+                  <div class="flex gap-4">
+                    <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/20 text-primary">
+                      <span class="material-symbols-outlined">high_quality</span>
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-white" data-i18n="products_guarantee_4">Control Lote a Lote</h4>
+                      <p class="text-xs text-slate-500" data-i18n="products_guarantee_4_desc">Trazabilidad completa de cada insumo.</p>
+                    </div>
+                  </div>
+                  <div class="flex gap-4">
+                    <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/20 text-primary">
+                      <span class="material-symbols-outlined">local_shipping</span>
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-white" data-i18n="products_guarantee_2">Logística Médica</h4>
+                      <p class="text-xs text-slate-500" data-i18n="products_guarantee_2_desc">Distribución bajo normas de bioseguridad.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="relative overflow-hidden rounded-3xl group">
+                <img class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDg5a5CMJESVX-5_zV2uRxHDOVdwQlqqF9F9T8htUBrjZBF7XWdbTD-zj04pC1c_77d19Eba-aGRFEq8sOJ0amSVaHuN3yIYRcgmxDQJgdV8nrDbsi6uzte8PDDN4hFo3cAg7K4oPxk4MmrC0SiSK3uVe5IHvFRyUyzXWdNrORqKR4kWp2SuKY9QM4tF0FfPNXhraiw1fSQieuXTxCNqICvecnKjkvXn5-HnnQz3prkfkWnmJHkt9zvCnHGkhuF_eQz0ce1AWTKLw4" />
+                <div class="absolute inset-0 bg-primary/10 mix-blend-multiply"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- Footer -->
+      <footer class="bg-dark-navy text-white pt-16 pb-12 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-accent to-primary opacity-50"></div>
+        <div class="container mx-auto px-6">
+          <div class="flex flex-col md:flex-row justify-between items-center gap-10 mb-12">
+            <div class="flex flex-col items-center md:items-start">
+              <img src="assets/img/logo.png" alt="DPC Logo" class="h-16 w-auto mb-6" />
+              <div class="flex gap-4">
+                <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition-all group">
+                  <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition-all group">
+                  <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.17.054 1.805.249 2.227.412.558.217.957.477 1.377.896.42.419.68.818.896 1.377.163.422.358 1.057.412 2.227.059 1.266.071 1.646.071 4.85s-.012 3.584-.07 4.85c-.054 1.17-.249 1.805-.412 2.227-.217.558-.477.957-.896 1.377-.419.42-.818.68-1.377.896-.422.163-1.057.358-2.227.412-1.266.059-1.646.071-4.85.071zM12 0C8.741 0 8.333.014 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.014 8.333 0 8.741 0 12s.014 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126s1.384 1.078 2.126 1.384c.766.296 1.636.499 2.913.558C8.333 23.986 8.741 24 12 24s3.667-.014 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384s1.078-1.384 1.384-2.126c.296-.765.499-1.636.558-2.913.058-1.28.072-1.687.072-4.947s-.014-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.058.935 19.85.53 19.06.306c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition-all group">
+                  <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.872.505 9.377.505 9.377.505s7.505 0 9.377-.505a3.017 3.017 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                </a>
+              </div>
+            </div>
+            <nav class="flex flex-wrap justify-center gap-x-8 gap-y-4">
+              <a href="index.html" class="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors" data-i18n="nav_home">Inicio</a>
+              <a href="nosotros.html" class="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors" data-i18n="nav_about">Nosotros</a>
+              <a href="productos.php" class="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors" data-i18n="nav_products">Productos</a>
+              <a href="noticias.html" class="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors" data-i18n="nav_news">Noticias</a>
+              <a href="productos.php" class="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors" data-i18n="nav_cert">Habilitaciones</a>
+              <a href="contacto.html" class="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors" data-i18n="nav_contact">Contacto</a>
+            </nav>
+          </div>
+          <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[9px] uppercase font-bold tracking-[0.2em] text-slate-500">
+            <p data-i18n="footer_copy">© 2026 DPC - Desarrollo Profesional Confiable. Colombia 2589, Tucumán.</p>
+            <div class="flex gap-8">
+              <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[10px]">verified</span> <span data-i18n="footer_tag1">Calidad ANMAT</span></span>
+              <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[10px]">public</span> <span data-i18n="footer_tag2">Industria Nacional</span></span>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      <!-- WhatsApp Floating Button -->
+      <a class="fixed bottom-10 right-10 z-[60] w-20 h-20 bg-[#25D366] rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform group" href="https://wa.me/543814456789?text=Hola,%20quisiera%20realizar%20una%20consulta." target="_blank">
+        <svg class="w-10 h-10 text-white fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.185-.573c.948.517 2.139.945 3.145.945 3.181 0 5.768-2.586 5.768-5.766 0-3.18-2.587-5.766-5.767-5.766zm3.371 8.203c-.144.405-.833.748-1.15.773-.243.018-.56.033-1.602-.383-1.353-.54-2.226-1.888-2.293-1.979-.066-.091-.539-.717-.539-1.379 0-.662.348-.988.472-1.12.124-.132.273-.166.364-.166.091 0 .182.001.261.005.083.004.195-.032.304.233.112.274.385.938.418 1.005.033.066.054.144.01.233-.044.089-.066.144-.132.221-.066.077-.14.173-.2.235-.069.071-.141.148-.061.286.08.138.354.584.76 0.941.522.459.963.601 1.102.668.138.066.221.055.304-.042.083-.097.354-.412.449-.553.095-.141.19-.118.32-.07.13.047.825.389.968.461.143.072.238.107.273.167.035.06.035.348-.109.753z"></path></svg>
+        <div class="absolute -top-1 -right-1 w-6 h-6 bg-red-500 rounded-full border-2 border-white flex items-center justify-center text-white text-[10px] font-bold">1</div>
+      </a>
+    </div>
+
+    <!-- Product Modal -->
+    <div id="product-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-navy-dark/80 backdrop-blur-sm p-4 transition-all duration-300">
+      <div id="modal-content" class="relative w-full max-w-4xl bg-white rounded-3xl shadow-2xl overflow-hidden opacity-0 scale-95 transition-all duration-300 flex flex-col md:flex-row">
+        <button onclick="closeModal()" class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-slate-400 hover:text-white transition-all"><span class="material-symbols-outlined">close</span></button>
+        <div class="w-full md:w-1/2 bg-slate-50 flex items-center justify-center p-8"><img id="modal-img" src="" alt="" class="max-h-[80vh] w-auto object-contain drop-shadow-2xl" /></div>
+        <div class="w-full md:w-1/2 p-8 md:p-12 overflow-y-auto max-h-[90vh]">
+          <span id="modal-category" class="text-[10px] font-black uppercase tracking-[0.2em] text-primary mb-2 block"></span>
+          <h2 id="modal-title" class="text-3xl font-black text-dark-navy mb-4"></h2>
+          <p id="modal-desc" class="text-sm text-slate-500 mb-8 leading-relaxed"></p>
+          <div class="mb-10">
+            <h4 class="text-xs font-black uppercase tracking-widest text-dark-navy mb-4 border-b border-slate-100 pb-2">Especificaciones Técnicas</h4>
+            <ul id="modal-specs" class="space-y-3"></ul>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-auto">
+            <a id="modal-pdf" href="#" target="_blank" class="flex items-center justify-center gap-2 rounded-xl border-2 border-primary py-3 text-[10px] font-black uppercase tracking-widest text-primary hover:bg-primary hover:text-white transition-all">
+              <span class="material-symbols-outlined text-lg">description</span> Ficha Técnica
+            </a>
+            <a id="modal-wa" href="#" target="_blank" class="flex items-center justify-center gap-2 rounded-xl bg-green-600 py-3 text-[10px] font-black uppercase tracking-widest text-white hover:bg-green-700 transition-all shadow-lg"> 
+              <span class="material-symbols-outlined text-lg">chat</span> Consultar
+            </a>
+            <a href="assets/pdf/catalogo.pdf" target="_blank" class="sm:col-span-2 flex items-center justify-center gap-2 rounded-xl bg-slate-100 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:bg-slate-200 transition-all">
+              <span class="material-symbols-outlined text-lg">picture_as_pdf</span> Ver Catálogo Completo
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="assets/js/translations.js"></script>
+    <script src="assets/js/i18n.js"></script>
+    <script>
+      const categories = [
+        { id: "proteccion", titleKey: "prod_cat_proteccion_title", image: "assets/img/catalogo/barbijo.png", descKey: "prod_cat_proteccion_desc" },
+        { id: "camisolines", titleKey: "prod_cat_camisolines_title", image: "assets/img/catalogo/camisolin-lineapremium.png", descKey: "prod_cat_camisolines_desc" },
+        { id: "quirurgico", titleKey: "prod_cat_quirurgico_title", image: "assets/img/catalogo/equipodecirugiageneral.png", descKey: "prod_cat_quirurgico_desc" },
+        { id: "kits", titleKey: "prod_cat_kits_title", image: "assets/img/catalogo/kitpaciente.png", descKey: "prod_cat_kits_desc" },
+        { id: "cama", titleKey: "prod_cat_cama_title", image: "assets/img/catalogo/sabanas.png", descKey: "prod_cat_cama_desc" },
+        { id: "otros", titleKey: "prod_cat_otros_title", image: "assets/img/catalogo/ambos.png", descKey: "prod_cat_otros_desc" },
+      ];
+
+      const products = <?= json_encode($jsProducts, JSON_UNESCAPED_UNICODE) ?>;
+
+      // Helper to get localized field
+      function getProdField(p, field) {
+        const lang = i18n.currentLang || 'es';
+        if (lang === 'es') return p[field];
+        const localized = p[field + '_' + lang];
+        return localized || p[field]; // Fallback to ES
+      }
+
+      function i18n_refresh() {
+        if (window.currentCategory === "todos") {
+          renderCategories();
+        } else {
+          filterProducts(window.currentCategory);
+        }
+      }
+
+      function renderCategories() {
+        const grid = document.getElementById("category-grid-view");
+        grid.innerHTML = "";
+        categories.forEach((cat) => {
+          grid.innerHTML += `
+            <div onclick="filterProducts('${cat.id}')" class="category-card h-64 md:h-72 animate-fade-in group">
+              <img src="${cat.image}" alt="">
+              <div class="category-overlay"></div>
+              <div class="absolute inset-0 flex flex-col justify-end p-8">
+                <h3 class="text-white text-2xl font-black uppercase tracking-tight mb-2 drop-shadow-lg">${i18n.t(cat.titleKey)}</h3>
+                <div class="inline-block self-start bg-[#F3B844] text-dark-navy px-6 py-2.5 rounded-md font-black text-[10px] uppercase tracking-widest shadow-xl transition-all group-hover:bg-[#ffcc66]">
+                  ${i18n.t("btn_explore_now")}
+                </div>
+              </div>
+            </div>`;
+        });
+      }
+
+      function filterProducts(category) {
+        window.currentCategory = category;
+        const gridView = document.getElementById("category-grid-view");
+        const listView = document.getElementById("product-list-view");
+        const backBtn = document.getElementById("back-to-categories");
+        const productGrid = document.getElementById("product-grid");
+        const countDisplay = document.getElementById("product-count");
+
+        document.querySelectorAll(".filter-btn").forEach(btn => {
+          btn.classList.toggle("active", btn.dataset.category === category);
+        });
+
+        if (category === "todos") { showCategoryGrid(); return; }
+
+        gridView.classList.add("hidden");
+        listView.classList.remove("hidden");
+        backBtn.classList.remove("hidden");
+
+        const catData = categories.find(c => c.id === category);
+        document.getElementById("section-title").innerText = catData ? i18n.t(catData.titleKey) : i18n.t("nav_products");
+
+        const filtered = products.filter(p => p.category === category);
+        productGrid.innerHTML = "";
+        countDisplay.innerText = `${filtered.length} productos`;
+
+        filtered.forEach((p, index) => {
+          productGrid.innerHTML += `
+            <div class="group flex flex-col rounded-3xl glass-v2 overflow-hidden transition-all hover:shadow-2xl hover:-translate-y-1 animate-fade-in border-white/40">
+              <div class="relative aspect-square w-full overflow-hidden bg-slate-50/50">
+                <img class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" src="${p.image}" alt="">
+                <span class="absolute right-4 top-4 rounded-full bg-primary/90 backdrop-blur-md px-3 py-1 text-[9px] font-black uppercase text-white tracking-widest shadow-lg">${p.stockLabel}</span>
+              </div>
+              <div class="flex flex-1 flex-col p-6">
+                <div class="flex gap-2 mb-3">
+                  ${p.tags.map(t => `<span class="text-[8px] font-black uppercase tracking-[0.15em] text-primary bg-primary/10 px-2 py-0.5 rounded-full">${i18n.t(t) || t}</span>`).join("")}
+                </div>
+                <h3 class="text-base font-bold text-dark-navy mb-2 leading-tight">${getProdField(p, 'nombre')}</h3>
+                <p class="text-[11px] text-slate-500 leading-relaxed mb-4 line-clamp-2">${getProdField(p, 'desc_corta')}</p>
+                <button onclick="openModalById(${p.id})" class="w-full mt-auto rounded-xl border border-primary/20 bg-primary/5 py-3 text-[10px] font-black uppercase tracking-widest text-primary hover:bg-primary hover:text-white transition-all">${i18n.t("btn_view_details") || "Ver Detalle"}</button>
+              </div>
+            </div>`;
+        });
+      }
+
+      function showCategoryGrid() {
+        document.getElementById("category-grid-view").classList.remove("hidden");
+        document.getElementById("product-list-view").classList.add("hidden");
+        document.getElementById("back-to-categories").classList.add("hidden");
+        document.getElementById("section-title").innerText = i18n.t("products_view_title");
+        document.getElementById("product-count").innerText = i18n.t("products_select_group");
+      }
+
+      function openModalById(id) {
+        const p = products.find(prod => prod.id == id);
+        if (!p) return;
+        document.getElementById("modal-img").src = p.image;
+        document.getElementById("modal-title").innerText = getProdField(p, 'nombre');
+        const cat = categories.find(c => c.id === p.category);
+        document.getElementById("modal-category").innerText = cat ? i18n.t(cat.titleKey).toUpperCase() : "";
+        document.getElementById("modal-desc").innerText = getProdField(p, 'descripcion');
+        
+        const specsList = document.getElementById("modal-specs");
+        const currentSpecs = getProdField(p, 'specs');
+        specsList.innerHTML = currentSpecs.length ? currentSpecs.map(s => `<li class="flex items-start gap-2 text-sm text-slate-600 mb-2"><span class="material-symbols-outlined text-primary text-lg">check_circle</span> <span>${s}</span></li>`).join("") : '<p class="text-sm text-slate-400 italic">No hay especificaciones adicionales.</p>';
+        
+        document.getElementById("modal-wa").href = `https://wa.me/543814456789?text=Hola, quisiera consultar por el producto: ${encodeURIComponent(getProdField(p, 'nombre'))}`;
+        document.getElementById("modal-pdf").href = `generar_pdf.php?id=${p.id}&lang=${i18n.currentLang || 'es'}`;
+        
+        const modal = document.getElementById("product-modal");
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+        setTimeout(() => document.getElementById("modal-content").classList.remove("opacity-0", "scale-95"), 10);
+      }
+
+      function closeModal() {
+        const content = document.getElementById("modal-content");
+        content.classList.add("opacity-0", "scale-95");
+        setTimeout(() => {
+          document.getElementById("product-modal").classList.add("hidden");
+          document.getElementById("product-modal").classList.remove("flex");
+        }, 300);
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        renderCategories();
+        const params = new URLSearchParams(window.location.search);
+        const cat = params.get("cat");
+        if (cat && categories.find(c => c.id === cat)) filterProducts(cat);
+        else showCategoryGrid();
+      });
+
+      window.addEventListener("scroll", function () {
+        const nav = document.getElementById("main-nav");
+        nav.classList.toggle("nav-scrolled", window.scrollY > 100);
+      });
+    </script>
+    <!-- Global Search Overlay -->
+    <div id="search-overlay" class="fixed inset-0 z-[100] hidden items-start justify-center bg-navy-dark/95 backdrop-blur-md p-4 pt-20 transition-all duration-300">
+      <div class="relative w-full max-w-3xl animate-fade-in">
+        <button onclick="closeGlobalSearch()" class="absolute -top-12 right-0 text-white/60 hover:text-white flex items-center gap-2 text-sm uppercase font-bold tracking-widest">
+          Cerrar <span class="material-symbols-outlined">close</span>
+        </button>
+        <div class="relative">
+          <span class="absolute left-6 top-1/2 -translate-y-1/2 material-symbols-outlined text-slate-400 text-3xl">search</span>
+          <input type="text" id="global-search-input" placeholder="¿Qué estás buscando? (ej: barbijos, misión, contacto...)" 
+            class="w-full bg-white/10 border-2 border-white/10 rounded-3xl py-6 pl-16 pr-8 text-white text-xl focus:border-primary focus:ring-0 transition-all outline-none"
+            oninput="handleGlobalSearch(this.value)">
+        </div>
+        <div id="search-results" class="mt-8 grid grid-cols-1 gap-4 max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar"></div>
+      </div>
+    </div>
+
+    <script>
+      const siteMap = [
+        { title: "Nuestros Productos", category: "Catálogo", keywords: ["barbijo", "camisolin", "cofia", "guante", "kit", "insumos", "quirurgico", "productos"], url: "productos.php" },
+        { title: "Nuestra Historia", category: "Nosotros", keywords: ["mision", "vision", "historia", "nosotros", "quienes somos", "tucuman", "fabrica"], url: "nosotros.html" },
+        { title: "Habilitaciones ANMAT", category: "Calidad", keywords: ["anmat", "certificacion", "habilitacion", "seguridad", "calidad"], url: "nosotros.html#certificacion" },
+        { title: "Últimas Noticias", category: "Actualidad", keywords: ["novedades", "noticias", "blog", "actualidad", "eventos"], url: "noticias.php" },
+        { title: "Contacto y Ubicación", category: "Ayuda", keywords: ["contacto", "telefono", "email", "donde estamos", "mapa", "direccion", "whatsapp"], url: "contacto.html" }
+      ];
+
+      function openGlobalSearch() {
+        const overlay = document.getElementById('search-overlay');
+        overlay.classList.remove('hidden');
+        overlay.classList.add('flex');
+        setTimeout(() => document.getElementById('global-search-input').focus(), 100);
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeGlobalSearch() {
+        const overlay = document.getElementById('search-overlay');
+        overlay.classList.add('hidden');
+        overlay.classList.remove('flex');
+        document.body.style.overflow = '';
+      }
+
+      function handleGlobalSearch(query) {
+        const resultsContainer = document.getElementById('search-results');
+        if (query.length < 2) {
+          resultsContainer.innerHTML = '';
+          return;
+        }
+
+        const filtered = siteMap.filter(item => 
+          item.title.toLowerCase().includes(query.toLowerCase()) || 
+          item.keywords.some(k => k.includes(query.toLowerCase()))
+        );
+
+        resultsContainer.innerHTML = filtered.map(item => `
+          <a href="${item.url}" class="group flex items-center justify-between p-6 bg-white/5 hover:bg-primary/20 border border-white/10 rounded-2xl transition-all">
+            <div class="flex flex-col">
+              <span class="text-[10px] font-black uppercase tracking-widest text-primary mb-1">${item.category}</span>
+              <span class="text-white text-lg font-bold group-hover:text-primary transition-colors">${item.title}</span>
+            </div>
+            <span class="material-symbols-outlined text-white/20 group-hover:text-primary transition-all">arrow_forward</span>
+          </a>
+        `).join('');
+
+        if (filtered.length === 0) {
+          resultsContainer.innerHTML = '<p class="text-center text-slate-500 py-10">No encontramos resultados para tu búsqueda.</p>';
+        }
+      }
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeGlobalSearch();
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,12 @@
+# Redirect html to php
+Redirect 301 /index.html /index.php
+Redirect 301 /productos.html /productos.php
+Redirect 301 /noticias.html /noticias.php
+
+# Optional: Force HTTPS if needed (Laragon usually handles this but good to have)
+# RewriteEngine On
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Prevent directory listing
+Options -Indexes
