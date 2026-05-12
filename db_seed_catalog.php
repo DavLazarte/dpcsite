@@ -28,7 +28,7 @@ try {
             'descripcion'  => 'Barbijos descartables de triple capa con meltblown para alta filtración bacteriana.',
             'descripcion_en' => 'Disposable triple-layer masks with meltblown for high bacterial filtration.',
             'descripcion_pt' => 'Máscaras descartáveis de tripla camada com meltblown para alta filtração bacteriana.',
-            'imagen'       => 'assets/img/catalogo/barbijo.png',
+            'imagen'       => 'assets/img/catalogo/barbijos.png',
             'specs'        => json_encode(['Tela: SMS / Meltblown', 'Presentaciones: 1 / 25', 'Color: Celeste / Blanco', 'Ajustes: Elástico + ajuste nasal', 'Composición: Triple capa', 'Autorizado: PM 2521 - 2']),
             'specs_en'     => json_encode(['Fabric: SMS / Meltblown', 'Package: 1 / 25 units', 'Color: Light Blue / White', 'Adjustments: Elastic + nose clip', 'Composition: Triple layer', 'Authorized: PM 2521 - 2']),
             'specs_pt'     => json_encode(['Tecido: SMS / Meltblown', 'Apresentações: 1 / 25', 'Cor: Celeste / Branco', 'Ajustes: Elástico + ajuste nasal', 'Composição: Camada tripla', 'Autorizado: PM 2521 - 2']),

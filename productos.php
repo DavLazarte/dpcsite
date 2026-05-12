@@ -395,37 +395,37 @@ foreach ($dbProducts as $p) {
   </div>
 
   <!-- Product Modal -->
-    <div id="product-modal" class="fixed inset-0 z-[100] hidden items-end md:items-center justify-center bg-navy-dark/80 backdrop-blur-sm transition-all duration-300">
-      <div id="modal-content" class="relative w-full md:max-w-4xl bg-white md:rounded-3xl shadow-2xl overflow-hidden opacity-0 scale-95 transition-all duration-300 flex flex-col md:flex-row max-h-[95dvh] md:max-h-[90vh] rounded-t-3xl">
-        <button onclick="closeModal()" class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-slate-100 hover:bg-primary hover:text-white flex items-center justify-center text-slate-400 transition-all"><span class="material-symbols-outlined text-lg">close</span></button>
-        <!-- Image panel -->
-        <div class="w-full md:w-1/2 bg-slate-50 flex flex-col items-center justify-center p-6 md:p-8 shrink-0 max-h-[40vh] md:max-h-none">
-          <img id="modal-img" src="" alt="" class="max-h-48 md:max-h-[50vh] w-auto object-contain drop-shadow-2xl mb-3" />
-          <div id="modal-thumbnails" class="flex flex-wrap gap-2 overflow-x-auto w-full justify-center"></div>
+  <div id="product-modal" class="fixed inset-0 z-[100] hidden items-end md:items-center justify-center bg-navy-dark/80 backdrop-blur-sm transition-all duration-300">
+    <div id="modal-content" class="relative w-full md:max-w-4xl bg-white md:rounded-3xl shadow-2xl overflow-hidden opacity-0 scale-95 transition-all duration-300 flex flex-col md:flex-row max-h-[95dvh] md:max-h-[90vh] rounded-t-3xl">
+      <button onclick="closeModal()" class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-slate-100 hover:bg-primary hover:text-white flex items-center justify-center text-slate-400 transition-all"><span class="material-symbols-outlined text-lg">close</span></button>
+      <!-- Image panel -->
+      <div class="w-full md:w-1/2 bg-slate-50 flex flex-col items-center justify-center p-6 md:p-8 shrink-0 max-h-[40vh] md:max-h-none">
+        <img id="modal-img" src="" alt="" class="max-h-48 md:max-h-[50vh] w-auto object-contain drop-shadow-2xl mb-3" />
+        <div id="modal-thumbnails" class="flex flex-wrap gap-2 overflow-x-auto w-full justify-center"></div>
+      </div>
+      <!-- Info panel -->
+      <div class="w-full md:w-1/2 p-6 md:p-10 overflow-y-auto flex-1">
+        <span id="modal-category" class="text-[10px] font-black uppercase tracking-[0.2em] text-primary mb-2 block"></span>
+        <h2 id="modal-title" class="text-2xl font-black text-dark-navy mb-3"></h2>
+        <p id="modal-desc" class="text-sm text-slate-500 mb-6 leading-relaxed"></p>
+        <div class="mb-8">
+          <h4 class="text-xs font-black uppercase tracking-widest text-dark-navy mb-4 border-b border-slate-100 pb-2">Especificaciones Técnicas</h4>
+          <ul id="modal-specs" class="space-y-3"></ul>
         </div>
-        <!-- Info panel -->
-        <div class="w-full md:w-1/2 p-6 md:p-10 overflow-y-auto flex-1">
-          <span id="modal-category" class="text-[10px] font-black uppercase tracking-[0.2em] text-primary mb-2 block"></span>
-          <h2 id="modal-title" class="text-2xl font-black text-dark-navy mb-3"></h2>
-          <p id="modal-desc" class="text-sm text-slate-500 mb-6 leading-relaxed"></p>
-          <div class="mb-8">
-            <h4 class="text-xs font-black uppercase tracking-widest text-dark-navy mb-4 border-b border-slate-100 pb-2">Especificaciones Técnicas</h4>
-            <ul id="modal-specs" class="space-y-3"></ul>
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <a id="modal-pdf" href="#" target="_blank" class="flex items-center justify-center gap-2 rounded-xl border-2 border-primary py-3 text-[10px] font-black uppercase tracking-widest text-primary hover:bg-primary hover:text-white transition-all">
-              <span class="material-symbols-outlined text-lg">description</span> Ficha Técnica
-            </a>
-            <a id="modal-wa" href="#" target="_blank" class="flex items-center justify-center gap-2 rounded-xl bg-green-600 py-3 text-[10px] font-black uppercase tracking-widest text-white hover:bg-green-700 transition-all shadow-lg">
-              <span class="material-symbols-outlined text-lg">chat</span> Consultar
-            </a>
-            <a href="assets/pdf/catalogo.pdf" target="_blank" class="sm:col-span-2 flex items-center justify-center gap-2 rounded-xl bg-slate-100 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:bg-slate-200 transition-all">
-              <span class="material-symbols-outlined text-lg">picture_as_pdf</span> Ver Catálogo Completo
-            </a>
-          </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <a id="modal-pdf" href="#" target="_blank" class="flex items-center justify-center gap-2 rounded-xl border-2 border-primary py-3 text-[10px] font-black uppercase tracking-widest text-primary hover:bg-primary hover:text-white transition-all">
+            <span class="material-symbols-outlined text-lg">description</span> Ficha Técnica
+          </a>
+          <a id="modal-wa" href="#" target="_blank" class="flex items-center justify-center gap-2 rounded-xl bg-green-600 py-3 text-[10px] font-black uppercase tracking-widest text-white hover:bg-green-700 transition-all shadow-lg">
+            <span class="material-symbols-outlined text-lg">chat</span> Consultar
+          </a>
+          <a href="assets/pdf/catalogo.pdf" target="_blank" class="sm:col-span-2 flex items-center justify-center gap-2 rounded-xl bg-slate-100 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:bg-slate-200 transition-all">
+            <span class="material-symbols-outlined text-lg">picture_as_pdf</span> Ver Catálogo Completo
+          </a>
         </div>
       </div>
     </div>
+  </div>
 
   <script src="assets/js/translations.js"></script>
   <script src="assets/js/i18n.js"></script>
@@ -433,7 +433,7 @@ foreach ($dbProducts as $p) {
     const categories = [{
         id: "proteccion",
         titleKey: "prod_cat_proteccion_title",
-        image: "assets/img/catalogo/barbijo.png",
+        image: "assets/img/catalogo/barbijos.png",
         descKey: "prod_cat_proteccion_desc"
       },
       {
@@ -469,7 +469,7 @@ foreach ($dbProducts as $p) {
       {
         id: "kit_dialisis",
         titleKey: "prod_cat_kit_dialisis_title",
-        image: "assets/img/catalogo/kitpaciente.png",
+        image: "assets/img/catalogo/kidcatetermod1.png",
         descKey: "prod_cat_kit_dialisis_desc"
       },
     ];
@@ -615,35 +615,34 @@ foreach ($dbProducts as $p) {
             const kNorm = key.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
             if (['contenido', 'conexion', 'desconexion'].includes(kNorm)) {
               valueHtml = value.split('/').map((item, idx) =>
-                '<div class="flex items-center justify-between py-1 border-b border-slate-50 last:border-0 gap-4">'
-                + '<span class="flex-1 text-slate-600 leading-tight">' + item.trim() + '</span>'
-                + '<span class="bg-dark-navy text-white text-[9px] w-[18px] h-[18px] flex items-center justify-center rounded-full flex-shrink-0 font-bold shadow-sm">' + String.fromCharCode(65 + idx) + '</span>'
-                + '</div>'
+                '<div class="flex items-center justify-between py-1 border-b border-slate-50 last:border-0 gap-4">' +
+                '<span class="flex-1 text-slate-600 leading-tight">' + item.trim() + '</span>' +
+                '<span class="bg-dark-navy text-white text-[9px] w-[18px] h-[18px] flex items-center justify-center rounded-full flex-shrink-0 font-bold shadow-sm">' + String.fromCharCode(65 + idx) + '</span>' +
+                '</div>'
               ).join('');
             }
-            return '<tr class="border-b border-slate-100 last:border-0">'
-              + '<td class="py-3 pr-4 font-bold text-dark-navy w-1/3 align-top">'
-              + '<span class="material-symbols-outlined text-slate-400 text-[18px] mr-2">' + icon + '</span>' + key
-              + '</td>'
-              + '<td class="py-3 pl-4 border-l border-slate-100 align-top text-slate-600 font-medium">' + valueHtml + '</td>'
-              + '</tr>';
+            return '<tr class="border-b border-slate-100 last:border-0">' +
+              '<td class="py-3 pr-4 font-bold text-dark-navy w-1/3 align-top">' +
+              '<span class="material-symbols-outlined text-slate-400 text-[18px] mr-2">' + icon + '</span>' + key +
+              '</td>' +
+              '<td class="py-3 pl-4 border-l border-slate-100 align-top text-slate-600 font-medium">' + valueHtml + '</td>' +
+              '</tr>';
           } else {
             return '<tr><td colspan="2" class="py-4 font-black uppercase tracking-widest text-dark-navy text-xs border-b-2 border-slate-200">' + s + '</td></tr>';
           }
         }).join('');
         specsList.innerHTML = '<table class="w-full text-sm text-slate-600 border-collapse"><tbody>' + rows + '</tbody></table>';
-    }
-    else {
-      specsList.innerHTML = '<p class="text-sm text-slate-400 italic">No hay especificaciones adicionales.</p>';
-    }
+      } else {
+        specsList.innerHTML = '<p class="text-sm text-slate-400 italic">No hay especificaciones adicionales.</p>';
+      }
 
-    document.getElementById("modal-wa").href = `https://wa.me/543814456789?text=Hola, quisiera consultar por el producto: ${encodeURIComponent(getProdField(p, 'nombre'))}`;
-    document.getElementById("modal-pdf").href = `generar_pdf.php?id=${p.id}&lang=${i18n.currentLang || 'es'}`;
+      document.getElementById("modal-wa").href = `https://wa.me/543814456789?text=Hola, quisiera consultar por el producto: ${encodeURIComponent(getProdField(p, 'nombre'))}`;
+      document.getElementById("modal-pdf").href = `generar_pdf.php?id=${p.id}&lang=${i18n.currentLang || 'es'}`;
 
-    const modal = document.getElementById("product-modal");
-    modal.classList.remove("hidden");
-    modal.classList.add("flex");
-    setTimeout(() => document.getElementById("modal-content").classList.remove("opacity-0", "scale-95"), 10);
+      const modal = document.getElementById("product-modal");
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+      setTimeout(() => document.getElementById("modal-content").classList.remove("opacity-0", "scale-95"), 10);
     }
 
     function closeModal() {
@@ -674,6 +673,7 @@ foreach ($dbProducts as $p) {
       d.classList.add('translate-x-0');
       document.body.style.overflow = 'hidden';
     }
+
     function closeMobileMenu() {
       const d = document.getElementById('mobile-drawer');
       d.classList.add('translate-x-full');
