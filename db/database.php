@@ -34,6 +34,7 @@ function initDB(PDO $db): void
             descripcion_en TEXT DEFAULT '',
             descripcion_pt TEXT DEFAULT '',
             imagen      TEXT    DEFAULT '',
+            imagenes    TEXT    DEFAULT '[]',
             specs       TEXT    DEFAULT '[]',
             specs_en    TEXT    DEFAULT '[]',
             specs_pt    TEXT    DEFAULT '[]',
@@ -62,6 +63,21 @@ function initDB(PDO $db): void
             activo      INTEGER DEFAULT 1,
             created_at  DATETIME DEFAULT CURRENT_TIMESTAMP,
             updated_at  DATETIME DEFAULT CURRENT_TIMESTAMP
+        )
+    ");
+
+    // Tabla de Mensajes de Contacto
+    $db->exec("
+        CREATE TABLE IF NOT EXISTS mensajes (
+            id          INTEGER PRIMARY KEY AUTOINCREMENT,
+            nombre      TEXT    NOT NULL,
+            institucion TEXT    DEFAULT '',
+            email       TEXT    NOT NULL,
+            telefono    TEXT    DEFAULT '',
+            producto    TEXT    DEFAULT '',
+            mensaje     TEXT    DEFAULT '',
+            leido       INTEGER DEFAULT 0,
+            created_at  DATETIME DEFAULT CURRENT_TIMESTAMP
         )
     ");
 }

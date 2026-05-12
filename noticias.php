@@ -93,34 +93,122 @@ if (!$featured_news && !empty($noticias)) {
   </head>
   <body class="bg-background-light text-slate-900 overflow-x-hidden">
     <div class="connection-line"></div>
-    <nav class="fixed top-0 w-full z-50 transition-all duration-500 px-6 py-3 flex items-center justify-between bg-dark-navy" id="main-nav">
+    <nav
+      class="fixed top-0 w-full z-50 transition-all duration-500 px-6 py-3 flex items-center justify-between"
+      id="main-nav"
+    >
       <div class="flex items-center gap-3">
         <a href="index.php"><img src="assets/img/logo.png" alt="DPC Logo" class="h-14 w-auto" /></a>
       </div>
-      <div class="hidden md:flex items-center gap-8 text-white">
-        <a class="text-sm font-semibold tracking-wide hover:text-white/70 transition-colors" href="index.php" data-i18n="nav_home">INICIO</a>
-        <a class="text-sm font-semibold tracking-wide hover:text-white/70 transition-colors" href="nosotros.html" data-i18n="nav_about">NOSOTROS</a>
-        <a class="text-sm font-semibold tracking-wide hover:text-white/70 transition-colors" href="productos.php" data-i18n="nav_products">PRODUCTOS</a>
-        <a class="text-sm font-semibold tracking-wide hover:text-white/70 transition-colors border-b-2 border-accent" href="noticias.php" data-i18n="nav_news">NOTICIAS</a>
-        <a class="text-sm font-semibold tracking-wide hover:text-white/70 transition-colors" href="contacto.html" data-i18n="nav_contact">CONTACTO</a>
-        
-          <div class="flex items-center gap-2.5 px-4 border-l border-white/10 ml-2">
-            <button onclick="openGlobalSearch()" class="flex items-center text-white hover:text-white/70 transition-colors mr-2" title="Buscar">
-              <span class="material-symbols-outlined text-xl">search</span>
-            </button>
-            <a href="#" onclick="event.preventDefault(); i18n.load('es');" title="Español" class="flex" data-i18n-title="nav_lang_es"><img src="https://flagcdn.com/w40/es.png" class="w-5 h-5 rounded-full object-cover border border-white/20 hover:scale-110 transition-transform shadow-sm" alt="ES"></a>
-            <a href="#" onclick="event.preventDefault(); i18n.load('en');" title="English" class="flex" data-i18n-title="nav_lang_en"><img src="https://flagcdn.com/w40/us.png" class="w-5 h-5 rounded-full object-cover border border-white/20 hover:scale-110 transition-transform shadow-sm" alt="EN"></a>
-            <a href="#" onclick="event.preventDefault(); i18n.load('pt');" title="Português" class="flex" data-i18n-title="nav_lang_pt"><img src="https://flagcdn.com/w40/br.png" class="w-5 h-5 rounded-full object-cover border border-white/20 hover:scale-110 transition-transform shadow-sm" alt="PT"></a>
+      <div class="hidden md:flex items-center gap-8">
+        <a class="text-sm font-semibold tracking-wide text-white hover:text-white/70 transition-colors" href="index.php" data-i18n="nav_home">INICIO</a>
+        <div class="relative group flex items-center">
+          <a href="nosotros.html" class="text-sm font-semibold tracking-wide text-white hover:text-white/70 transition-colors uppercase" data-i18n="nav_about">NOSOTROS</a>
+          <button class="flex items-center text-white hover:text-white/70 transition-colors ml-1">
+            <span class="material-symbols-outlined text-base" style="font-size:16px">expand_more</span>
+          </button>
+          <div class="nav-dropdown absolute invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 bg-white rounded-2xl shadow-2xl shadow-slate-200/80 border border-slate-100 py-2 z-50">
+            <a href="nosotros.html#historia" class="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:text-primary hover:bg-slate-50 transition-colors" data-i18n="nav_about_history">
+              <span class="material-symbols-outlined text-primary" style="font-size:18px">history_edu</span>Historia
+            </a>
+            <a href="nosotros.html#certificacion" class="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:text-primary hover:bg-slate-50 transition-colors" data-i18n="nav_about_certification">
+              <span class="material-symbols-outlined text-primary" style="font-size:18px">verified_user</span>Certificación
+            </a>
+            <a href="nosotros.html#equipo" class="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:text-primary hover:bg-slate-50 transition-colors" data-i18n="nav_about_team">
+              <span class="material-symbols-outlined text-primary" style="font-size:18px">group</span>Equipo de Trabajo
+            </a>
+            <a href="nosotros.html#cultura" class="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:text-primary hover:bg-slate-50 transition-colors" data-i18n="nav_about_culture">
+              <span class="material-symbols-outlined text-primary" style="font-size:18px">diversity_3</span>Cultura
+            </a>
           </div>
-          
-          <a href="assets/pdf/catalogo.pdf" target="_blank" class="nav-cta bg-primary hover:bg-[#153f7a] text-white px-6 py-2.5 rounded-full font-semibold text-sm transition-all shadow-md shadow-primary/20" data-i18n="nav_catalog">CATÁLOGO</a>
+        </div>
+        <div class="relative group flex items-center">
+          <a href="productos.php" class="text-sm font-semibold tracking-wide text-white hover:text-white/70 transition-colors uppercase" data-i18n="nav_products">PRODUCTOS</a>
+          <button class="flex items-center text-white hover:text-white/70 transition-colors ml-1">
+            <span class="material-symbols-outlined text-base" style="font-size:16px">expand_more</span>
+          </button>
+          <div class="nav-megamenu absolute invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 bg-white rounded-2xl shadow-2xl shadow-slate-200/80 border border-slate-100 p-6 z-50">
+            <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-4 pb-3 border-b border-slate-100" data-i18n="nav_products_catalog">Catálogo de Productos</p>
+            <div class="grid grid-cols-2 gap-x-8 gap-y-1">
+              <a href="productos.php?cat=proteccion" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Protección Personal</a>
+              <a href="productos.php?cat=camisolines" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Camisolines</a>
+              <a href="productos.php?cat=quirurgico" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Línea Quirúrgica</a>
+              <a href="productos.php?cat=kit_pacientes" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Kits Pacientes</a>
+              <a href="productos.php?cat=cobertores" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Cobertores</a>
+              <a href="productos.php?cat=ambos" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Ambos</a>
+              <a href="productos.php?cat=kit_dialisis" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Kits Diálisis</a>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100">
+              <a href="productos.php" class="inline-flex items-center gap-2 text-xs font-bold text-primary hover:underline">
+                Ver catálogo completo <span class="material-symbols-outlined" style="font-size:14px">arrow_forward</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <a class="text-sm font-semibold tracking-wide text-white hover:text-white/70 transition-colors border-b-2 border-accent" href="noticias.php">NOTICIAS</a>
+        <a class="text-sm font-semibold tracking-wide text-white hover:text-white/70 transition-colors" href="contacto.html">CONTACTO</a>
+        
+        <div class="flex items-center gap-2.5 px-4 border-l border-white/10 ml-2">
+          <button onclick="openGlobalSearch()" class="flex items-center text-white hover:text-white/70 transition-colors mr-2" title="Buscar">
+            <span class="material-symbols-outlined text-xl">search</span>
+          </button>
+          <a href="#" onclick="event.preventDefault(); i18n.load('es');" title="Español" class="flex" data-i18n-title="nav_lang_es"><img src="https://flagcdn.com/w40/es.png" class="w-5 h-5 rounded-full object-cover border border-white/20 hover:scale-110 transition-transform shadow-sm" alt="ES"></a>
+          <a href="#" onclick="event.preventDefault(); i18n.load('en');" title="English" class="flex" data-i18n-title="nav_lang_en"><img src="https://flagcdn.com/w40/us.png" class="w-5 h-5 rounded-full object-cover border border-white/20 hover:scale-110 transition-transform shadow-sm" alt="EN"></a>
+          <a href="#" onclick="event.preventDefault(); i18n.load('pt');" title="Português" class="flex" data-i18n-title="nav_lang_pt"><img src="https://flagcdn.com/w40/br.png" class="w-5 h-5 rounded-full object-cover border border-white/20 hover:scale-110 transition-transform shadow-sm" alt="PT"></a>
+        </div>
 
-          <a href="admin/login.php" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold transition-all border border-white/10">
-            <span class="material-symbols-outlined text-sm">login</span>
-            INGRESAR
-          </a>
+        <a href="assets/pdf/catalogo.pdf" target="_blank"
+          class="nav-cta bg-primary hover:bg-[#153f7a] text-white px-6 py-2.5 rounded-full font-semibold text-sm transition-all shadow-md shadow-primary/20"
+          data-i18n="nav_catalog">
+          CATÁLOGO
+        </a>
+        
+        <a href="admin/login.php" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold transition-all border border-white/10">
+          <span class="material-symbols-outlined text-sm">login</span>
+          INGRESAR
+        </a>
       </div>
+      <button class="md:hidden text-white z-50" id="mobile-menu-btn" aria-label="Abrir menú">
+        <span class="material-symbols-outlined text-3xl" id="mobile-menu-icon">menu</span>
+      </button>
     </nav>
+
+    <!-- Mobile Drawer -->
+    <div id="mobile-drawer" class="fixed inset-0 z-[200] flex flex-col bg-dark-navy text-white translate-x-full transition-transform duration-300 ease-in-out md:hidden overflow-y-auto">
+      <div class="flex items-center justify-between px-6 py-4 border-b border-white/10">
+        <img src="assets/img/logo.png" alt="DPC Logo" class="h-12 w-auto" />
+        <button id="mobile-close-btn" aria-label="Cerrar menú">
+          <span class="material-symbols-outlined text-3xl">close</span>
+        </button>
+      </div>
+      <nav class="flex flex-col px-6 py-8 gap-1 text-base font-semibold">
+        <a href="index.php" class="py-3 border-b border-white/5 hover:text-primary transition-colors">Inicio</a>
+        <a href="nosotros.html" class="py-3 border-b border-white/5 hover:text-primary transition-colors">Nosotros</a>
+        <div class="py-3 border-b border-white/5">
+          <p class="text-xs font-black uppercase tracking-widest text-slate-400 mb-3">Productos</p>
+          <div class="flex flex-col gap-2 pl-2">
+            <a href="productos.php?cat=proteccion" class="py-1.5 text-slate-300 hover:text-primary transition-colors">Protección Personal</a>
+            <a href="productos.php?cat=camisolines" class="py-1.5 text-slate-300 hover:text-primary transition-colors">Camisolines</a>
+            <a href="productos.php?cat=quirurgico" class="py-1.5 text-slate-300 hover:text-primary transition-colors">Línea Quirúrgica</a>
+            <a href="productos.php?cat=kit_pacientes" class="py-1.5 text-slate-300 hover:text-primary transition-colors">Kits Pacientes</a>
+            <a href="productos.php?cat=cobertores" class="py-1.5 text-slate-300 hover:text-primary transition-colors">Cobertores</a>
+            <a href="productos.php?cat=ambos" class="py-1.5 text-slate-300 hover:text-primary transition-colors">Ambos</a>
+            <a href="productos.php?cat=kit_dialisis" class="py-1.5 text-slate-300 hover:text-primary transition-colors">Kits Diálisis</a>
+            <a href="productos.php" class="py-1.5 text-primary font-bold hover:underline">Ver todos →</a>
+          </div>
+        </div>
+        <a href="noticias.php" class="py-3 border-b border-white/5 hover:text-primary transition-colors text-primary font-black">Noticias</a>
+        <a href="contacto.html" class="py-3 border-b border-white/5 hover:text-primary transition-colors">Contacto</a>
+      </nav>
+      <div class="px-6 pb-8 flex flex-col gap-3 mt-auto">
+        <div class="flex items-center gap-4 mb-2">
+          <a href="#" onclick="event.preventDefault(); i18n.load('es'); closeMobileMenu();" class="flex items-center gap-1 text-sm"><img src="https://flagcdn.com/w40/es.png" class="w-5 h-5 rounded-full" alt="ES"> ES</a>
+          <a href="#" onclick="event.preventDefault(); i18n.load('en'); closeMobileMenu();" class="flex items-center gap-1 text-sm"><img src="https://flagcdn.com/w40/us.png" class="w-5 h-5 rounded-full" alt="EN"> EN</a>
+          <a href="#" onclick="event.preventDefault(); i18n.load('pt'); closeMobileMenu();" class="flex items-center gap-1 text-sm"><img src="https://flagcdn.com/w40/br.png" class="w-5 h-5 rounded-full" alt="PT"> PT</a>
+        </div>
+        <a href="assets/pdf/catalogo.pdf" target="_blank" class="w-full text-center bg-primary text-white px-6 py-3 rounded-full font-bold">Ver Catálogo PDF</a>
+      </div>
+    </div>
 
     <main class="pt-[80px]">
       <!-- Hero Section -->
@@ -136,7 +224,7 @@ if (!$featured_news && !empty($noticias)) {
       <div class="max-w-7xl mx-auto px-6 lg:px-20">
         <?php if ($featured_news): ?>
         <!-- Featured Post -->
-        <section class="mb-16 relative">
+        <section class="mb-16 relative overflow-hidden">
           <div class="bg-watermark top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-12">FEATURED</div>
           <h2 class="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2 relative z-10">
             <span class="material-symbols-outlined text-primary">star</span>
@@ -200,6 +288,28 @@ if (!$featured_news && !empty($noticias)) {
       window.addEventListener("scroll", function () {
         const nav = document.getElementById("main-nav");
         nav.classList.toggle("nav-scrolled", window.scrollY > 50);
+      });
+
+      function openMobileMenu() {
+        const d = document.getElementById('mobile-drawer');
+        if (!d) return;
+        d.classList.remove('translate-x-full');
+        d.classList.add('translate-x-0');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeMobileMenu() {
+        const d = document.getElementById('mobile-drawer');
+        if (!d) return;
+        d.classList.add('translate-x-full');
+        d.classList.remove('translate-x-0');
+        document.body.style.overflow = '';
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const btnOpen  = document.getElementById('mobile-menu-btn');
+        const btnClose = document.getElementById('mobile-close-btn');
+        if (btnOpen)  btnOpen.addEventListener('click', openMobileMenu);
+        if (btnClose) btnClose.addEventListener('click', closeMobileMenu);
       });
     </script>
     <!-- Global Search Overlay -->

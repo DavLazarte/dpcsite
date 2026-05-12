@@ -14,7 +14,50 @@ $noticias = $stmt->fetchAll();
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>DPC – Fábrica de Ropa Hospitalaria Descartable</title>
+    <title>DPC – Fábrica de Ropa Hospitalaria Descartable | Tucumán, Argentina</title>
+    <!-- SEO Primary -->
+    <meta name="description" content="DPC Hospitalaria: fabricantes de ropa médica descartable en Tucumán. Camisolines, barbijos, equipos de cirugía estériles, cobertores y kits de diálisis con certificación ANMAT." />
+    <meta name="keywords" content="ropa hospitalaria descartable, camisolines descartables, barbijos médicos, equipos de cirugía, insumos médicos, ANMAT, Tucumán, DPC, kits de diálisis, cobertores, protección personal médica" />
+    <meta name="author" content="DPC – Desarrollo Profesional Confiable" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://www.dpc.com.ar/" />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.dpc.com.ar/" />
+    <meta property="og:title" content="DPC – Fábrica de Ropa Hospitalaria Descartable | Tucumán" />
+    <meta property="og:description" content="Fabricamos insumos médicos descartables de alta calidad bajo estándares ANMAT. Camisolines, kits quirúrgicos, cobertores y más. Industria nacional." />
+    <meta property="og:image" content="https://www.dpc.com.ar/assets/img/logo.png" />
+    <meta property="og:locale" content="es_AR" />
+    <meta property="og:site_name" content="DPC Hospitalaria" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="DPC – Ropa Hospitalaria Descartable | Tucumán, Argentina" />
+    <meta name="twitter:description" content="Fabricantes de insumos médicos descartables certificados por ANMAT. Camisolines, kits de cirugía, cobertores y más." />
+    <meta name="twitter:image" content="https://www.dpc.com.ar/assets/img/logo.png" />
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "DPC – Desarrollo Profesional Confiable",
+      "description": "Fabricantes de ropa médica hospitalaria descartable en Tucumán, Argentina.",
+      "url": "https://www.dpc.com.ar",
+      "logo": "https://www.dpc.com.ar/assets/img/logo.png",
+      "telephone": "+543814456789",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Colombia 2589",
+        "addressLocality": "San Miguel de Tucumán",
+        "addressRegion": "Tucumán",
+        "addressCountry": "AR"
+      },
+      "openingHoursSpecification": [
+        {"@type": "OpeningHoursSpecification","dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens": "08:30","closes": "18:30"},
+        {"@type": "OpeningHoursSpecification","dayOfWeek": "Saturday","opens": "09:00","closes": "13:00"}
+      ],
+      "sameAs": []
+    }
+    </script>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;900&amp;family=Bebas+Neue&amp;display=swap"
@@ -248,10 +291,11 @@ $noticias = $stmt->fetchAll();
             <div class="grid grid-cols-2 gap-x-8 gap-y-1">
               <a href="productos.php?cat=proteccion" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Protección Personal</a>
               <a href="productos.php?cat=camisolines" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Camisolines</a>
-              <a href="productos.php?cat=quirurgico" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Quirúrgico</a>
-              <a href="productos.php?cat=kits" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Kits</a>
-              <a href="productos.php?cat=cama" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Camilla y Campo</a>
-              <a href="productos.php?cat=otros" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Otros Accesorios</a>
+              <a href="productos.php?cat=quirurgico" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Línea Quirúrgica</a>
+              <a href="productos.php?cat=kit_pacientes" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Kits Pacientes</a>
+              <a href="productos.php?cat=cobertores" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Cobertores</a>
+              <a href="productos.php?cat=ambos" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Ambos</a>
+              <a href="productos.php?cat=kit_dialisis" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Kits Diálisis</a>
             </div>
             <div class="mt-4 pt-3 border-t border-slate-100">
               <a href="productos.php" class="inline-flex items-center gap-2 text-xs font-bold text-primary hover:underline">
@@ -283,10 +327,48 @@ $noticias = $stmt->fetchAll();
           INGRESAR
         </a>
       </div>
-      <button class="md:hidden text-white" id="mobile-menu-btn">
-        <span class="material-symbols-outlined">menu</span>
+      <button class="md:hidden text-white z-50" id="mobile-menu-btn" aria-label="Abrir menú">
+        <span class="material-symbols-outlined text-3xl" id="mobile-menu-icon">menu</span>
       </button>
     </nav>
+
+    <!-- Mobile Drawer -->
+    <div id="mobile-drawer" class="fixed inset-0 z-[200] flex flex-col bg-dark-navy text-white translate-x-full transition-transform duration-300 ease-in-out md:hidden overflow-y-auto">
+      <div class="flex items-center justify-between px-6 py-4 border-b border-white/10">
+        <img src="assets/img/logo.png" alt="DPC Logo" class="h-12 w-auto" />
+        <button id="mobile-close-btn" aria-label="Cerrar menú">
+          <span class="material-symbols-outlined text-3xl">close</span>
+        </button>
+      </div>
+      <nav class="flex flex-col px-6 py-8 gap-1 text-base font-semibold">
+        <a href="index.php" class="py-3 border-b border-white/5 hover:text-primary transition-colors">Inicio</a>
+        <a href="nosotros.html" class="py-3 border-b border-white/5 hover:text-primary transition-colors">Nosotros</a>
+        <div class="py-3 border-b border-white/5">
+          <p class="text-xs font-black uppercase tracking-widest text-slate-400 mb-3">Productos</p>
+          <div class="flex flex-col gap-2 pl-2">
+            <a href="productos.php?cat=proteccion" class="py-1.5 text-slate-300 hover:text-primary transition-colors">Protección Personal</a>
+            <a href="productos.php?cat=camisolines" class="py-1.5 text-slate-300 hover:text-primary transition-colors">Camisolines</a>
+            <a href="productos.php?cat=quirurgico" class="py-1.5 text-slate-300 hover:text-primary transition-colors">Línea Quirúrgica</a>
+            <a href="productos.php?cat=kit_pacientes" class="py-1.5 text-slate-300 hover:text-primary transition-colors">Kits Pacientes</a>
+            <a href="productos.php?cat=cobertores" class="py-1.5 text-slate-300 hover:text-primary transition-colors">Cobertores</a>
+            <a href="productos.php?cat=ambos" class="py-1.5 text-slate-300 hover:text-primary transition-colors">Ambos</a>
+            <a href="productos.php?cat=kit_dialisis" class="py-1.5 text-slate-300 hover:text-primary transition-colors">Kits Diálisis</a>
+            <a href="productos.php" class="py-1.5 text-primary font-bold hover:underline transition-colors">Ver catálogo completo →</a>
+          </div>
+        </div>
+        <a href="noticias.html" class="py-3 border-b border-white/5 hover:text-primary transition-colors">Noticias</a>
+        <a href="contacto.html" class="py-3 border-b border-white/5 hover:text-primary transition-colors">Contacto</a>
+      </nav>
+      <div class="px-6 pb-8 flex flex-col gap-3 mt-auto">
+        <div class="flex items-center gap-4 mb-2">
+          <a href="#" onclick="event.preventDefault(); i18n.load('es'); closeMobileMenu();" class="flex items-center gap-1 text-sm"><img src="https://flagcdn.com/w40/es.png" class="w-5 h-5 rounded-full" alt="ES"> ES</a>
+          <a href="#" onclick="event.preventDefault(); i18n.load('en'); closeMobileMenu();" class="flex items-center gap-1 text-sm"><img src="https://flagcdn.com/w40/us.png" class="w-5 h-5 rounded-full" alt="EN"> EN</a>
+          <a href="#" onclick="event.preventDefault(); i18n.load('pt'); closeMobileMenu();" class="flex items-center gap-1 text-sm"><img src="https://flagcdn.com/w40/br.png" class="w-5 h-5 rounded-full" alt="PT"> PT</a>
+        </div>
+        <a href="assets/pdf/catalogo.pdf" target="_blank" class="w-full text-center bg-primary text-white px-6 py-3 rounded-full font-bold">Ver Catálogo PDF</a>
+        <a href="admin/login.php" class="w-full text-center border border-white/20 text-white px-6 py-3 rounded-full font-bold hover:bg-white/10 transition-all">Ingresar Admin</a>
+      </div>
+    </div>
     <section class="relative h-screen min-h-screen w-full overflow-hidden bg-dark-navy" id="inicio">
       <div class="hero-slide active">
         <img alt="Medical environment" class="w-full h-full object-cover opacity-60" src="assets/img/Hospitalaria.webp" />
@@ -307,12 +389,12 @@ $noticias = $stmt->fetchAll();
           </div>
         </div>
       </div>
-      <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 animate-bounce cursor-pointer flex flex-col items-center opacity-80 hover:opacity-100 transition-opacity" onclick="window.scrollBy({top: window.innerHeight, behavior: 'smooth'})">
+      <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 animate-bounce cursor-pointer hidden md:flex flex-col items-center opacity-80 hover:opacity-100 transition-opacity" onclick="document.getElementById('nosotros').scrollIntoView({behavior:'smooth'})">
         <span class="text-white text-xs font-semibold tracking-[0.2em] uppercase mb-1" data-i18n="home_hero_explore">Explorar</span>
         <span class="material-symbols-outlined text-white text-3xl">keyboard_arrow_down</span>
       </div>
     </section>
-    <section class="relative h-[40vh] md:h-[60vh] overflow-hidden flex items-center justify-center border-y border-slate-100" style="background-color: #F0F7FF;">
+    <section class="relative h-[30vh] md:h-[55vh] overflow-hidden flex items-center justify-center border-y border-slate-100" style="background-color: #F0F7FF;">
       <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
       <div class="absolute inset-0 z-0">
         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100%" height="100%" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; box-sizing: border-box; display: block; background-color: transparent;">
@@ -331,7 +413,12 @@ $noticias = $stmt->fetchAll();
         </svg>
       </div>
       <div class="absolute inset-0 flex flex-col items-center justify-center select-none overflow-hidden pointer-events-none z-10 px-4">
-        <div id="parallax-watermark"><div class="flex flex-row items-center justify-center animate-dpc-move"><img src="assets/img/logo.png" alt="DPC Logo" class="h-[35vw] md:h-[28vw] object-contain" style="filter: drop-shadow(0 20px 40px rgba(11, 26, 46, 0.3));" /></div></div>
+        <!-- Mobile: simple centered logo, no parallax -->
+        <div class="md:hidden flex items-center justify-center w-full h-full">
+          <img src="assets/img/logo.png" alt="DPC Logo" class="h-[45vw] max-h-40 object-contain" style="filter: drop-shadow(0 10px 20px rgba(11, 26, 46, 0.25));" />
+        </div>
+        <!-- Desktop: animated parallax -->
+        <div id="parallax-watermark" class="hidden md:block"><div class="flex flex-row items-center justify-center animate-dpc-move"><img src="assets/img/logo.png" alt="DPC Logo" class="h-[28vw] object-contain" style="filter: drop-shadow(0 20px 40px rgba(11, 26, 46, 0.3));" /></div></div>
       </div>
       <div class="absolute inset-0 z-20 pointer-events-none">
         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100%" height="100%" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; box-sizing: border-box; display: block; background: transparent;">
@@ -369,7 +456,7 @@ $noticias = $stmt->fetchAll();
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div class="glass-v2 rounded-[2rem] p-8 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300 group flex flex-col h-full transform hover:-translate-y-2 relative overflow-hidden">
             <div class="w-16 h-16 rounded-2xl bg-primary/5 text-primary flex items-center justify-center mb-8 group-hover:bg-primary group-hover:text-white transition-colors"><span class="material-symbols-outlined text-3xl">precision_manufacturing</span></div>
-            <h3 class="text-xl font-black text-dark-navy mb-4 leading-tight" data-i18n="home_about_card1_title">Somos Fabricante</h3>
+            <h3 class="text-xl font-black text-dark-navy mb-4 leading-tight" data-i18n="home_about_card1_title">Somos Fabricantes</h3>
             <p class="text-slate-500 font-light text-sm mb-8 flex-grow leading-relaxed" data-i18n="home_about_card1_desc">Estamos preparados para atender la demanda y cumplir con las exigencias de nuestros clientes, garantizando soluciones que satisfacen plenamente sus requerimientos.</p>
             <button class="inline-flex items-center gap-2 text-primary font-bold text-sm uppercase tracking-wider group-hover:gap-3 transition-all mt-auto" onclick="openModal(0)" data-i18n="btn_read_more">Leer Más <span class="material-symbols-outlined text-sm">arrow_forward</span></button>
           </div>
@@ -423,32 +510,90 @@ $noticias = $stmt->fetchAll();
       <div class="w-full relative px-0 pb-12 pt-10">
         <div class="swiper productSwiper pb-16">
           <div class="swiper-wrapper">
+            <!-- 1. Protección Personal -->
             <div class="swiper-slide !w-[300px] md:!w-[450px]">
               <a href="productos.php?cat=proteccion" class="relative block h-64 md:h-80 rounded-[2rem] overflow-hidden group shadow-2xl border border-white/10">
-                <img src="assets/img/catalogo/barbijo.png" alt="Protección Facial" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-i18n-alt="prod_cat_proteccion_title">
+                <img src="assets/img/catalogo/barbijo.png" alt="Protección Personal" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-i18n-alt="prod_cat_proteccion_title">
                 <div class="absolute inset-0 bg-gradient-to-t from-dark-navy/90 via-dark-navy/20 to-transparent"></div>
-                <div class="absolute inset-0 flex flex-col justify-end p-8 md:p-10"><h3 class="text-white text-2xl md:text-3xl font-black uppercase tracking-tight mb-4 drop-shadow-lg leading-none" data-i18n="home_catalog_item1">Protección Facial <br>& de Cabeza</h3><div class="inline-block self-start bg-[#F3B844] text-dark-navy px-8 py-3 rounded-md font-black text-xs uppercase tracking-widest shadow-xl transform transition-all group-hover:scale-105">Explorar Ahora</div></div>
+                <div class="absolute inset-0 flex flex-col justify-end p-8 md:p-10"><h3 class="text-white text-2xl md:text-3xl font-black uppercase tracking-tight mb-4 drop-shadow-lg leading-none" data-i18n="prod_cat_proteccion_title">Protección Personal</h3><div class="inline-block self-start bg-[#F3B844] text-dark-navy px-8 py-3 rounded-md font-black text-xs uppercase tracking-widest shadow-xl transform transition-all group-hover:scale-105" data-i18n="btn_explore_now">Explorar Ahora</div></div>
+              </a>
+            </div>
+            <!-- 2. Camisolines -->
+            <div class="swiper-slide !w-[300px] md:!w-[450px]">
+              <a href="productos.php?cat=camisolines" class="relative block h-64 md:h-80 rounded-[2rem] overflow-hidden group shadow-2xl border border-white/10">
+                <img src="assets/img/catalogo/camisolin-lineapremium.png" alt="Camisolines" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-i18n-alt="prod_cat_camisolines_title">
+                <div class="absolute inset-0 bg-gradient-to-t from-dark-navy/90 via-dark-navy/20 to-transparent"></div>
+                <div class="absolute inset-0 flex flex-col justify-end p-8 md:p-10"><h3 class="text-white text-2xl md:text-3xl font-black uppercase tracking-tight mb-4 drop-shadow-lg leading-none" data-i18n="prod_cat_camisolines_title">Camisolines</h3><div class="inline-block self-start bg-[#F3B844] text-dark-navy px-8 py-3 rounded-md font-black text-xs uppercase tracking-widest shadow-xl transform transition-all group-hover:scale-105" data-i18n="btn_explore_now">Explorar Ahora</div></div>
+              </a>
+            </div>
+            <!-- 3. Línea Quirúrgica -->
+            <div class="swiper-slide !w-[300px] md:!w-[450px]">
+              <a href="productos.php?cat=quirurgico" class="relative block h-64 md:h-80 rounded-[2rem] overflow-hidden group shadow-2xl border border-white/10">
+                <img src="assets/img/catalogo/equipodecirugiageneral.png" alt="Línea Quirúrgica" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-i18n-alt="prod_cat_quirurgico_title">
+                <div class="absolute inset-0 bg-gradient-to-t from-dark-navy/90 via-dark-navy/20 to-transparent"></div>
+                <div class="absolute inset-0 flex flex-col justify-end p-8 md:p-10"><h3 class="text-white text-2xl md:text-3xl font-black uppercase tracking-tight mb-4 drop-shadow-lg leading-none" data-i18n="prod_cat_quirurgico_title">Línea Quirúrgica</h3><div class="inline-block self-start bg-[#F3B844] text-dark-navy px-8 py-3 rounded-md font-black text-xs uppercase tracking-widest shadow-xl transform transition-all group-hover:scale-105" data-i18n="btn_explore_now">Explorar Ahora</div></div>
+              </a>
+            </div>
+            <!-- 4. Kits Pacientes -->
+            <div class="swiper-slide !w-[300px] md:!w-[450px]">
+              <a href="productos.php?cat=kit_pacientes" class="relative block h-64 md:h-80 rounded-[2rem] overflow-hidden group shadow-2xl border border-white/10">
+                <img src="assets/img/catalogo/kitpaciente.png" alt="Kits Pacientes" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-i18n-alt="prod_cat_kit_pacientes_title">
+                <div class="absolute inset-0 bg-gradient-to-t from-dark-navy/90 via-dark-navy/20 to-transparent"></div>
+                <div class="absolute inset-0 flex flex-col justify-end p-8 md:p-10"><h3 class="text-white text-2xl md:text-3xl font-black uppercase tracking-tight mb-4 drop-shadow-lg leading-none" data-i18n="prod_cat_kit_pacientes_title">Kits Pacientes</h3><div class="inline-block self-start bg-[#F3B844] text-dark-navy px-8 py-3 rounded-md font-black text-xs uppercase tracking-widest shadow-xl transform transition-all group-hover:scale-105" data-i18n="btn_explore_now">Explorar Ahora</div></div>
+              </a>
+            </div>
+            <!-- 5. Cobertores -->
+            <div class="swiper-slide !w-[300px] md:!w-[450px]">
+              <a href="productos.php?cat=cobertores" class="relative block h-64 md:h-80 rounded-[2rem] overflow-hidden group shadow-2xl border border-white/10">
+                <img src="assets/img/catalogo/sabanas.png" alt="Cobertores" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-i18n-alt="prod_cat_cobertores_title">
+                <div class="absolute inset-0 bg-gradient-to-t from-dark-navy/90 via-dark-navy/20 to-transparent"></div>
+                <div class="absolute inset-0 flex flex-col justify-end p-8 md:p-10"><h3 class="text-white text-2xl md:text-3xl font-black uppercase tracking-tight mb-4 drop-shadow-lg leading-none" data-i18n="prod_cat_cobertores_title">Cobertores</h3><div class="inline-block self-start bg-[#F3B844] text-dark-navy px-8 py-3 rounded-md font-black text-xs uppercase tracking-widest shadow-xl transform transition-all group-hover:scale-105" data-i18n="btn_explore_now">Explorar Ahora</div></div>
+              </a>
+            </div>
+            <!-- 6. Ambos -->
+            <div class="swiper-slide !w-[300px] md:!w-[450px]">
+              <a href="productos.php?cat=ambos" class="relative block h-64 md:h-80 rounded-[2rem] overflow-hidden group shadow-2xl border border-white/10">
+                <img src="assets/img/catalogo/ambos.png" alt="Ambos" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-i18n-alt="prod_cat_ambos_title">
+                <div class="absolute inset-0 bg-gradient-to-t from-dark-navy/90 via-dark-navy/20 to-transparent"></div>
+                <div class="absolute inset-0 flex flex-col justify-end p-8 md:p-10"><h3 class="text-white text-2xl md:text-3xl font-black uppercase tracking-tight mb-4 drop-shadow-lg leading-none" data-i18n="prod_cat_ambos_title">Ambos</h3><div class="inline-block self-start bg-[#F3B844] text-dark-navy px-8 py-3 rounded-md font-black text-xs uppercase tracking-widest shadow-xl transform transition-all group-hover:scale-105" data-i18n="btn_explore_now">Explorar Ahora</div></div>
+              </a>
+            </div>
+            <!-- 7. Kits Diálisis -->
+            <div class="swiper-slide !w-[300px] md:!w-[450px]">
+              <a href="productos.php?cat=kit_dialisis" class="relative block h-64 md:h-80 rounded-[2rem] overflow-hidden group shadow-2xl border border-white/10">
+                <img src="assets/img/catalogo/kitpaciente.png" alt="Kits Diálisis" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-i18n-alt="prod_cat_kit_dialisis_title">
+                <div class="absolute inset-0 bg-gradient-to-t from-dark-navy/90 via-dark-navy/20 to-transparent"></div>
+                <div class="absolute inset-0 flex flex-col justify-end p-8 md:p-10"><h3 class="text-white text-2xl md:text-3xl font-black uppercase tracking-tight mb-4 drop-shadow-lg leading-none" data-i18n="prod_cat_kit_dialisis_title">Kits Diálisis</h3><div class="inline-block self-start bg-[#F3B844] text-dark-navy px-8 py-3 rounded-md font-black text-xs uppercase tracking-widest shadow-xl transform transition-all group-hover:scale-105" data-i18n="btn_explore_now">Explorar Ahora</div></div>
+              </a>
+            </div>
+            
+            <!-- Duplicados para asegurar el loop infinito en pantallas 4k -->
+            <div class="swiper-slide !w-[300px] md:!w-[450px]">
+              <a href="productos.php?cat=proteccion" class="relative block h-64 md:h-80 rounded-[2rem] overflow-hidden group shadow-2xl border border-white/10">
+                <img src="assets/img/catalogo/barbijo.png" alt="Protección Personal" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-i18n-alt="prod_cat_proteccion_title">
+                <div class="absolute inset-0 bg-gradient-to-t from-dark-navy/90 via-dark-navy/20 to-transparent"></div>
+                <div class="absolute inset-0 flex flex-col justify-end p-8 md:p-10"><h3 class="text-white text-2xl md:text-3xl font-black uppercase tracking-tight mb-4 drop-shadow-lg leading-none" data-i18n="prod_cat_proteccion_title">Protección Personal</h3><div class="inline-block self-start bg-[#F3B844] text-dark-navy px-8 py-3 rounded-md font-black text-xs uppercase tracking-widest shadow-xl transform transition-all group-hover:scale-105" data-i18n="btn_explore_now">Explorar Ahora</div></div>
               </a>
             </div>
             <div class="swiper-slide !w-[300px] md:!w-[450px]">
               <a href="productos.php?cat=camisolines" class="relative block h-64 md:h-80 rounded-[2rem] overflow-hidden group shadow-2xl border border-white/10">
                 <img src="assets/img/catalogo/camisolin-lineapremium.png" alt="Camisolines" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-i18n-alt="prod_cat_camisolines_title">
                 <div class="absolute inset-0 bg-gradient-to-t from-dark-navy/90 via-dark-navy/20 to-transparent"></div>
-                <div class="absolute inset-0 flex flex-col justify-end p-8 md:p-10"><h3 class="text-white text-2xl md:text-3xl font-black uppercase tracking-tight mb-4 drop-shadow-lg leading-none" data-i18n="home_catalog_item2">Camisolines <br>Línea Hospitalaria</h3><div class="inline-block self-start bg-[#F3B844] text-dark-navy px-8 py-3 rounded-md font-black text-xs uppercase tracking-widest shadow-xl transform transition-all group-hover:scale-105">Explorar Ahora</div></div>
+                <div class="absolute inset-0 flex flex-col justify-end p-8 md:p-10"><h3 class="text-white text-2xl md:text-3xl font-black uppercase tracking-tight mb-4 drop-shadow-lg leading-none" data-i18n="prod_cat_camisolines_title">Camisolines</h3><div class="inline-block self-start bg-[#F3B844] text-dark-navy px-8 py-3 rounded-md font-black text-xs uppercase tracking-widest shadow-xl transform transition-all group-hover:scale-105" data-i18n="btn_explore_now">Explorar Ahora</div></div>
               </a>
             </div>
             <div class="swiper-slide !w-[300px] md:!w-[450px]">
               <a href="productos.php?cat=quirurgico" class="relative block h-64 md:h-80 rounded-[2rem] overflow-hidden group shadow-2xl border border-white/10">
-                <img src="assets/img/catalogo/equipodecirugiageneral.png" alt="Equipos de Cirugía" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-i18n-alt="prod_cat_quirurgico_title">
+                <img src="assets/img/catalogo/equipodecirugiageneral.png" alt="Línea Quirúrgica" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-i18n-alt="prod_cat_quirurgico_title">
                 <div class="absolute inset-0 bg-gradient-to-t from-dark-navy/90 via-dark-navy/20 to-transparent"></div>
-                <div class="absolute inset-0 flex flex-col justify-end p-8 md:p-10"><h3 class="text-white text-2xl md:text-3xl font-black uppercase tracking-tight mb-4 drop-shadow-lg leading-none" data-i18n="home_catalog_item3">Equipos de Cirugía <br>Estériles</h3><div class="inline-block self-start bg-[#F3B844] text-dark-navy px-8 py-3 rounded-md font-black text-xs uppercase tracking-widest shadow-xl transform transition-all group-hover:scale-105">Explorar Ahora</div></div>
+                <div class="absolute inset-0 flex flex-col justify-end p-8 md:p-10"><h3 class="text-white text-2xl md:text-3xl font-black uppercase tracking-tight mb-4 drop-shadow-lg leading-none" data-i18n="prod_cat_quirurgico_title">Línea Quirúrgica</h3><div class="inline-block self-start bg-[#F3B844] text-dark-navy px-8 py-3 rounded-md font-black text-xs uppercase tracking-widest shadow-xl transform transition-all group-hover:scale-105" data-i18n="btn_explore_now">Explorar Ahora</div></div>
               </a>
             </div>
             <div class="swiper-slide !w-[300px] md:!w-[450px]">
-              <a href="productos.php?cat=cama" class="relative block h-64 md:h-80 rounded-[2rem] overflow-hidden group shadow-2xl border border-white/10">
-                <img src="assets/img/catalogo/sabanas.png" alt="Ropa de Cama" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-i18n-alt="prod_cat_cama_title">
+              <a href="productos.php?cat=kit_pacientes" class="relative block h-64 md:h-80 rounded-[2rem] overflow-hidden group shadow-2xl border border-white/10">
+                <img src="assets/img/catalogo/kitpaciente.png" alt="Kits Pacientes" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-i18n-alt="prod_cat_kit_pacientes_title">
                 <div class="absolute inset-0 bg-gradient-to-t from-dark-navy/90 via-dark-navy/20 to-transparent"></div>
-                <div class="absolute inset-0 flex flex-col justify-end p-8 md:p-10"><h3 class="text-white text-2xl md:text-3xl font-black uppercase tracking-tight mb-4 drop-shadow-lg leading-none" data-i18n="home_catalog_item4">Ropa de Cama <br>& Campos</h3><div class="inline-block self-start bg-[#F3B844] text-dark-navy px-8 py-3 rounded-md font-black text-xs uppercase tracking-widest shadow-xl transform transition-all group-hover:scale-105">Explorar Ahora</div></div>
+                <div class="absolute inset-0 flex flex-col justify-end p-8 md:p-10"><h3 class="text-white text-2xl md:text-3xl font-black uppercase tracking-tight mb-4 drop-shadow-lg leading-none" data-i18n="prod_cat_kit_pacientes_title">Kits Pacientes</h3><div class="inline-block self-start bg-[#F3B844] text-dark-navy px-8 py-3 rounded-md font-black text-xs uppercase tracking-widest shadow-xl transform transition-all group-hover:scale-105" data-i18n="btn_explore_now">Explorar Ahora</div></div>
               </a>
             </div>
           </div>
@@ -493,18 +638,72 @@ $noticias = $stmt->fetchAll();
               </div>
               <div class="flex gap-6 items-center">
                 <div class="w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center border border-slate-100 text-primary"><span class="material-symbols-outlined text-2xl">mail</span></div>
-                <div><p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Email Corporativo</p><p class="text-lg font-bold text-dark-navy leading-tight">ventas@dpc.com.ar</p></div>
+                <div><p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Email Corporativo</p><p class="text-lg font-bold text-dark-navy leading-tight">pedidos@pharmacenter.com.ar</p></div>
+              </div>
+              <div class="flex gap-6 items-center">
+                <div class="w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center border border-slate-100 text-primary"><span class="material-symbols-outlined text-2xl">call</span></div>
+                <div><p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Teléfonos</p><p class="text-base font-bold text-dark-navy leading-tight">3817 03-0228 / 3813 86-2781 / 3812 50-5957</p></div>
               </div>
             </div>
           </div>
           <div class="bg-white p-8 md:p-12 rounded-[2.5rem] border border-slate-200 shadow-2xl relative overflow-hidden">
-            <form class="space-y-6 relative z-10">
-              <div class="grid md:grid-cols-2 gap-6">
-                <div><label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Nombre Completo</label><input type="text" class="w-full bg-slate-50 border border-slate-100 rounded-xl px-5 py-3.5 outline-none text-sm" placeholder="Ej: Juan Pérez"></div>
-                <div><label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Institución</label><input type="text" class="w-full bg-slate-50 border border-slate-100 rounded-xl px-5 py-3.5 outline-none text-sm" placeholder="Clínica / Hospital"></div>
-              </div>
-              <button class="w-full bg-primary text-white font-black py-4 rounded-xl shadow-lg flex items-center justify-center gap-3 text-sm tracking-widest group">ENVIAR SOLICITUD <span class="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span></button>
-            </form>
+                  <div id="form"></div>
+                  <?php if (isset($_GET['msg']) && $_GET['msg'] === 'ok'): ?>
+                    <div class="bg-green-50 border border-green-200 text-green-700 px-6 py-4 rounded-2xl mb-6 font-bold flex items-center gap-3">
+                      <span class="material-symbols-outlined">check_circle</span>
+                      ¡Mensaje enviado correctamente! Nos comunicaremos pronto.
+                    </div>
+                  <?php endif; ?>
+                  <form action="procesar_contacto.php" method="POST" class="space-y-6 relative z-10">
+                    <input type="hidden" name="redirect" value="index.php">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      <div class="space-y-3">
+                        <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1" data-i18n="contact_form_name">Nombre Completo</label>
+                        <input type="text" name="nombre" required class="w-full bg-white/50 backdrop-blur-sm border border-slate-200 rounded-2xl px-6 py-4 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all outline-none text-sm text-dark-navy placeholder:text-slate-400" placeholder="Ej: Juan Pérez">
+                      </div>
+                      <div class="space-y-3">
+                        <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1" data-i18n="contact_form_institution">Institución / Empresa</label>
+                        <input type="text" name="institucion" class="w-full bg-white/50 backdrop-blur-sm border border-slate-200 rounded-2xl px-6 py-4 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all outline-none text-sm text-dark-navy placeholder:text-slate-400" placeholder="Nombre de la Institución">
+                      </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      <div class="space-y-3">
+                        <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1" data-i18n="contact_form_email">Email de Contacto</label>
+                        <input type="email" name="email" required class="w-full bg-white/50 backdrop-blur-sm border border-slate-200 rounded-2xl px-6 py-4 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all outline-none text-sm text-dark-navy placeholder:text-slate-400" placeholder="usuario@institucion.com">
+                      </div>
+                      <div class="space-y-3">
+                        <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1" data-i18n="contact_phone_label">Teléfono Directo</label>
+                        <input type="tel" name="telefono" class="w-full bg-white/50 backdrop-blur-sm border border-slate-200 rounded-2xl px-6 py-4 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all outline-none text-sm text-dark-navy placeholder:text-slate-400" placeholder="+54 381 000 0000">
+                      </div>
+                    </div>
+
+                    <div class="space-y-3">
+                      <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Producto de Interés</label>
+                      <div class="relative">
+                        <select name="producto" class="w-full bg-white/50 backdrop-blur-sm border border-slate-200 rounded-2xl px-6 py-4 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all outline-none text-sm appearance-none cursor-pointer text-dark-navy">
+                          <option class="text-slate-800 bg-white" value="" disabled selected data-i18n="contact_form_product_placeholder">Seleccione una categoría</option>
+                          <option class="text-slate-800 bg-white" value="Protección Personal" data-i18n="contact_form_opt1">Protección Personal (Barbijos, Cofias, Botas)</option>
+                          <option class="text-slate-800 bg-white" value="Camisolines Hospitalarios" data-i18n="contact_form_opt2">Camisolines Hospitalarios</option>
+                          <option class="text-slate-800 bg-white" value="Equipos de Cirugía Estériles" data-i18n="contact_form_opt3">Equipos de Cirugía Estériles</option>
+                          <option class="text-slate-800 bg-white" value="Ropa de Cama y Campos" data-i18n="contact_form_opt4">Ropa de Cama y Campos</option>
+                          <option class="text-slate-800 bg-white" value="Kits Médicos Específicos" data-i18n="contact_form_opt5">Kits Médicos Específicos</option>
+                          <option class="text-slate-800 bg-white" value="Otros Productos y Accesorios" data-i18n="contact_form_opt6">Otros Productos y Accesorios</option>
+                        </select>
+                        <span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">expand_more</span>
+                      </div>
+                    </div>
+
+                    <div class="space-y-3">
+                      <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1" data-i18n="contact_form_message">Mensaje o Consulta</label>
+                      <textarea name="mensaje" rows="4" class="w-full bg-white/50 backdrop-blur-sm border border-slate-200 rounded-2xl px-6 py-4 focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all outline-none text-sm text-dark-navy resize-none placeholder:text-slate-400" placeholder="Detalle su requerimiento o inquietud..."></textarea>
+                    </div>
+
+                    <button class="w-full bg-primary hover:bg-[#153f7a] text-white font-black py-5 rounded-2xl transition-all shadow-xl shadow-primary/20 flex items-center justify-center gap-4 text-xs tracking-[0.2em] group" type="submit" data-i18n="btn_send_request">
+                      ENVIAR CONSULTA PROFESIONAL
+                      <span class="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">send</span>
+                    </button>
+                  </form>
           </div>
         </div>
       </div>
@@ -529,7 +728,7 @@ $noticias = $stmt->fetchAll();
       </div>
     </footer>
 
-    <a class="fixed bottom-10 right-10 z-[60] w-20 h-20 bg-[#25D366] rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform group" href="https://wa.me/543814456789" target="_blank">
+    <a class="fixed bottom-10 right-10 z-[60] w-20 h-20 bg-[#25D366] rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform group" href="https://wa.me/5493817030228" target="_blank">
       <svg class="w-10 h-10 text-white fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.185-.573c.948.517 2.139.945 3.145.945 3.181 0 5.768-2.586 5.768-5.766 0-3.18-2.587-5.766-5.767-5.766zm3.371 8.203c-.144.405-.833.748-1.15.773-.243.018-.56.033-1.602-.383-1.353-.54-2.226-1.888-2.293-1.979-.066-.091-.539-.717-.539-1.379 0-.662.348-.988.472-1.12.124-.132.273-.166.364-.166.091 0 .182.001.261.005.083.004.195-.032.304.233.112.274.385.938.418 1.005.033.066.054.144.01.233-.044.089-.066.144-.132.221-.066.077-.14.173-.2.235-.069.071-.141.148-.061.286.08.138.354.584.76 0.941.522.459.963.601 1.102.668.138.066.221.055.304-.042.083-.097.354-.412.449-.553.095-.141.19-.118.32-.07.13.047.825.389.968.461.143.072.238.107.273.167.035.06.035.348-.109.753z"></path></svg>
     </a>
 
@@ -543,10 +742,11 @@ $noticias = $stmt->fetchAll();
         nav.classList.toggle("nav-scrolled", window.scrollY > 100);
       });
 
-      // Parallax Watermark
+      // Parallax Watermark (desktop only)
       window.addEventListener("scroll", function () {
         const watermark = document.getElementById("parallax-watermark");
         if (!watermark) return;
+        if (window.innerWidth < 768) return; // skip on mobile
         const scrollPos = window.scrollY;
         const offset = (scrollPos - watermark.parentElement.offsetTop) * 0.4;
         watermark.style.transform = `translateX(${offset}px)`;
@@ -565,16 +765,65 @@ $noticias = $stmt->fetchAll();
       new Swiper(".productSwiper", {
         slidesPerView: "auto",
         centeredSlides: true,
-        spaceBetween: 30,
+        spaceBetween: 24,
         loop: true,
+        speed: 800,
         grabCursor: true,
         autoplay: {
-          delay: 3000,
+          delay: 2500,
           disableOnInteraction: false,
         },
         pagination: { el: ".swiper-pagination", clickable: true },
         breakpoints: { 768: { spaceBetween: 50 } }
       });
+
+      // Info Cards Modal
+      const modalData = [
+        { icon: "precision_manufacturing", titleKey: "home_modal_0_title", textKey: "home_modal_0_text" },
+        { icon: "language",                titleKey: "home_modal_1_title", textKey: "home_modal_1_text" },
+        { icon: "workspace_premium",       titleKey: "home_modal_2_title", textKey: "home_modal_2_text" },
+        { icon: "rule",                    titleKey: "home_modal_3_title", textKey: "home_modal_3_text" }
+      ];
+
+      function openModal(index) {
+        const data = modalData[index];
+        if (!data) return;
+        document.getElementById('modalIcon').textContent = data.icon;
+        document.getElementById('modalTitle').textContent = i18n.t(data.titleKey);
+        document.getElementById('modalText').textContent  = i18n.t(data.textKey);
+        const modal = document.getElementById('infoModal');
+        modal.classList.remove('invisible', 'opacity-0');
+        modal.classList.add('visible', 'opacity-100');
+        const content = document.getElementById('modalContent');
+        content.classList.remove('scale-95', 'opacity-0');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal() {
+        const modal = document.getElementById('infoModal');
+        modal.classList.add('invisible', 'opacity-0');
+        modal.classList.remove('visible', 'opacity-100');
+        document.getElementById('modalContent').classList.add('scale-95', 'opacity-0');
+        document.body.style.overflow = '';
+      }
+
+      // Mobile Menu
+      function openMobileMenu() {
+        const drawer = document.getElementById('mobile-drawer');
+        drawer.classList.remove('translate-x-full');
+        drawer.classList.add('translate-x-0');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeMobileMenu() {
+        const drawer = document.getElementById('mobile-drawer');
+        drawer.classList.add('translate-x-full');
+        drawer.classList.remove('translate-x-0');
+        document.body.style.overflow = '';
+      }
+
+      document.getElementById('mobile-menu-btn').addEventListener('click', openMobileMenu);
+      document.getElementById('mobile-close-btn').addEventListener('click', closeMobileMenu);
     </script>
     <!-- Global Search Overlay -->
     <div id="search-overlay" class="fixed inset-0 z-[100] hidden items-start justify-center bg-navy-dark/95 backdrop-blur-md p-4 pt-20 transition-all duration-300">
