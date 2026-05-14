@@ -606,7 +606,7 @@ $noticias = $stmt->fetchAll();
           <!-- 7. Kits Diálisis -->
           <div class="swiper-slide !w-[300px] md:!w-[450px]">
             <a href="productos.php?cat=kit_dialisis" class="relative block h-64 md:h-80 rounded-[2rem] overflow-hidden group shadow-2xl border border-white/10">
-              <img src="assets/img/catalogo/kidcatetermod1.png" alt="Kits Diálisis" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-i18n-alt="prod_cat_kit_dialisis_title">
+              <img src="assets/img/catalogo/blanco-kidcatetermod1.png" alt="Kits Diálisis" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-i18n-alt="prod_cat_kit_dialisis_title">
               <div class="absolute inset-0 bg-gradient-to-t from-dark-navy/90 via-dark-navy/20 to-transparent"></div>
               <div class="absolute inset-0 flex flex-col justify-end p-8 md:p-10">
                 <h3 class="text-white text-2xl md:text-3xl font-black uppercase tracking-tight mb-4 drop-shadow-lg leading-none" data-i18n="prod_cat_kit_dialisis_title">Kits Diálisis</h3>

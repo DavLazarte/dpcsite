@@ -469,7 +469,7 @@ foreach ($dbProducts as $p) {
       {
         id: "kit_dialisis",
         titleKey: "prod_cat_kit_dialisis_title",
-        image: "assets/img/catalogo/kidcatetermod1.png",
+        image: "assets/img/catalogo/blanco-kidcatetermod1.png",
         descKey: "prod_cat_kit_dialisis_desc"
       },
     ];
