@@ -97,39 +97,86 @@ function getSpecIconB64($key) {
 
 // Generar tabla de specs
 $specsHtml = '';
-$specsHtml = '';
-foreach ($specs as $spec) {
-    $parts = explode(':', $spec, 2);
-    if (count($parts) == 2) {
-        $key = trim($parts[0]);
-        $value = trim($parts[1]);
-        
-        $normalizedKey = strtolower(iconv('UTF-8', 'ASCII//TRANSLIT', $key));
-        if (in_array(trim($normalizedKey), ['contenido', 'conexion', 'desconexion', 'conexión', 'desconexión'])) {
-            $items = explode('/', $value);
-            $valHtml = '';
-            foreach ($items as $index => $item) {
-                $letter = chr(65 + $index);
-                $valHtml .= '<div class="item-row"><span class="item-text">' . trim($item) . '</span> <span class="circle-letter">' . $letter . '</span></div>';
-            }
-        } else {
-            $valHtml = $value;
-        }
+if (is_array($specs)) {
+    foreach ($specs as $spec) {
+        $parts = explode(':', $spec, 2);
+        if (count($parts) == 2) {
+            $key   = trim($parts[0]);
+            $value = trim($parts[1]);
 
-        $specsHtml .= '<tr><td class="spec-key">'.getSpecIconB64($key).' '.$key.'</td><td class="spec-val">'.$valHtml.'</td></tr>';
-    } else {
-        $specsHtml .= '<tr><td colspan="2" style="font-weight: 900; font-size: 14px; border-bottom: 2px solid #000; padding-top: 15px; padding-bottom: 5px;">'.strtoupper($spec).'</td></tr>';
+            // Normalización de llave robusta y a prueba de fallos en iconv()
+            $normalizedKey = @iconv('UTF-8', 'ASCII//TRANSLIT', $key);
+            if ($normalizedKey === false) {
+                // Fallback seguro sin iconv
+                $normalizedKey = strtolower(str_replace(
+                    ['á','é','í','ó','ú','ñ','Á','É','Í','Ó','Ú','Ñ'],
+                    ['a','e','i','o','u','n','a','e','i','o','u','n'],
+                    $key
+                ));
+            } else {
+                $normalizedKey = strtolower($normalizedKey);
+            }
+
+            $listKeys = ['contenido', 'conexion', 'desconexion', 'conexi', 'desconexion'];
+            $isListKey = false;
+            foreach ($listKeys as $lk) {
+                if (strpos($normalizedKey, $lk) !== false) { $isListKey = true; break; }
+            }
+
+            if ($isListKey) {
+                // Normalizar separador: convertir \/ a / y luego explode simple
+                $cleanValue = str_replace('\\/', '/', $value);
+                
+                // Dividir por saltos de línea HTML (<br>, <br/>) o por barras inclinadas (/)
+                if (preg_match('/<br\s*\/?>/i', $cleanValue)) {
+                    $items = preg_split('/<br\s*\/?>/i', $cleanValue);
+                } else {
+                    $items = explode('/', $cleanValue);
+                }
+
+                $valHtml = '';
+                $letterIndex = 0;
+                foreach ($items as $item) {
+                    $itemStr = trim($item);
+                    if ($itemStr !== '') {
+                        $letter   = chr(65 + $letterIndex);
+                        // Estructura de tabla interna robusta en lugar de floats.
+                        // Esto garantiza que Dompdf calcule la altura de fila correctamente y previene solapamiento.
+                        $valHtml .= '<table style="width: 100%; border-collapse: collapse; border: 0; margin-bottom: 4px;">' .
+                                    '<tr>' .
+                                    '<td style="width: 85%; padding: 2px 0; border: 0; color: #444; font-size: 14px; vertical-align: top;">' . $itemStr . '</td>' .
+                                    '<td style="width: 15%; padding: 2px 0; border: 0; text-align: right; vertical-align: top;">' .
+                                    '<span class="circle-letter">' . $letter . '</span>' .
+                                    '</td>' .
+                                    '</tr>' .
+                                    '</table>';
+                        $letterIndex++;
+                    }
+                }
+            } else {
+                $valHtml = $value;
+            }
+
+            $specsHtml .= '<tr><td class="spec-key">' . getSpecIconB64($key) . ' ' . htmlspecialchars($key) . '</td><td class="spec-val">' . $valHtml . '</td></tr>';
+        } else {
+            $specsHtml .= '<tr><td colspan="2" style="font-weight: 900; font-size: 14px; border-bottom: 2px solid #000; padding-top: 15px; padding-bottom: 5px;">' . strtoupper(htmlspecialchars($spec)) . '</td></tr>';
+        }
     }
 }
 
+
 // Definir título principal basado en la categoría
 $titulos = [
-    'proteccion'  => 'Protección Personal',
-    'camisolines' => 'Camisolines Descartables',
-    'quirurgico'  => 'Equipos de Cirugía Estéril',
-    'kits'        => 'Kits y Tratamientos',
-    'cama'        => 'Ropa de Cama y Campos',
-    'otros'       => 'Accesorios Médicos',
+    'proteccion'    => 'Protección Personal',
+    'camisolines'   => 'Camisolines Descartables',
+    'quirurgico'    => 'Equipos de Cirugía Estéril',
+    'kits'          => 'Kits y Tratamientos',
+    'kit_pacientes' => 'Kits y Tratamientos',
+    'kit_dialisis'  => 'Kits y Tratamientos',
+    'cama'          => 'Ropa de Cama y Campos',
+    'cobertores'    => 'Ropa de Cama y Campos',
+    'ambos'         => 'Accesorios Médicos',
+    'otros'         => 'Accesorios Médicos',
 ];
 $catKey = strtolower($producto['categoria']);
 $tituloPrincipal = isset($titulos[$catKey]) ? $titulos[$catKey] : 'Catálogo de Productos';

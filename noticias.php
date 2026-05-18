@@ -11,50 +11,53 @@ $featured_id = isset($_GET['id']) ? (int)$_GET['id'] : null;
 $featured_news = null;
 
 if ($featured_id) {
-    foreach ($noticias as $n) {
-        if ($n['id'] === $featured_id) {
-            $featured_news = $n;
-            break;
-        }
+  foreach ($noticias as $n) {
+    if ($n['id'] === $featured_id) {
+      $featured_news = $n;
+      break;
     }
+  }
 }
 
 // Si no hay ID o no se encontró, la primera es la destacada
 if (!$featured_news && !empty($noticias)) {
-    $featured_news = $noticias[0];
+  $featured_news = $noticias[0];
 }
 ?>
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>DPC – Novedades y Actualidad Médica</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
-    <script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              primary: "#1A4F9C",
-              accent: "#D42B2B",
-              "dark-navy": "#0B1A2E",
-              "navy-dark": "#0B1A2E",
-              "background-light": "#FFFFFF",
-            },
-            fontFamily: { display: ["Public Sans"] },
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>DPC – Novedades y Actualidad Médica</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#1A4F9C",
+            accent: "#D42B2B",
+            "dark-navy": "#0B1A2E",
+            "navy-dark": "#0B1A2E",
+            "background-light": "#FFFFFF",
+          },
+          fontFamily: {
+            display: ["Public Sans"]
           },
         },
-      };
-    </script>
-    <style type="text/tailwindcss">
-      @layer components {
+      },
+    };
+  </script>
+  <style type="text/tailwindcss">
+    @layer components {
         .nav-scrolled {
           background-color: rgba(255, 255, 255, 0.97) !important;
           border-bottom: 1px solid rgba(26, 79, 156, 0.08);
@@ -90,139 +93,139 @@ if (!$featured_news && !empty($noticias)) {
         }
       }
     </style>
-  </head>
-  <body class="bg-background-light text-slate-900 overflow-x-hidden">
-    <div class="connection-line"></div>
-    <nav
-      class="fixed top-0 w-full z-50 transition-all duration-500 px-6 py-3 flex items-center justify-between"
-      id="main-nav"
-    >
-      <div class="flex items-center gap-3">
-        <a href="index.php"><img src="assets/img/logo.png" alt="DPC Logo" class="h-14 w-auto" /></a>
-      </div>
-      <div class="hidden md:flex items-center gap-8">
-        <a class="text-sm font-semibold tracking-wide text-white hover:text-white/70 transition-colors" href="index.php" data-i18n="nav_home">INICIO</a>
-        <div class="relative group flex items-center">
-          <a href="nosotros.html" class="text-sm font-semibold tracking-wide text-white hover:text-white/70 transition-colors uppercase" data-i18n="nav_about">NOSOTROS</a>
-          <button class="flex items-center text-white hover:text-white/70 transition-colors ml-1">
-            <span class="material-symbols-outlined text-base" style="font-size:16px">expand_more</span>
-          </button>
-          <div class="nav-dropdown absolute invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 bg-white rounded-2xl shadow-2xl shadow-slate-200/80 border border-slate-100 py-2 z-50">
-            <a href="nosotros.html#historia" class="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:text-primary hover:bg-slate-50 transition-colors" data-i18n="nav_about_history">
-              <span class="material-symbols-outlined text-primary" style="font-size:18px">history_edu</span>Historia
-            </a>
-            <a href="nosotros.html#certificacion" class="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:text-primary hover:bg-slate-50 transition-colors" data-i18n="nav_about_certification">
-              <span class="material-symbols-outlined text-primary" style="font-size:18px">verified_user</span>Certificación
-            </a>
-            <a href="nosotros.html#equipo" class="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:text-primary hover:bg-slate-50 transition-colors" data-i18n="nav_about_team">
-              <span class="material-symbols-outlined text-primary" style="font-size:18px">group</span>Equipo de Trabajo
-            </a>
-            <a href="nosotros.html#cultura" class="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:text-primary hover:bg-slate-50 transition-colors" data-i18n="nav_about_culture">
-              <span class="material-symbols-outlined text-primary" style="font-size:18px">diversity_3</span>Cultura
-            </a>
-          </div>
-        </div>
-        <div class="relative group flex items-center">
-          <a href="productos.php" class="text-sm font-semibold tracking-wide text-white hover:text-white/70 transition-colors uppercase" data-i18n="nav_products">PRODUCTOS</a>
-          <button class="flex items-center text-white hover:text-white/70 transition-colors ml-1">
-            <span class="material-symbols-outlined text-base" style="font-size:16px">expand_more</span>
-          </button>
-          <div class="nav-megamenu absolute invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 bg-white rounded-2xl shadow-2xl shadow-slate-200/80 border border-slate-100 p-6 z-50">
-            <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-4 pb-3 border-b border-slate-100" data-i18n="nav_products_catalog">Catálogo de Productos</p>
-            <div class="grid grid-cols-2 gap-x-8 gap-y-1">
-              <a href="productos.php?cat=proteccion" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Protección Personal</a>
-              <a href="productos.php?cat=camisolines" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Camisolines</a>
-              <a href="productos.php?cat=quirurgico" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Línea Quirúrgica</a>
-              <a href="productos.php?cat=kit_pacientes" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Kits Pacientes</a>
-              <a href="productos.php?cat=cobertores" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Cobertores</a>
-              <a href="productos.php?cat=ambos" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Ambos</a>
-              <a href="productos.php?cat=kit_dialisis" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Kits Diálisis</a>
-            </div>
-            <div class="mt-4 pt-3 border-t border-slate-100">
-              <a href="productos.php" class="inline-flex items-center gap-2 text-xs font-bold text-primary hover:underline">
-                Ver catálogo completo <span class="material-symbols-outlined" style="font-size:14px">arrow_forward</span>
-              </a>
-            </div>
-          </div>
-        </div>
-        <a class="text-sm font-semibold tracking-wide text-white hover:text-white/70 transition-colors border-b-2 border-accent" href="noticias.php">NOTICIAS</a>
-        <a class="text-sm font-semibold tracking-wide text-white hover:text-white/70 transition-colors" href="contacto.html">CONTACTO</a>
-        
-        <div class="flex items-center gap-2.5 px-4 border-l border-white/10 ml-2">
-          <button onclick="openGlobalSearch()" class="flex items-center text-white hover:text-white/70 transition-colors mr-2" title="Buscar">
-            <span class="material-symbols-outlined text-xl">search</span>
-          </button>
-          <a href="#" onclick="event.preventDefault(); i18n.load('es');" title="Español" class="flex" data-i18n-title="nav_lang_es"><img src="https://flagcdn.com/w40/es.png" class="w-5 h-5 rounded-full object-cover border border-white/20 hover:scale-110 transition-transform shadow-sm" alt="ES"></a>
-          <a href="#" onclick="event.preventDefault(); i18n.load('en');" title="English" class="flex" data-i18n-title="nav_lang_en"><img src="https://flagcdn.com/w40/us.png" class="w-5 h-5 rounded-full object-cover border border-white/20 hover:scale-110 transition-transform shadow-sm" alt="EN"></a>
-          <a href="#" onclick="event.preventDefault(); i18n.load('pt');" title="Português" class="flex" data-i18n-title="nav_lang_pt"><img src="https://flagcdn.com/w40/br.png" class="w-5 h-5 rounded-full object-cover border border-white/20 hover:scale-110 transition-transform shadow-sm" alt="PT"></a>
-        </div>
+</head>
 
-        <a href="assets/pdf/catalogo.pdf" target="_blank"
-          class="nav-cta bg-primary hover:bg-[#153f7a] text-white px-6 py-2.5 rounded-full font-semibold text-sm transition-all shadow-md shadow-primary/20"
-          data-i18n="nav_catalog">
-          CATÁLOGO
-        </a>
-        
-        <a href="admin/login.php" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold transition-all border border-white/10">
-          <span class="material-symbols-outlined text-sm">login</span>
-          INGRESAR
-        </a>
-      </div>
-      <button class="md:hidden text-white z-50" id="mobile-menu-btn" aria-label="Abrir menú">
-        <span class="material-symbols-outlined text-3xl" id="mobile-menu-icon">menu</span>
-      </button>
-    </nav>
-
-    <!-- Mobile Drawer -->
-    <div id="mobile-drawer" class="fixed inset-0 z-[200] flex flex-col bg-dark-navy text-white translate-x-full transition-transform duration-300 ease-in-out md:hidden overflow-y-auto">
-      <div class="flex items-center justify-between px-6 py-4 border-b border-white/10">
-        <img src="assets/img/logo.png" alt="DPC Logo" class="h-12 w-auto" />
-        <button id="mobile-close-btn" aria-label="Cerrar menú">
-          <span class="material-symbols-outlined text-3xl">close</span>
-        </button>
-      </div>
-      <nav class="flex flex-col px-6 py-8 gap-1 text-base font-semibold">
-        <a href="index.php" class="py-3 border-b border-white/5 hover:text-primary transition-colors">Inicio</a>
-        <a href="nosotros.html" class="py-3 border-b border-white/5 hover:text-primary transition-colors">Nosotros</a>
-        <div class="py-3 border-b border-white/5">
-          <p class="text-xs font-black uppercase tracking-widest text-slate-400 mb-3">Productos</p>
-          <div class="flex flex-col gap-2 pl-2">
-            <a href="productos.php?cat=proteccion" class="py-1.5 text-slate-300 hover:text-primary transition-colors">Protección Personal</a>
-            <a href="productos.php?cat=camisolines" class="py-1.5 text-slate-300 hover:text-primary transition-colors">Camisolines</a>
-            <a href="productos.php?cat=quirurgico" class="py-1.5 text-slate-300 hover:text-primary transition-colors">Línea Quirúrgica</a>
-            <a href="productos.php?cat=kit_pacientes" class="py-1.5 text-slate-300 hover:text-primary transition-colors">Kits Pacientes</a>
-            <a href="productos.php?cat=cobertores" class="py-1.5 text-slate-300 hover:text-primary transition-colors">Cobertores</a>
-            <a href="productos.php?cat=ambos" class="py-1.5 text-slate-300 hover:text-primary transition-colors">Ambos</a>
-            <a href="productos.php?cat=kit_dialisis" class="py-1.5 text-slate-300 hover:text-primary transition-colors">Kits Diálisis</a>
-            <a href="productos.php" class="py-1.5 text-primary font-bold hover:underline">Ver todos →</a>
-          </div>
-        </div>
-        <a href="noticias.php" class="py-3 border-b border-white/5 hover:text-primary transition-colors text-primary font-black">Noticias</a>
-        <a href="contacto.html" class="py-3 border-b border-white/5 hover:text-primary transition-colors">Contacto</a>
-      </nav>
-      <div class="px-6 pb-8 flex flex-col gap-3 mt-auto">
-        <div class="flex items-center gap-4 mb-2">
-          <a href="#" onclick="event.preventDefault(); i18n.load('es'); closeMobileMenu();" class="flex items-center gap-1 text-sm"><img src="https://flagcdn.com/w40/es.png" class="w-5 h-5 rounded-full" alt="ES"> ES</a>
-          <a href="#" onclick="event.preventDefault(); i18n.load('en'); closeMobileMenu();" class="flex items-center gap-1 text-sm"><img src="https://flagcdn.com/w40/us.png" class="w-5 h-5 rounded-full" alt="EN"> EN</a>
-          <a href="#" onclick="event.preventDefault(); i18n.load('pt'); closeMobileMenu();" class="flex items-center gap-1 text-sm"><img src="https://flagcdn.com/w40/br.png" class="w-5 h-5 rounded-full" alt="PT"> PT</a>
-        </div>
-        <a href="assets/pdf/catalogo.pdf" target="_blank" class="w-full text-center bg-primary text-white px-6 py-3 rounded-full font-bold">Ver Catálogo PDF</a>
-      </div>
+<body class="bg-background-light text-slate-900 overflow-x-hidden">
+  <div class="connection-line"></div>
+  <nav
+    class="fixed top-0 w-full z-50 transition-all duration-500 px-6 py-3 flex items-center justify-between"
+    id="main-nav">
+    <div class="flex items-center gap-3">
+      <a href="index.php"><img src="assets/img/logo.png" alt="DPC Logo" class="h-14 w-auto" /></a>
     </div>
-
-    <main class="pt-[80px]">
-      <!-- Hero Section -->
-      <section class="relative h-[300px] w-full overflow-hidden bg-navy-dark mb-12">
-        <div class="absolute inset-0 opacity-40 bg-cover bg-center" style="background-image: url('assets/img/Hospitalaria.webp');"></div>
-        <div class="absolute inset-0 bg-gradient-to-r from-navy-dark via-navy-dark/80 to-transparent"></div>
-        <div class="relative mx-auto flex h-full max-w-7xl flex-col justify-center px-6 md:px-20">
-          <h1 class="text-4xl md:text-6xl font-black text-white mb-6 leading-tight max-w-2xl" data-i18n="news_hero_title">Actualidad Médica</h1>
-          <p class="text-lg md:text-xl text-slate-300 max-w-2xl font-light" data-i18n="news_hero_desc">Explorando las últimas innovaciones y el futuro del sector salud.</p>
+    <div class="hidden md:flex items-center gap-8">
+      <a class="text-sm font-semibold tracking-wide text-white hover:text-white/70 transition-colors" href="index.php" data-i18n="nav_home">INICIO</a>
+      <div class="relative group flex items-center">
+        <a href="nosotros.html" class="text-sm font-semibold tracking-wide text-white hover:text-white/70 transition-colors uppercase" data-i18n="nav_about">NOSOTROS</a>
+        <button class="flex items-center text-white hover:text-white/70 transition-colors ml-1">
+          <span class="material-symbols-outlined text-base" style="font-size:16px">expand_more</span>
+        </button>
+        <div class="nav-dropdown absolute invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 bg-white rounded-2xl shadow-2xl shadow-slate-200/80 border border-slate-100 py-2 z-50">
+          <a href="nosotros.html#historia" class="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:text-primary hover:bg-slate-50 transition-colors" data-i18n="nav_about_history">
+            <span class="material-symbols-outlined text-primary" style="font-size:18px">history_edu</span>Historia
+          </a>
+          <a href="nosotros.html#certificacion" class="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:text-primary hover:bg-slate-50 transition-colors" data-i18n="nav_about_certification">
+            <span class="material-symbols-outlined text-primary" style="font-size:18px">verified_user</span>Certificación
+          </a>
+          <a href="nosotros.html#equipo" class="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:text-primary hover:bg-slate-50 transition-colors" data-i18n="nav_about_team">
+            <span class="material-symbols-outlined text-primary" style="font-size:18px">group</span>Equipo de Trabajo
+          </a>
+          <a href="nosotros.html#cultura" class="flex items-center gap-3 px-5 py-3 text-sm text-slate-600 hover:text-primary hover:bg-slate-50 transition-colors" data-i18n="nav_about_culture">
+            <span class="material-symbols-outlined text-primary" style="font-size:18px">diversity_3</span>Cultura
+          </a>
         </div>
-      </section>
+      </div>
+      <div class="relative group flex items-center">
+        <a href="productos.php" class="text-sm font-semibold tracking-wide text-white hover:text-white/70 transition-colors uppercase" data-i18n="nav_products">PRODUCTOS</a>
+        <button class="flex items-center text-white hover:text-white/70 transition-colors ml-1">
+          <span class="material-symbols-outlined text-base" style="font-size:16px">expand_more</span>
+        </button>
+        <div class="nav-megamenu absolute invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 bg-white rounded-2xl shadow-2xl shadow-slate-200/80 border border-slate-100 p-6 z-50">
+          <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-4 pb-3 border-b border-slate-100" data-i18n="nav_products_catalog">Catálogo de Productos</p>
+          <div class="grid grid-cols-2 gap-x-8 gap-y-1">
+            <a href="productos.php?cat=proteccion" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Protección Personal</a>
+            <a href="productos.php?cat=camisolines" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Camisolines</a>
+            <a href="productos.php?cat=quirurgico" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Línea Quirúrgica</a>
+            <a href="productos.php?cat=kit_pacientes" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Kits Pacientes</a>
+            <a href="productos.php?cat=cobertores" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Cobertores</a>
+            <a href="productos.php?cat=ambos" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Ambos</a>
+            <a href="productos.php?cat=kit_dialisis" class="text-sm text-slate-600 hover:text-primary py-1.5 transition-colors">Kits Diálisis</a>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100">
+            <a href="productos.php" class="inline-flex items-center gap-2 text-xs font-bold text-primary hover:underline">
+              Ver catálogo completo <span class="material-symbols-outlined" style="font-size:14px">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <a class="text-sm font-semibold tracking-wide text-white hover:text-white/70 transition-colors border-b-2 border-accent" href="noticias.php">NOTICIAS</a>
+      <a class="text-sm font-semibold tracking-wide text-white hover:text-white/70 transition-colors" href="contacto.html">CONTACTO</a>
 
-      <div class="max-w-7xl mx-auto px-6 lg:px-20">
-        <?php if ($featured_news): ?>
+      <div class="flex items-center gap-2.5 px-4 border-l border-white/10 ml-2">
+        <button onclick="openGlobalSearch()" class="flex items-center text-white hover:text-white/70 transition-colors mr-2" title="Buscar">
+          <span class="material-symbols-outlined text-xl">search</span>
+        </button>
+        <a href="#" onclick="event.preventDefault(); i18n.load('es');" title="Español" class="flex" data-i18n-title="nav_lang_es"><img src="https://flagcdn.com/w40/es.png" class="w-5 h-5 rounded-full object-cover border border-white/20 hover:scale-110 transition-transform shadow-sm" alt="ES"></a>
+        <a href="#" onclick="event.preventDefault(); i18n.load('en');" title="English" class="flex" data-i18n-title="nav_lang_en"><img src="https://flagcdn.com/w40/us.png" class="w-5 h-5 rounded-full object-cover border border-white/20 hover:scale-110 transition-transform shadow-sm" alt="EN"></a>
+        <a href="#" onclick="event.preventDefault(); i18n.load('pt');" title="Português" class="flex" data-i18n-title="nav_lang_pt"><img src="https://flagcdn.com/w40/br.png" class="w-5 h-5 rounded-full object-cover border border-white/20 hover:scale-110 transition-transform shadow-sm" alt="PT"></a>
+      </div>
+
+      <a href="assets/pdf/catalogo_1.pdf" target="_blank"
+        class="nav-cta bg-primary hover:bg-[#153f7a] text-white px-6 py-2.5 rounded-full font-semibold text-sm transition-all shadow-md shadow-primary/20"
+        data-i18n="nav_catalog">
+        CATÁLOGO
+      </a>
+
+      <a href="admin/login.php" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold transition-all border border-white/10">
+        <span class="material-symbols-outlined text-sm">login</span>
+        INGRESAR
+      </a>
+    </div>
+    <button class="md:hidden text-white z-50" id="mobile-menu-btn" aria-label="Abrir menú">
+      <span class="material-symbols-outlined text-3xl" id="mobile-menu-icon">menu</span>
+    </button>
+  </nav>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-drawer" class="fixed inset-0 z-[200] flex flex-col bg-dark-navy text-white translate-x-full transition-transform duration-300 ease-in-out md:hidden overflow-y-auto">
+    <div class="flex items-center justify-between px-6 py-4 border-b border-white/10">
+      <img src="assets/img/logo.png" alt="DPC Logo" class="h-12 w-auto" />
+      <button id="mobile-close-btn" aria-label="Cerrar menú">
+        <span class="material-symbols-outlined text-3xl">close</span>
+      </button>
+    </div>
+    <nav class="flex flex-col px-6 py-8 gap-1 text-base font-semibold">
+      <a href="index.php" class="py-3 border-b border-white/5 hover:text-primary transition-colors">Inicio</a>
+      <a href="nosotros.html" class="py-3 border-b border-white/5 hover:text-primary transition-colors">Nosotros</a>
+      <div class="py-3 border-b border-white/5">
+        <p class="text-xs font-black uppercase tracking-widest text-slate-400 mb-3">Productos</p>
+        <div class="flex flex-col gap-2 pl-2">
+          <a href="productos.php?cat=proteccion" class="py-1.5 text-slate-300 hover:text-primary transition-colors">Protección Personal</a>
+          <a href="productos.php?cat=camisolines" class="py-1.5 text-slate-300 hover:text-primary transition-colors">Camisolines</a>
+          <a href="productos.php?cat=quirurgico" class="py-1.5 text-slate-300 hover:text-primary transition-colors">Línea Quirúrgica</a>
+          <a href="productos.php?cat=kit_pacientes" class="py-1.5 text-slate-300 hover:text-primary transition-colors">Kits Pacientes</a>
+          <a href="productos.php?cat=cobertores" class="py-1.5 text-slate-300 hover:text-primary transition-colors">Cobertores</a>
+          <a href="productos.php?cat=ambos" class="py-1.5 text-slate-300 hover:text-primary transition-colors">Ambos</a>
+          <a href="productos.php?cat=kit_dialisis" class="py-1.5 text-slate-300 hover:text-primary transition-colors">Kits Diálisis</a>
+          <a href="productos.php" class="py-1.5 text-primary font-bold hover:underline">Ver todos →</a>
+        </div>
+      </div>
+      <a href="noticias.php" class="py-3 border-b border-white/5 hover:text-primary transition-colors text-primary font-black">Noticias</a>
+      <a href="contacto.html" class="py-3 border-b border-white/5 hover:text-primary transition-colors">Contacto</a>
+    </nav>
+    <div class="px-6 pb-8 flex flex-col gap-3 mt-auto">
+      <div class="flex items-center gap-4 mb-2">
+        <a href="#" onclick="event.preventDefault(); i18n.load('es'); closeMobileMenu();" class="flex items-center gap-1 text-sm"><img src="https://flagcdn.com/w40/es.png" class="w-5 h-5 rounded-full" alt="ES"> ES</a>
+        <a href="#" onclick="event.preventDefault(); i18n.load('en'); closeMobileMenu();" class="flex items-center gap-1 text-sm"><img src="https://flagcdn.com/w40/us.png" class="w-5 h-5 rounded-full" alt="EN"> EN</a>
+        <a href="#" onclick="event.preventDefault(); i18n.load('pt'); closeMobileMenu();" class="flex items-center gap-1 text-sm"><img src="https://flagcdn.com/w40/br.png" class="w-5 h-5 rounded-full" alt="PT"> PT</a>
+      </div>
+      <a href="assets/pdf/catalogo_1.pdf" target="_blank" class="w-full text-center bg-primary text-white px-6 py-3 rounded-full font-bold">Ver Catálogo PDF</a>
+    </div>
+  </div>
+
+  <main class="pt-[80px]">
+    <!-- Hero Section -->
+    <section class="relative h-[300px] w-full overflow-hidden bg-navy-dark mb-12">
+      <div class="absolute inset-0 opacity-40 bg-cover bg-center" style="background-image: url('assets/img/Hospitalaria.webp');"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-navy-dark via-navy-dark/80 to-transparent"></div>
+      <div class="relative mx-auto flex h-full max-w-7xl flex-col justify-center px-6 md:px-20">
+        <h1 class="text-4xl md:text-6xl font-black text-white mb-6 leading-tight max-w-2xl" data-i18n="news_hero_title">Actualidad Médica</h1>
+        <p class="text-lg md:text-xl text-slate-300 max-w-2xl font-light" data-i18n="news_hero_desc">Explorando las últimas innovaciones y el futuro del sector salud.</p>
+      </div>
+    </section>
+
+    <div class="max-w-7xl mx-auto px-6 lg:px-20">
+      <?php if ($featured_news): ?>
         <!-- Featured Post -->
         <section class="mb-16 relative overflow-hidden">
           <div class="bg-watermark top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-12">FEATURED</div>
@@ -245,16 +248,16 @@ if (!$featured_news && !empty($noticias)) {
             </div>
           </div>
         </section>
-        <?php endif; ?>
+      <?php endif; ?>
 
-        <!-- News Feed Grid -->
-        <section class="mb-24">
-          <h2 class="text-2xl font-bold text-slate-900 mb-8 flex items-center gap-2">
-            <span class="material-symbols-outlined text-primary">grid_view</span>
-            <span data-i18n="news_ui_title">Todas las Novedades</span>
-          </h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            <?php foreach ($noticias as $n): ?>
+      <!-- News Feed Grid -->
+      <section class="mb-24">
+        <h2 class="text-2xl font-bold text-slate-900 mb-8 flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary">grid_view</span>
+          <span data-i18n="news_ui_title">Todas las Novedades</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <?php foreach ($noticias as $n): ?>
             <article onclick="window.location.href='noticias.php?id=<?= $n['id'] ?>'" class="flex flex-col rounded-3xl overflow-hidden glass-v2 hover:shadow-2xl transition-all hover:-translate-y-2 group cursor-pointer h-full">
               <div class="h-56 overflow-hidden relative">
                 <img src="<?= htmlspecialchars($n['imagen']) ?>" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="News Image" />
@@ -269,102 +272,127 @@ if (!$featured_news && !empty($noticias)) {
                 </span>
               </div>
             </article>
-            <?php endforeach; ?>
-          </div>
-        </section>
-      </div>
-    </main>
-
-    <footer class="bg-dark-navy text-white pt-16 pb-12">
-      <div class="container mx-auto px-6 text-center">
-        <img src="assets/img/logo.png" alt="DPC Logo" class="h-12 mx-auto mb-8" />
-        <p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest">© 2026 DPC - Fábrica de Ropa Hospitalaria Descartable</p>
-      </div>
-    </footer>
-
-    <script src="assets/js/translations.js"></script>
-    <script src="assets/js/i18n.js"></script>
-    <script>
-      window.addEventListener("scroll", function () {
-        const nav = document.getElementById("main-nav");
-        nav.classList.toggle("nav-scrolled", window.scrollY > 50);
-      });
-
-      function openMobileMenu() {
-        const d = document.getElementById('mobile-drawer');
-        if (!d) return;
-        d.classList.remove('translate-x-full');
-        d.classList.add('translate-x-0');
-        document.body.style.overflow = 'hidden';
-      }
-      function closeMobileMenu() {
-        const d = document.getElementById('mobile-drawer');
-        if (!d) return;
-        d.classList.add('translate-x-full');
-        d.classList.remove('translate-x-0');
-        document.body.style.overflow = '';
-      }
-
-      document.addEventListener('DOMContentLoaded', function() {
-        const btnOpen  = document.getElementById('mobile-menu-btn');
-        const btnClose = document.getElementById('mobile-close-btn');
-        if (btnOpen)  btnOpen.addEventListener('click', openMobileMenu);
-        if (btnClose) btnClose.addEventListener('click', closeMobileMenu);
-      });
-    </script>
-    <!-- Global Search Overlay -->
-    <div id="search-overlay" class="fixed inset-0 z-[100] hidden items-start justify-center bg-navy-dark/95 backdrop-blur-md p-4 pt-20 transition-all duration-300">
-      <div class="relative w-full max-w-3xl animate-fade-in">
-        <button onclick="closeGlobalSearch()" class="absolute -top-12 right-0 text-white/60 hover:text-white flex items-center gap-2 text-sm uppercase font-bold tracking-widest">
-          Cerrar <span class="material-symbols-outlined">close</span>
-        </button>
-        <div class="relative">
-          <span class="absolute left-6 top-1/2 -translate-y-1/2 material-symbols-outlined text-slate-400 text-3xl">search</span>
-          <input type="text" id="global-search-input" placeholder="¿Qué estás buscando? (ej: barbijos, misión, contacto...)" 
-            class="w-full bg-white/10 border-2 border-white/10 rounded-3xl py-6 pl-16 pr-8 text-white text-xl focus:border-primary focus:ring-0 transition-all outline-none"
-            oninput="handleGlobalSearch(this.value)">
+          <?php endforeach; ?>
         </div>
-        <div id="search-results" class="mt-8 grid grid-cols-1 gap-4 max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar"></div>
-      </div>
+      </section>
     </div>
+  </main>
 
-    <script>
-      const siteMap = [
-        { title: "Nuestros Productos", category: "Catálogo", keywords: ["barbijo", "camisolin", "cofia", "guante", "kit", "insumos", "quirurgico", "productos"], url: "productos.php" },
-        { title: "Nuestra Historia", category: "Nosotros", keywords: ["mision", "vision", "historia", "nosotros", "quienes somos", "tucuman", "fabrica"], url: "nosotros.html" },
-        { title: "Habilitaciones ANMAT", category: "Calidad", keywords: ["anmat", "certificacion", "habilitacion", "seguridad", "calidad"], url: "nosotros.html#certificacion" },
-        { title: "Últimas Noticias", category: "Actualidad", keywords: ["novedades", "noticias", "blog", "actualidad", "eventos"], url: "noticias.php" },
-        { title: "Contacto y Ubicación", category: "Ayuda", keywords: ["contacto", "telefono", "email", "donde estamos", "mapa", "direccion", "whatsapp"], url: "contacto.html" }
-      ];
+  <footer class="bg-dark-navy text-white pt-16 pb-12">
+    <div class="container mx-auto px-6 text-center">
+      <img src="assets/img/logo.png" alt="DPC Logo" class="h-12 mx-auto mb-8" />
+      <p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest">© 2026 DPC - Fábrica de Ropa Hospitalaria Descartable</p>
+    </div>
+  </footer>
 
-      function openGlobalSearch() {
-        const overlay = document.getElementById('search-overlay');
-        overlay.classList.remove('hidden');
-        overlay.classList.add('flex');
-        setTimeout(() => document.getElementById('global-search-input').focus(), 100);
-        document.body.style.overflow = 'hidden';
+  <script src="assets/js/translations.js"></script>
+  <script src="assets/js/i18n.js"></script>
+  <script>
+    window.addEventListener("scroll", function() {
+      const nav = document.getElementById("main-nav");
+      nav.classList.toggle("nav-scrolled", window.scrollY > 50);
+    });
+
+    function openMobileMenu() {
+      const d = document.getElementById('mobile-drawer');
+      if (!d) return;
+      d.classList.remove('translate-x-full');
+      d.classList.add('translate-x-0');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMobileMenu() {
+      const d = document.getElementById('mobile-drawer');
+      if (!d) return;
+      d.classList.add('translate-x-full');
+      d.classList.remove('translate-x-0');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const btnOpen = document.getElementById('mobile-menu-btn');
+      const btnClose = document.getElementById('mobile-close-btn');
+      if (btnOpen) btnOpen.addEventListener('click', openMobileMenu);
+      if (btnClose) btnClose.addEventListener('click', closeMobileMenu);
+    });
+  </script>
+  <!-- Global Search Overlay -->
+  <div id="search-overlay" class="fixed inset-0 z-[100] hidden items-start justify-center bg-navy-dark/95 backdrop-blur-md p-4 pt-20 transition-all duration-300">
+    <div class="relative w-full max-w-3xl animate-fade-in">
+      <button onclick="closeGlobalSearch()" class="absolute -top-12 right-0 text-white/60 hover:text-white flex items-center gap-2 text-sm uppercase font-bold tracking-widest">
+        Cerrar <span class="material-symbols-outlined">close</span>
+      </button>
+      <div class="relative">
+        <span class="absolute left-6 top-1/2 -translate-y-1/2 material-symbols-outlined text-slate-400 text-3xl">search</span>
+        <input type="text" id="global-search-input" placeholder="¿Qué estás buscando? (ej: barbijos, misión, contacto...)"
+          class="w-full bg-white/10 border-2 border-white/10 rounded-3xl py-6 pl-16 pr-8 text-white text-xl focus:border-primary focus:ring-0 transition-all outline-none"
+          oninput="handleGlobalSearch(this.value)">
+      </div>
+      <div id="search-results" class="mt-8 grid grid-cols-1 gap-4 max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar"></div>
+    </div>
+  </div>
+
+  <script>
+    const siteMap = [{
+        title: "Nuestros Productos",
+        category: "Catálogo",
+        keywords: ["barbijo", "camisolin", "cofia", "guante", "kit", "insumos", "quirurgico", "productos"],
+        url: "productos.php"
+      },
+      {
+        title: "Nuestra Historia",
+        category: "Nosotros",
+        keywords: ["mision", "vision", "historia", "nosotros", "quienes somos", "tucuman", "fabrica"],
+        url: "nosotros.html"
+      },
+      {
+        title: "Habilitaciones ANMAT",
+        category: "Calidad",
+        keywords: ["anmat", "certificacion", "habilitacion", "seguridad", "calidad"],
+        url: "nosotros.html#certificacion"
+      },
+      {
+        title: "Últimas Noticias",
+        category: "Actualidad",
+        keywords: ["novedades", "noticias", "blog", "actualidad", "eventos"],
+        url: "noticias.php"
+      },
+      {
+        title: "Contacto y Ubicación",
+        category: "Ayuda",
+        keywords: ["contacto", "telefono", "email", "donde estamos", "mapa", "direccion", "whatsapp"],
+        url: "contacto.html"
+      }
+    ];
+
+    function openGlobalSearch() {
+      const overlay = document.getElementById('search-overlay');
+      overlay.classList.remove('hidden');
+      overlay.classList.add('flex');
+      setTimeout(() => document.getElementById('global-search-input').focus(), 100);
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeGlobalSearch() {
+      const overlay = document.getElementById('search-overlay');
+      overlay.classList.add('hidden');
+      overlay.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+
+    function handleGlobalSearch(query) {
+      const resultsContainer = document.getElementById('search-results');
+      if (query.length < 2) {
+        resultsContainer.innerHTML = '';
+        return;
       }
 
-      function closeGlobalSearch() {
-        const overlay = document.getElementById('search-overlay');
-        overlay.classList.add('hidden');
-        overlay.classList.remove('flex');
-        document.body.style.overflow = '';
-      }
+      const filtered = siteMap.filter(item =>
+        item.title.toLowerCase().includes(query.toLowerCase()) ||
+        item.keywords.some(k => k.includes(query.toLowerCase()))
+      );
 
-      function handleGlobalSearch(query) {
-        const resultsContainer = document.getElementById('search-results');
-        if (query.length < 2) {
-          resultsContainer.innerHTML = '';
-          return;
-        }
-
-        const filtered = siteMap.filter(item => 
-          item.title.toLowerCase().includes(query.toLowerCase()) || 
-          item.keywords.some(k => k.includes(query.toLowerCase()))
-        );
-
-        resultsContainer.innerHTML = filtered.map(item => `
+      resultsContainer.innerHTML = filtered.map(item => `
           <a href="${item.url}" class="group flex items-center justify-between p-6 bg-white/5 hover:bg-primary/20 border border-white/10 rounded-2xl transition-all">
             <div class="flex flex-col">
               <span class="text-[10px] font-black uppercase tracking-widest text-primary mb-1">${item.category}</span>
@@ -374,14 +402,15 @@ if (!$featured_news && !empty($noticias)) {
           </a>
         `).join('');
 
-        if (filtered.length === 0) {
-          resultsContainer.innerHTML = '<p class="text-center text-slate-500 py-10">No encontramos resultados para tu búsqueda.</p>';
-        }
+      if (filtered.length === 0) {
+        resultsContainer.innerHTML = '<p class="text-center text-slate-500 py-10">No encontramos resultados para tu búsqueda.</p>';
       }
+    }
 
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeGlobalSearch();
-      });
-    </script>
-  </body>
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeGlobalSearch();
+    });
+  </script>
+</body>
+
 </html>

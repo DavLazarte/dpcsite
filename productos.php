@@ -190,7 +190,7 @@ foreach ($dbProducts as $p) {
           <a href="#" onclick="event.preventDefault(); i18n.load('en');" title="English" class="flex" data-i18n-title="nav_lang_en"><img src="https://flagcdn.com/w40/us.png" class="w-5 h-5 rounded-full object-cover border border-white/20 hover:scale-110 transition-transform shadow-sm" alt="EN"></a>
           <a href="#" onclick="event.preventDefault(); i18n.load('pt');" title="Português" class="flex" data-i18n-title="nav_lang_pt"><img src="https://flagcdn.com/w40/br.png" class="w-5 h-5 rounded-full object-cover border border-white/20 hover:scale-110 transition-transform shadow-sm" alt="PT"></a>
         </div>
-        <a href="assets/pdf/catalogo.pdf" target="_blank" class="nav-cta bg-primary hover:bg-[#153f7a] text-white px-6 py-2.5 rounded-full font-semibold text-sm transition-all shadow-md shadow-primary/20" data-i18n="nav_catalog">CATÁLOGO</a>
+        <a href="assets/pdf/catalogo_1.pdf" target="_blank" class="nav-cta bg-primary hover:bg-[#153f7a] text-white px-6 py-2.5 rounded-full font-semibold text-sm transition-all shadow-md shadow-primary/20" data-i18n="nav_catalog">CATÁLOGO</a>
         <a href="admin/login.php" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold transition-all border border-white/10">
           <span class="material-symbols-outlined text-sm">login</span>
           INGRESAR
@@ -230,7 +230,7 @@ foreach ($dbProducts as $p) {
           <a href="#" onclick="event.preventDefault(); i18n.load('en'); closeMobileMenu();" class="flex items-center gap-1 text-sm"><img src="https://flagcdn.com/w40/us.png" class="w-5 h-5 rounded-full" alt="EN"> EN</a>
           <a href="#" onclick="event.preventDefault(); i18n.load('pt'); closeMobileMenu();" class="flex items-center gap-1 text-sm"><img src="https://flagcdn.com/w40/br.png" class="w-5 h-5 rounded-full" alt="PT"> PT</a>
         </div>
-        <a href="assets/pdf/catalogo.pdf" target="_blank" class="w-full text-center bg-primary text-white px-6 py-3 rounded-full font-bold">Ver Catálogo PDF</a>
+        <a href="assets/pdf/catalogo_1.pdf" target="_blank" class="w-full text-center bg-primary text-white px-6 py-3 rounded-full font-bold">Ver Catálogo PDF</a>
       </div>
     </div>
 
@@ -419,7 +419,7 @@ foreach ($dbProducts as $p) {
           <a id="modal-wa" href="#" target="_blank" class="flex items-center justify-center gap-2 rounded-xl bg-green-600 py-3 text-[10px] font-black uppercase tracking-widest text-white hover:bg-green-700 transition-all shadow-lg">
             <span class="material-symbols-outlined text-lg">chat</span> Consultar
           </a>
-          <a href="assets/pdf/catalogo.pdf" target="_blank" class="sm:col-span-2 flex items-center justify-center gap-2 rounded-xl bg-slate-100 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:bg-slate-200 transition-all">
+          <a href="assets/pdf/catalogo_1.pdf" target="_blank" class="sm:col-span-2 flex items-center justify-center gap-2 rounded-xl bg-slate-100 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:bg-slate-200 transition-all">
             <span class="material-symbols-outlined text-lg">picture_as_pdf</span> Ver Catálogo Completo
           </a>
         </div>

@@ -325,7 +325,7 @@ $noticias = $stmt->fetchAll();
         <a href="#" onclick="event.preventDefault(); i18n.load('pt');" title="Português" class="flex" data-i18n-title="nav_lang_pt"><img src="https://flagcdn.com/w40/br.png" class="w-5 h-5 rounded-full object-cover border border-white/20 hover:scale-110 transition-transform shadow-sm" alt="PT"></a>
       </div>
 
-      <a href="assets/pdf/catalogo.pdf" target="_blank"
+      <a href="assets/pdf/catalogo_1.pdf" target="_blank"
         class="nav-cta bg-primary hover:bg-[#153f7a] text-white px-6 py-2.5 rounded-full font-semibold text-sm transition-all shadow-md shadow-primary/20"
         data-i18n="nav_catalog">
         CATÁLOGO
@@ -374,7 +374,7 @@ $noticias = $stmt->fetchAll();
         <a href="#" onclick="event.preventDefault(); i18n.load('en'); closeMobileMenu();" class="flex items-center gap-1 text-sm"><img src="https://flagcdn.com/w40/us.png" class="w-5 h-5 rounded-full" alt="EN"> EN</a>
         <a href="#" onclick="event.preventDefault(); i18n.load('pt'); closeMobileMenu();" class="flex items-center gap-1 text-sm"><img src="https://flagcdn.com/w40/br.png" class="w-5 h-5 rounded-full" alt="PT"> PT</a>
       </div>
-      <a href="assets/pdf/catalogo.pdf" target="_blank" class="w-full text-center bg-primary text-white px-6 py-3 rounded-full font-bold">Ver Catálogo PDF</a>
+      <a href="assets/pdf/catalogo_1.pdf" target="_blank" class="w-full text-center bg-primary text-white px-6 py-3 rounded-full font-bold">Ver Catálogo PDF</a>
       <a href="admin/login.php" class="w-full text-center border border-white/20 text-white px-6 py-3 rounded-full font-bold hover:bg-white/10 transition-all">Ingresar Admin</a>
     </div>
   </div>
