@@ -386,7 +386,7 @@ foreach ($dbProducts as $p) {
     </footer>
 
     <!-- WhatsApp Floating Button -->
-    <a class="fixed bottom-10 right-10 z-[60] w-20 h-20 bg-[#25D366] rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform group" href="https://wa.me/543814456789?text=Hola,%20quisiera%20realizar%20una%20consulta." target="_blank">
+    <a class="fixed bottom-10 right-10 z-[60] w-20 h-20 bg-[#25D366] rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform group" href="https://wa.me/5493812505978?text=Hola,%20quisiera%20realizar%20una%20consulta." target="_blank">
       <svg class="w-10 h-10 text-white fill-current" viewBox="0 0 24 24">
         <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.185-.573c.948.517 2.139.945 3.145.945 3.181 0 5.768-2.586 5.768-5.766 0-3.18-2.587-5.766-5.767-5.766zm3.371 8.203c-.144.405-.833.748-1.15.773-.243.018-.56.033-1.602-.383-1.353-.54-2.226-1.888-2.293-1.979-.066-.091-.539-.717-.539-1.379 0-.662.348-.988.472-1.12.124-.132.273-.166.364-.166.091 0 .182.001.261.005.083.004.195-.032.304.233.112.274.385.938.418 1.005.033.066.054.144.01.233-.044.089-.066.144-.132.221-.066.077-.14.173-.2.235-.069.071-.141.148-.061.286.08.138.354.584.76 0.941.522.459.963.601 1.102.668.138.066.221.055.304-.042.083-.097.354-.412.449-.553.095-.141.19-.118.32-.07.13.047.825.389.968.461.143.072.238.107.273.167.035.06.035.348-.109.753z"></path>
       </svg>
@@ -636,7 +636,7 @@ foreach ($dbProducts as $p) {
         specsList.innerHTML = '<p class="text-sm text-slate-400 italic">No hay especificaciones adicionales.</p>';
       }
 
-      document.getElementById("modal-wa").href = `https://wa.me/543814456789?text=Hola, quisiera consultar por el producto: ${encodeURIComponent(getProdField(p, 'nombre'))}`;
+      document.getElementById("modal-wa").href = `https://wa.me/5493812505978?text=Hola, quisiera consultar por el producto: ${encodeURIComponent(getProdField(p, 'nombre'))}`;
       document.getElementById("modal-pdf").href = `generar_pdf.php?id=${p.id}&lang=${i18n.currentLang || 'es'}`;
 
       const modal = document.getElementById("product-modal");
